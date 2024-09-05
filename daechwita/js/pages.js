@@ -39,6 +39,10 @@ $(function () {
     btnEffect.play();
   });
 
+  $(".btn-effect").on("click", function () {
+    btnEffect.play();
+  });
+
   //  셀렉트
   $(".btn-select").on("mouseover", function () {
     var btnIdx = $(".btn-select").index(this);
@@ -187,6 +191,8 @@ if (sliderWrap) {
     }
   });
   var drop = 0; //정답 수
+  var faliEffect = new Audio("./sound/effect/fali_effect.mp3");
+  var successEffect = new Audio("./sound/effect/success_effect.mp3");
   $(".dropzon").droppable({
     accept: ".draggable",
     revert: "invalid",
@@ -199,7 +205,6 @@ if (sliderWrap) {
       // 나레이션 재생
       
       var faliAudio = new Audio("./sound/narration/fali.mp3");
-      var faliEffect = new Audio("./sound/effect/fali_effect.mp3");
       
       if (answer === "true") {
         var scucessAudio = new Audio("./sound/narration/" + name + ".mp3");
@@ -214,6 +219,7 @@ if (sliderWrap) {
         musicalAudio.addEventListener("ended", function () {
           scucessAudio.play();
         });
+        successEffect.play();
         musicalAudio.play(); //악기소리
         ui.helper.remove();
         drop++
@@ -319,7 +325,7 @@ $(".clothes-drop").droppable({
         if (isAccepted && name === missionItems[currentIndex]) {
             $(this).addClass(name);
             originalElement.parent().addClass("disabled");
-
+            successEffect.play();
             // 현재 미션 항목 업데이트
             currentIndex++;
             if (currentIndex < missionItems.length) {
@@ -355,6 +361,7 @@ $(".clothes-drop").droppable({
             }
         } else {
             // 타겟이 일치하지 않거나 미션 항목이 일치하지 않는 경우 오디오 재생
+            faliEffect.play();
             faliAudio2.play();
         }
     },
