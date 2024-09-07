@@ -75,16 +75,21 @@ img{
 .home .btn-start {
     position: absolute;
     left: 50%;
-    bottom: 14.14%;
+    bottom: 20.14%;
     transform: translateX(-50%);
-    width: 29.44%;
-    height: 18.19%;
+    width: 21.61%;
+    height: 14.25%;
     background: url(../img/icon/ico_play.png) no-repeat;
     background-size: 100% !important;
 }
 
 .home .btn-start:hover{
     background: url(../img/icon/ico_play_on.png) no-repeat;
+
+}
+
+.home .btn-start:active{
+    background: url(../img/icon/ico_play_active.png) no-repeat;
 
 }
 
