@@ -404,7 +404,7 @@ function playCompleteAudio(completeAudio) {
     };
 }
 
-  // 팝업 슬라이드
+// 팝업 슬라이드
 let currentImg = 0;
 const images = $(".dialog .sd > div");
 const totalImages = images.length;
