@@ -2,9 +2,295 @@
 
 /* select-01 */
 .select-01 {
+    display: flex;
+    gap: 2%;
+    padding: 12% 6% 4% 6%;
     background: url(../img/content_01/bg.png) no-repeat;
 }
+.finish-box.s_01{
+    height: 10%;
+}
+.select-01 .board{
+    position: relative;
+    width: 72.78%;
+    height: 100%;
+    
+}
 
+.select-01 .board-top{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 85%;
+    z-index: 3;
+}
+
+.select-01 .board-wrap{
+    width: 100%;
+    height: 100%;
+    border: 4.5px solid #ffc4c4;
+    border-radius: 2rem;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+
+.select-01 .board-tool{
+   width: calc(100% - 74.78%);
+}
+
+.select-01 .mission{
+    width: 100%;
+    height: 52%;
+}
+
+.select-01 .mission-wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.select-01 .mission-wrap[data-name="daegeum"]{
+    background-image: url(../img/content_01/daegeum.png);
+}
+
+.select-01 .mission-wrap[data-name="piri"]{
+    background-image: url(../img/content_01/piri.png);
+}
+
+.select-01 .mission-wrap[data-name="sogeum"]{
+    background-image: url(../img/content_01/sogeum.png);
+}
+
+.select-01 .mission-wrap[data-name="saenghwang"]{
+    background-image: url(../img/content_01/saenghwang.png);
+}
+
+.select-01 .mission-wrap .btn-sound{
+    position: absolute;
+    left: 8%;
+    bottom: 12%;
+    width: 30%;
+    height: 33%;
+    background-image: url(../img/icon/ico_sound.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.select-01 .mission-wrap .btn-sound:active{
+    background-image: url(../img/icon/ico_sound_click.png);
+}
+
+.select-01 .board-tool .tool{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 34%;
+    padding: 2%;
+}
+
+.select-01 .board-tool .tool > button{
+    width: 27%;
+    margin: 2%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.select-01 .board-tool .tool > .brush{
+    background-image: url(../img/content_01/btn_01.png);
+}
+
+.select-01 .board-tool .tool > .colored-pencil{
+    background-image: url(../img/content_01/btn_02.png);
+}
+
+.select-01 .board-tool .tool > .highlighter{
+    background-image: url(../img/content_01/btn_03.png);
+}
+
+.select-01 .board-tool .tool > .color{
+    background-image: url(../img/content_01/btn_04.png);
+}
+
+.select-01 .board-tool .tool > .stamp{
+    background-image: url(../img/content_01/btn_05.png);
+}
+
+.select-01 .board-tool .tool > .eraser{
+    background-image: url(../img/content_01/btn_06.png);
+}
+
+.select-01 .board-tool .tool > .brush.active{
+    background-image: url(../img/content_01/btn_01_on.png);
+}
+
+.select-01 .board-tool .tool > .colored-pencil.active{
+    background-image: url(../img/content_01/btn_02_on.png);
+}
+
+.select-01 .board-tool .tool > .highlighter.active{
+    background-image: url(../img/content_01/btn_03_on.png);
+}
+
+.select-01 .board-tool .tool > .color.active{
+    background-image: url(../img/content_01/btn_04_on.png);
+}
+
+.select-01 .board-tool .tool > .stamp.active{
+    background-image: url(../img/content_01/btn_05_on.png);
+}
+
+.select-01 .board-tool .tool > .eraser.active{
+    background-image: url(../img/content_01/btn_06_on.png);
+}
+
+.select-01 .board-tool .btn{
+    display: flex;
+    gap: 2%;
+    width: 100%;
+    height: 14%;
+}
+
+.select-01 .board-tool .btn > button{
+    display: flex;
+    width: 48%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.select-01 .board-tool .btn > .btn-del{
+    background-image: url(../img/content_01/btn_del.png);
+}
+.select-01 .board-tool .btn > .btn-del:active{
+    background-image: url(../img/content_01/btn_del_click.png);
+}
+.select-01 .board-tool .btn > .btn-save{
+    background-image: url(../img/content_01/btn_save.png);
+}
+.select-01 .board-tool .btn > .btn-save:active{
+    background-image: url(../img/content_01/btn_save_click.png);
+}
+
+.select-01 .palette{
+    position: absolute;
+    bottom: 16%;
+    right: 26%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2% 20%;
+    width: 15.46%;
+    height: 40.74%;
+    background-image: url(../img/content_01/bg_palette.png);
+    background-size: 100%;
+    padding: 2% 3.5% 2% 2%;
+}
+
+.select-01 .palette > button{
+    width: 38.5%;
+    height: 20%;
+    border: 7px solid #fff;
+    border-radius: 50%;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+}
+.select-01 .save-popup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    z-index: 20;
+}
+
+.select-01 .save-popup .popup-wrap{
+    position: relative;
+    width: 51.7%;
+    height: 68.2%;
+    background: url(../img/content_01/bg_save_popup.png);
+    background-size: contain;
+}
+
+.select-01 .save-popup .popup-wrap .close{
+    position: absolute;
+    top: 5%;
+    right: 7%;
+    width: 9.05%;
+    height: 12.2%;
+}
+
+.select-01 .save-popup .btn{
+    position: absolute;
+    bottom: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+.select-01 .save-popup .btn button{
+    width: 40%;
+    height: 100%;
+    background-size: 100%;
+}
+
+.select-01 .save-popup .btn-ok{
+    background-image: url(../img/content_01/btn_ok.png);
+}
+
+.select-01 .save-popup .btn-ok:hover{
+    background-image: url(../img/content_01/btn_ok_over.png);
+}
+
+.select-01 .save-popup .btn-no{
+    background-image: url(../img/content_01/btn_no.png);
+}
+
+
+.select-01 .save-popup .btn-no:hover{
+    background-image: url(../img/content_01/btn_no_over.png);
+}
+
+
+.select-01 .palette > .red{
+    background-color:#ea3b5a;
+}
+
+.select-01 .palette > .sky{
+    background-color:#45aaf2;
+}
+
+.select-01 .palette > .orange{
+    background-color:#fb8231;
+}
+
+.select-01 .palette > .blue{
+    background-color:#3868d6;
+}
+
+.select-01 .palette > .yellow{
+    background-color:#fed32f;
+}
+
+.select-01 .palette > .purple{
+    background-color:#8854d0;
+}
+
+.select-01 .palette > .green{
+    background-color:#20bf6b;
+}
+
+.select-01 .palette > .black{
+    background-color:#000;
+}
 
 
 /* select-02 */

@@ -32,8 +32,15 @@ img{
     margin: 0 auto;
     flex-direction: column;
     aspect-ratio: 1634 / 919;
-    background-image: url(../img/content_02/bg.png);
     background-size: 100%;
+}
+
+.container .sel-01{
+    background-image: url(../img/content_01/bg.png);
+}
+
+.container .sel-02{
+    background-image: url(../img/content_02/bg.png);
 }
 
 .btn-top{
