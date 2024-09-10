@@ -73,134 +73,138 @@ $(function () {
   var infoEffectAudio = new Audio("./sound/effect/info.mp3"); //더알아보기 효과음
 
   // contents01
-  const canvas = new fabric.Canvas('canvas', {
-    isDrawingMode: false,
-    backgroundColor: 'rgba(255,255,255)'
-  });
-
-  let currentColor = ''; // 기본 색상
-  let currentOpacity = 1;    // 기본 투명도
-  let previousOpacity = 1;   // 이전 투명도 (형광펜 선택 전 상태)
-  let currentTool = '';        // 현재 선택된 도구
-
-  function resizeCanvas() {
-    const boardWrap = $('.board-wrap');
-    const width = boardWrap.width();
-    const height = boardWrap.height();
-    $('#canvas').attr({ width: width, height: height });
-    canvas.setWidth(width);
-    canvas.setHeight(height);
-  }
-
-  resizeCanvas();
-
-  $(window).on('resize', function() {
-    resizeCanvas();
-  });
+  if($("#canvas").length > 0){
+    const canvas = new fabric.Canvas('canvas', {
+      isDrawingMode: false,
+      backgroundColor: 'rgba(255,255,255)'
+    });
   
-
-  // 도구 버튼 클릭 이벤트
-  $('.tool button').on('click', function() {
-    const toolClass = $(this).attr('data-name');
-    if (toolClass !== 'color') {
-      $('.tool button').removeClass('active');
-      $(this).addClass('active');
-      currentTool = toolClass; // 현재 선택된 도구 저장
-    } else {
-      $(this).addClass('active');
+    let currentColor = ''; // 기본 색상
+    let currentOpacity = 1;    // 기본 투명도
+    let previousOpacity = 1;   // 이전 투명도 (형광펜 선택 전 상태)
+    let currentTool = '';        // 현재 선택된 도구
+  
+    function resizeCanvas() {
+      const boardWrap = $('.board-wrap');
+      const width = boardWrap.width();
+      const height = boardWrap.height();
+      $('#canvas').attr({ width: width, height: height });
+      canvas.setWidth(width);
+      canvas.setHeight(height);
     }
-
+  
+    resizeCanvas();
+  
+    $(window).on('resize', function() {
+      resizeCanvas();
+    });
     
-    // 도구 기능 설정
-    switch (toolClass) {
-      case 'brush':
-        canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-        currentColor=''
-        canvas.freeDrawingBrush.width = 10;
-        currentOpacity = previousOpacity; // 이전 투명도로 복원
+  
+    // 도구 버튼 클릭 이벤트
+    $('.tool button').on('click', function() {
+      const toolClass = $(this).attr('data-name');
+      if (toolClass !== 'color') {
+        $('.tool button').removeClass('active');
+        $(this).addClass('active');
+        currentTool = toolClass; // 현재 선택된 도구 저장
+      } else {
+        $(this).addClass('active');
+      }
+  
+      
+      // 도구 기능 설정
+      switch (toolClass) {
+        case 'brush':
+          canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+          currentColor=''
+          canvas.freeDrawingBrush.width = 10;
+          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
+          canvas.isDrawingMode = true;
+          break;
+        case 'colored-pencil':
+          canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+          canvas.freeDrawingBrush.width = 4;
+          currentColor=''
+          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
+          canvas.isDrawingMode = true;
+          break;
+        case 'highlighter':
+          canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+          previousOpacity = currentOpacity; // 현재 투명도를 저장
+          currentColor=''
+          currentOpacity = 0.5; // 형광펜 투명도 설정 (예: 50%)
+          canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
+          canvas.freeDrawingBrush.width = 10;
+          canvas.isDrawingMode = true;
+          break;
+        case 'eraser':
+          canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
+          canvas.freeDrawingBrush.width = 20;
+          currentColor = 'rgba(255,255,255)';
+          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
+          
+          canvas.isDrawingMode = true;
+          console.log(canvas.freeDrawingBrush.color)
+          break;
+        case 'color':
+          // 색상 팔레트 토글
+          if ($(".palette").css("display") === "flex") {
+            $(".palette").css("display", "none");
+          } else {
+            $(".palette").css("display", "flex");
+          }
+          break;
+        default:
+          canvas.isDrawingMode = false;
+      }
+      updateBrush();
+      
+    });
+  
+    // 색상 팔레트 버튼 클릭 이벤트
+    $('.palette button').on('click', function() {
+      const color = $(this).css('background-color');
+      currentColor = color; // 선택된 색상을 currentColor에 저장
+      if (canvas.freeDrawingBrush) {
         canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-        canvas.isDrawingMode = true;
-        break;
-      case 'colored-pencil':
-        canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-        canvas.freeDrawingBrush.width = 4;
-        currentColor=''
-        currentOpacity = previousOpacity; // 이전 투명도로 복원
+      }
+      // 색상 팔레트 닫기
+      $(".palette").css("display", "none");
+      $('.color').removeClass('active');
+    });
+  
+    // 삭제 버튼 클릭 이벤트
+    $('.btn-del').on('click', function() {
+      canvas.clear();
+    });
+  
+    // 브러시 색상 및 투명도 업데이트
+    function updateBrush() {
+      if (canvas.freeDrawingBrush) {
         canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-        canvas.isDrawingMode = true;
-        break;
-      case 'highlighter':
-        canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-        previousOpacity = currentOpacity; // 현재 투명도를 저장
-        currentColor=''
-        currentOpacity = 0.5; // 형광펜 투명도 설정 (예: 50%)
-        canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-        canvas.freeDrawingBrush.width = 10;
-        canvas.isDrawingMode = true;
-        break;
-      case 'eraser':
-        canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-        canvas.freeDrawingBrush.width = 20;
-        currentColor = 'rgba(255,255,255)';
-        currentOpacity = previousOpacity; // 이전 투명도로 복원
-        canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-        
-        canvas.isDrawingMode = true;
-        console.log(canvas.freeDrawingBrush.color)
-        break;
-      case 'color':
-        // 색상 팔레트 토글
-        if ($(".palette").css("display") === "flex") {
-          $(".palette").css("display", "none");
-        } else {
-          $(".palette").css("display", "flex");
-        }
-        break;
-      default:
-        canvas.isDrawingMode = false;
+      }
     }
-    updateBrush();
-    
-  });
-
-  // 색상 팔레트 버튼 클릭 이벤트
-  $('.palette button').on('click', function() {
-    const color = $(this).css('background-color');
-    currentColor = color; // 선택된 색상을 currentColor에 저장
-    if (canvas.freeDrawingBrush) {
-      canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-    }
-    // 색상 팔레트 닫기
-    $(".palette").css("display", "none");
-    $('.color').removeClass('active');
-  });
-
-  // 삭제 버튼 클릭 이벤트
-  $('.btn-del').on('click', function() {
-    canvas.clear();
-  });
-
-  // 브러시 색상 및 투명도 업데이트
-  function updateBrush() {
-    if (canvas.freeDrawingBrush) {
-      canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
+  
+    // HEX 색상을 RGB로 변환하는 함수
+    function hexToRgb(hex) {
+      const match = /^rgba?\((\d+),\s*(\d+),\s*(\d+)\)$/i.exec(hex);
+      if (match) {
+        return `${match[1]}, ${match[2]}, ${match[3]}`;
+      }
+      // HEX 색상 처리
+      hex = hex.replace(/^#/, '');
+      if (hex.length === 3) {
+        hex = hex.split('').map(h => h + h).join('');
+      }
+      const rgb = parseInt(hex, 16);
+      return `${(rgb >> 16) & 0xFF}, ${(rgb >> 8) & 0xFF}, ${rgb & 0xFF}`;
     }
   }
 
-  // HEX 색상을 RGB로 변환하는 함수
-  function hexToRgb(hex) {
-    const match = /^rgba?\((\d+),\s*(\d+),\s*(\d+)\)$/i.exec(hex);
-    if (match) {
-      return `${match[1]}, ${match[2]}, ${match[3]}`;
-    }
-    // HEX 색상 처리
-    hex = hex.replace(/^#/, '');
-    if (hex.length === 3) {
-      hex = hex.split('').map(h => h + h).join('');
-    }
-    const rgb = parseInt(hex, 16);
-    return `${(rgb >> 16) & 0xFF}, ${(rgb >> 8) & 0xFF}, ${rgb & 0xFF}`;
-  }
+  
 
   
   // save-pop
