@@ -139,15 +139,16 @@ $(function () {
           canvas.freeDrawingBrush.width = 10;
           canvas.isDrawingMode = true;
           break;
+        case 'stamp':
+          
+          break;
         case 'eraser':
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
           canvas.freeDrawingBrush.width = 20;
           currentColor = 'rgba(255,255,255)';
           currentOpacity = previousOpacity; // 이전 투명도로 복원
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
-          
           canvas.isDrawingMode = true;
-          console.log(canvas.freeDrawingBrush.color)
           break;
         case 'color':
           // 색상 팔레트 토글
@@ -265,7 +266,7 @@ $(function () {
     $(".select-01").fadeOut();
     $(".finish").fadeIn();
   }
-  
+
   let saveCount = 0;
   function saveCanvasToFinishBox() {
     // 캔버스 데이터를 URL로 추출
