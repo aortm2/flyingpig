@@ -239,25 +239,50 @@ $(function () {
             if (index < names.length) {
                 $(this).attr('data-name', names[(index + currentIndex) % names.length]);
             }
-        });
-        
-        setTimeout(function () {
-          // 현재 미션에 해당하는 오디오 재생
-          var currentMissionName = names[currentIndex];
-          var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
-          var audio = new Audio(audioSrc);
-          audio.play();
-          audio.onended = function () {
-            secondAudio.play();
-          };
-        }, 2000);
-
+          });
+          
+          setTimeout(function () {
+            // 현재 미션에 해당하는 오디오 재생
+            var currentMissionName = names[currentIndex];
+            var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
+            var audio = new Audio(audioSrc);
+            audio.play();
+            audio.onended = function () {
+              secondAudio.play();
+            };
+          }, 2000);
+          
+          
+        saveCanvasToFinishBox();
         currentIndex++
-        
     } else {
-      $(".finish").fadeIn();
+      saveCanvasToFinishBox();
+      finish();
     }
   });
+
+  function finish(){
+    $(".select-01").fadeOut();
+    $(".finish").fadeIn();
+  }
+  
+  let saveCount = 0;
+  function saveCanvasToFinishBox() {
+    // 캔버스 데이터를 URL로 추출
+    var imgDataURL = canvas.toDataURL();
+
+    // finish-box 내의 div 요소들 선택
+    var finishDivs = $('.finish-box div');
+    
+    // 저장할 div 선택
+    var targetDiv = finishDivs.eq(saveCount);
+
+    // 새로운 이미지 요소 생성
+    var img = $('<img>').attr('src', imgDataURL).attr('alt', 'Canvas Image');
+    targetDiv.append(img);
+
+    saveCount++;
+  }
 
    // btn-sound 클릭 시 해당 미션의 오디오 재생
    $('.btn-sound').on('click', function() {
