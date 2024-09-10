@@ -35,11 +35,11 @@ img{
     background-size: 100%;
 }
 
-.container .sel-01{
+.container.sel-01{
     background-image: url(../img/content_01/bg.png);
 }
 
-.container .sel-02{
+.container.sel-02{
     background-image: url(../img/content_02/bg.png);
 }
 

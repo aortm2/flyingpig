@@ -7,9 +7,21 @@
     padding: 12% 6% 4% 6%;
     background: url(../img/content_01/bg.png) no-repeat;
 }
+
 .finish-box.s_01{
     height: 10%;
 }
+
+.finish-box.s_01 .finish-box{
+    display: flex;
+    gap:1%;
+}
+
+.finish-box.s_01 .finish-box > div{
+    width: 24%;
+    background-image: url(../img/content_01/finish_board);
+}
+
 .select-01 .board{
     position: relative;
     width: 72.78%;

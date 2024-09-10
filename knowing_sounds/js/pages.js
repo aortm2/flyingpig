@@ -141,7 +141,7 @@ $(function () {
       case 'eraser':
         canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
         canvas.freeDrawingBrush.width = 20;
-        currentColor = 'rgba(255,255,255)'; // 기본 색상
+        currentColor = 'rgba(255,255,255)';
         currentOpacity = previousOpacity; // 이전 투명도로 복원
         canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
         
