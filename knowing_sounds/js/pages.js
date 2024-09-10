@@ -134,13 +134,17 @@ $(function () {
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
           previousOpacity = currentOpacity; // 현재 투명도를 저장
           currentColor=''
-          currentOpacity = 0.5; // 형광펜 투명도 설정 (예: 50%)
+          currentOpacity = 0.5;
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.freeDrawingBrush.width = 10;
           canvas.isDrawingMode = true;
           break;
         case 'stamp':
-          
+          if ($(".stamp-tool").css("display") === "flex") {
+            $(".stamp-tool").css("display", "none");
+          } else {
+            $(".stamp-tool").css("display", "flex");
+          }
           break;
         case 'eraser':
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
@@ -149,6 +153,8 @@ $(function () {
           currentOpacity = previousOpacity; // 이전 투명도로 복원
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
+          var audioEffect = new Audio('./sound/contents_01/tool_eraser.mp3');
+          audioEffect.play();
           break;
         case 'color':
           // 색상 팔레트 토글
@@ -203,10 +209,146 @@ $(function () {
       const rgb = parseInt(hex, 16);
       return `${(rgb >> 16) & 0xFF}, ${(rgb >> 8) & 0xFF}, ${rgb & 0xFF}`;
     }
+
+     // 스탬프 모드
+    let stampMode = false;
+    let currentStampURL = '';
+
+    // 스탬프 버튼 클릭 이벤트
+    $('.stamp-tool > button').on('click', function() {
+        stampMode = true; // 스탬프 모드 활성화
+        if ($(".stamp-tool").css("display") === "flex") {
+          $(".stamp-tool").css("display", "none");
+        } else {
+          $(".stamp-tool").css("display", "flex");
+        }
+        currentStampURL = $(this).attr('data-url');
+        canvas.isDrawingMode = false;
+    });
+
+    canvas.on('mouse:down', function(event) {
+      $(".stamp").removeClass("active")
+      if (stampMode && currentStampURL) {
+          // 클릭한 위치 좌표 얻기
+          const pointer = canvas.getPointer(event.e);
+          const x = pointer.x;
+          const y = pointer.y;
+  
+        // 스탬프 이미지 URL 설정
+        const stampURL = `./img/content_01/${currentStampURL}.png`;
+  
+          // 이미지 로드 후 클릭한 위치에 추가
+          fabric.Image.fromURL(stampURL, function(img) {
+              img.set({
+                  left: x, // 클릭한 X 좌표
+                  top: y,  // 클릭한 Y 좌표
+                  originX: 'center',
+                  originY: 'center',
+                  selectable: true // 이미지 이동 및 크기 조정 가능
+              });
+  
+              // 이미지 크기 조정 (필요에 따라 조정)
+              img.scale(0.5);
+  
+              // 캔버스에 이미지 추가
+              canvas.add(img);
+              canvas.renderAll();
+          });
+  
+          stampMode = false; // 스탬프 모드 비활성화
+      }
+    });
+
+    // 미션
+    // 처음 진입 오디오 재생이 끝났을 때
+    $(".start2").on('ended', function () {
+
+      // 3초 후에 다른 오디오 재생
+      setTimeout(function () {
+        var nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
+        nextAudio.play();
+      }, 3000); // 3초 지연
+    });
+    var secondAudio = new Audio('./sound/narration/yu2_na_6.mp3');
+    const names = ['daegeum', 'piri', 'sogeum', 'saenghwang'];
+    let currentIndex = 1;
+
+    $(".btn-ok").click(function () {
+      $(".save-popup").css("display", "none")
+      if (currentIndex < names.length) {
+        $('.mission-wrap').each(function (index) {
+          if (index < names.length) {
+            $(this).attr('data-name', names[(index + currentIndex) % names.length]);
+          }
+        });
+
+        setTimeout(function () {
+          // 현재 미션에 해당하는 오디오 재생
+          var currentMissionName = names[currentIndex];
+          var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
+          var audio = new Audio(audioSrc);
+          audio.play();
+          audio.onended = function () {
+            secondAudio.play();
+          };
+        }, 2000);
+
+        currentIndex++
+      } else {
+        finish();
+      }
+      saveCanvasToFinishBox();
+      canvas.clear();
+    });
+
+    function finish() {
+      $(".select-01").fadeOut();
+      $(".finish").fadeIn();
+    }
+
+
+    // 툴 사운드
+    var nowTool = null; //현재 툴 저장
+    var startTime = null; //마우스 다운 시간 저장
+
+    // 도구 선택 시 이벤트 핸들러
+    $('.tool > button').on('click', function() {
+        nowTool = $(this).data('name');
+        startTime = new Date(); // 도구 사용 시작 시간 기록
+        console.log('Tool selected:', nowTool);
+    });
+
+    // 브러시, 색연필, 형광펜의 마우스 다운 및 업 이벤트 처리
+    canvas.on('mouse:down', function(event) {
+        if (nowTool === 'brush' || nowTool === 'colored-pencil' || nowTool === 'highlighter') {
+            startTime = new Date(); // 도구 사용 시작 시간 기록
+        }
+    });
+
+    canvas.on('mouse:up', function(event) {
+        if (nowTool === 'brush' || nowTool === 'colored-pencil' || nowTool === 'highlighter') {
+            var endTime = new Date();
+            var duration = (endTime - startTime) / 1000; // 사용 시간 계산 (초 단위)
+
+            if (duration > 1) {
+                playSound('tool_pen_long.ver.mp3');
+            } else {
+                playSound('tool_pen_short.ver.mp3');
+            }
+        } else if (nowTool === 'stamp') {
+            playSound('tool_stamp.mp3');
+        } else if (nowTool === 'eraser') {
+            playSound('tool_eraser.mp3');
+        }
+    });
+
+    function playSound(filename) {
+        var audio = new Audio('./sound/contents_01/' + filename);
+        audio.play();
+    }
   }
 
-  
-
+ 
   
   // save-pop
   $(".board-tool .btn > .btn-save").click(function(){
@@ -217,56 +359,7 @@ $(function () {
     $(".save-popup").css("display","none")
   });
 
-  // 미션
-  // 처음 진입 오디오 재생이 끝났을 때
-  $(".start2").on('ended', function() {
-      console.log('첫 번째 오디오 재생이 끝났습니다.');
-
-      // 3초 후에 다른 오디오 재생
-      setTimeout(function() {
-          var nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
-          nextAudio.play();
-          console.log('3초 후 다음 오디오가 재생됩니다.');
-      }, 3000); // 3초 지연
-  });
-  var secondAudio = new Audio('./sound/narration/yu2_na_6.mp3');
-  const names = ['daegeum', 'piri', 'sogeum', 'saenghwang'];
-  let currentIndex = 1;
-
-  $(".btn-ok").click(function(){
-      $(".save-popup").css("display","none")
-      if (currentIndex < names.length) {
-        $('.mission-wrap').each(function(index) {
-            if (index < names.length) {
-                $(this).attr('data-name', names[(index + currentIndex) % names.length]);
-            }
-          });
-          
-          setTimeout(function () {
-            // 현재 미션에 해당하는 오디오 재생
-            var currentMissionName = names[currentIndex];
-            var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
-            var audio = new Audio(audioSrc);
-            audio.play();
-            audio.onended = function () {
-              secondAudio.play();
-            };
-          }, 2000);
-          
-          
-        saveCanvasToFinishBox();
-        currentIndex++
-    } else {
-      saveCanvasToFinishBox();
-      finish();
-    }
-  });
-
-  function finish(){
-    $(".select-01").fadeOut();
-    $(".finish").fadeIn();
-  }
-
+  
   let saveCount = 0;
   function saveCanvasToFinishBox() {
     // 캔버스 데이터를 URL로 추출
@@ -404,14 +497,14 @@ $(function () {
   });
 
   // 팝업 슬라이드
-let currentImg = 0;
-const images = $(".dialog .sd > div");
-const totalImages = images.length;
+  let currentImg = 0;
+  const images = $(".dialog .sd > div");
+  const totalImages = images.length;
 
-const moreAudio1 = new Audio("./sound/contents_02/more_01.mp3"); // 1번 오디오
-const moreAudio2 = new Audio("./sound/contents_02/more_02.mp3"); // 2번 오디오
-const moreAudio3 = new Audio("./sound/contents_02/more_03.mp3"); // 2번 오디오
-const moreAudio4 = new Audio("./sound/contents_02/more_04.mp3"); // 2번 오디오
+  const moreAudio1 = new Audio("./sound/contents_02/more_01.mp3"); // 1번 오디오
+  const moreAudio2 = new Audio("./sound/contents_02/more_02.mp3"); // 2번 오디오
+  const moreAudio3 = new Audio("./sound/contents_02/more_03.mp3"); // 2번 오디오
+  const moreAudio4 = new Audio("./sound/contents_02/more_04.mp3"); // 2번 오디오
 
 // 현재 재생 중인 오디오를 추적하는 변수
 let currentMoreAudio = null;

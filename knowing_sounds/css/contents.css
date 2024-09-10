@@ -232,6 +232,45 @@
     border-radius: 50%;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
 }
+
+.select-01 .stamp-tool{
+    position: absolute;
+    bottom: 16%;
+    right: 19%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0 10%;
+    width: 15.46%;
+    height: 27.74%;
+    background-image: url(../img/content_01/bg_stamp.png);
+    background-size: 100%;
+    padding: 2% 2.5% 2% 2%;
+}
+
+.select-01 .stamp-tool > button{
+    width: 42%;
+    height: 36%;
+    background-repeat: no-repeat;
+}
+
+.select-01 .stamp-tool > .stamp-01{
+    background-image: url(../img/content_01/stamp_01.png);
+}
+
+.select-01 .stamp-tool > .stamp-02{
+    background-image: url(../img/content_01/stamp_02.png);
+}
+
+.select-01 .stamp-tool > .stamp-03{
+    background-image: url(../img/content_01/stamp_03.png);
+}
+
+.select-01 .stamp-tool > .stamp-04{
+    background-image: url(../img/content_01/stamp_04.png);
+}
+
 .select-01 .save-popup{
     position: absolute;
     top: 0;
