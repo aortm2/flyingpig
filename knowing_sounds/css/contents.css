@@ -8,18 +8,40 @@
     background: url(../img/content_01/bg.png) no-repeat;
 }
 
-.finish-box.s_01{
-    height: 10%;
+.finish.s_01 .flex-box{
+    max-width: 85%;
 }
 
-.finish-box.s_01 .finish-box{
-    display: flex;
-    gap:1%;
+.finish.s_01 .finish-wrap .txt img{
+    max-width: 80%;
 }
 
-.finish-box.s_01 .finish-box > div{
+.finish.s_01 .flex-box .img{
+    width: 100%;
+    height: 35%;
+    margin-top:3%;
+}
+
+.finish.s_01 .finish-box{
+    height: 100%;
+}
+
+.finish.s_01 .finish-box > div{
     width: 24%;
-    background-image: url(../img/content_01/finish_board);
+    height: 100%;
+    background-image: url(../img/content_01/finish_board.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 2%;
+}
+
+.finish.s_01 .finish-box > div img{
+    object-fit: contain;
+    width: 100%;
+}
+
+.finish.s_01 .btn-wrap a{
+    width: 18%;
 }
 
 .select-01 .board{
