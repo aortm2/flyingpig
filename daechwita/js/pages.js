@@ -69,7 +69,7 @@ $(function () {
 
   // 첫번째 컨텐츠
   // 슬라이드
-  const sliderWrap = document.querySelector(".slider-wrap");
+const sliderWrap = document.querySelector(".slider-wrap");
 if (sliderWrap) {
   const slideWidth = document.querySelector(".box").offsetWidth + 20; // 슬라이드 너비와 간격
   const slideCount = document.querySelectorAll(".box").length;
@@ -95,14 +95,20 @@ if (sliderWrap) {
 
   $(".next").click(function () {
     if (currentSlide < slideCount - visibleSlides) {
-      currentSlide++;
+      currentSlide += visibleSlides;
+      if (currentSlide > slideCount - visibleSlides) {
+        currentSlide = slideCount - visibleSlides;
+      }
       updateSlides();
     }
   });
-
+  
   $(".prev").click(function () {
     if (currentSlide > 0) {
-      currentSlide--;
+      currentSlide -= visibleSlides;
+      if (currentSlide < 0) {
+        currentSlide = 0;
+      }
       updateSlides();
     }
   });
@@ -231,6 +237,7 @@ if (sliderWrap) {
       }
       // 끝
       if (drop >= 6) {
+        $(".select-01").addClass("complete")
         setTimeout(activeFinish01, 3000);
       }
       console.log(drop)
@@ -250,6 +257,10 @@ if (sliderWrap) {
 
     finishAudio.addEventListener("ended", function () {
       commonFinishAudio.play();
+    });
+
+    commonFinishAudio.addEventListener("ended", function () {
+      $(".btn-wrap").css("display","flex")
     });
 
     congratsAudio.play();
@@ -382,6 +393,11 @@ function activeFinish02() {
   finishAudio2.addEventListener("ended", function () {
     commonFinishAudio.play();
   });
+
+  commonFinishAudio.addEventListener("ended", function () {
+    $(".btn-wrap").css("display","flex")
+  });
+  
   congratsAudio.play();
   $(".finish").fadeIn();
 }

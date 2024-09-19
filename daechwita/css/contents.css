@@ -4,6 +4,9 @@
 .select-01 {
     background: url(../img/content_01/bg.png) no-repeat;
 }
+.select-01.complete .slide{
+    display: none;
+}
 
 .select-01 .slide {
     position: absolute;
