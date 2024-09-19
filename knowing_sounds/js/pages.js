@@ -445,19 +445,28 @@ $(function () {
 
   // contents02
   // 힌트
-  $(".hint button").on("click", function() {
-    var name = $(this).data("name");
-    $(this).attr("disabled" , true)
-    $(".plate > div[data-name='" + name + "']").addClass("active");
+  // $(".hint button").on("click", function() {
+  //   var name = $(this).data("name");
+  //   $(this).attr("disabled" , true)
+  //   $(".plate > div[data-name='" + name + "']").addClass("active");
 
-    //  var audioSrc = "./sound/contents_02/musical_" + name + "2.mp3";
-    //  var audio = new Audio(audioSrc);
-    //  audio.play();
-     setTimeout(function() {
-      $(".plate > div[data-name='" + name + "']").removeClass("active");
-  }, 2000);
-  });
+  //    var audioSrc = "./sound/contents_02/musical_" + name + "2.mp3";
+  //    var audio = new Audio(audioSrc);
+  //    audio.play();
+  //    setTimeout(function() {
+  //     $(".plate > div[data-name='" + name + "']").removeClass("active");
+  //   }, 2000);
+  // });
   
+  $(".btn-hint").on("click", function() {
+      $(this).addClass("active")
+      $(".plate > div").addClass("active");
+       setTimeout(function() {
+        $(".plate > div").removeClass("active");
+        $(".btn-hint").removeClass("active")
+      }, 2000);
+    });
+
   // 정답
   $(".plate > div").on("click", function () {
     // 클릭한 div의 data-name 속성 값 가져오기

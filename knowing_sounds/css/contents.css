@@ -379,12 +379,12 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding: 0 3% 3% 3%;
+    padding: 0 4% 0 4%;
 }
 
 .select-02 .hidden-plate .plate-wrap{
     position: relative;
-    width:  77%;
+    width:  100%;
     height: 100%;
 }
 
@@ -410,6 +410,7 @@
     height: 100%;
     background-image: url(../img/content_02/bg_contents.png);
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .select-02 .plate > div{
@@ -436,25 +437,45 @@
    pointer-events: none;
 }
 
+.select-02 .hidden-plate .plate-wrap .btn-hint{
+    position: absolute;
+    top: 1.5%;
+    right: 1.5%;
+    width: 10.22%;
+    height: 20.45%;
+    background: url(../img/content_02/btn_hint.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.select-02 .hidden-plate .plate-wrap .btn-hint:active{
+    background-image: url(../img/content_02/btn_hint_click.png);
+}
+
+.select-02 .hidden-plate .plate-wrap .btn-hint.active{
+    pointer-events: none;
+    background-image: url(../img/content_02/btn_hint_click.png);
+}
 
 .select-02 .plate > .daegeum{
-    top:45%;
-    left: 66.4%;
+    top: 43%;
+    left: 59%;
     width: 2.23%;
     height: 42.66%;
     background-image: url(../img/content_02/daegeum.png);
 }
 .select-02 .plate > .daegeum.active,
 .select-02 .plate > .daegeum:hover{
-    top: 40%;
+    top: 38%;
+    left: 58%;
     width: 3.63%;
     height: 49.82%;
     background-image: url(../img/content_02/daegeum_over.png);
 }
 
 .select-02 .plate > .piri{
-    top: 40%;
-    right: 4%;
+    top: 45%;
+    right: 16.7%;
     width: 0.74%;
     height: 21.80%;
     background-image: url(../img/content_02/piri.png);
@@ -462,15 +483,15 @@
 
 .select-02 .plate > .piri.active,
 .select-02 .plate > .piri:hover{
-    right: 3%;
+    right: 15.7%;
     width: 2.05%;
     height: 28.02%;
     background-image: url(../img/content_02/piri_over.png);
 }
 
 .select-02 .plate > .sogeum{
-    top: 24%;
-    left: 45%;
+    top: 25%;
+    left: 40.5%;
     width: 14.14%;
     height: 1.87%;
     background-image: url(../img/content_02/sogeum.png);
@@ -478,15 +499,15 @@
 
 .select-02 .plate > .sogeum.active,
 .select-02 .plate > .sogeum:hover{
-    left: 43%;
+    left: 38.5%;
     width: 18.23%;
     height: 4.52%;
     background-image: url(../img/content_02/sogeum_over.png);
 }
 
 .select-02 .plate > .saenghwang{
-    bottom: 15%;
-    left: 8%;
+    bottom: 16%;
+    left: 11%;
     width: 11.26%;
     height: 7.32%;
     background-image: url(../img/content_02/saenghwang.png);
@@ -494,7 +515,7 @@
 
 .select-02 .plate > .saenghwang.active,
 .select-02 .plate > .saenghwang:hover{
-    left: 7%;
+    left: 10%;
     width: 14.14%;
     height: 9.96%;
     background-image: url(../img/content_02/saenghwang_over.png);
