@@ -28,7 +28,7 @@
 }
 
 .finish.s_01 .finish-box > div{
-    width: 24%;
+    width: 23.5%;
     height: 100%;
     background-image: url(../img/content_01/finish_board.png);
     background-size: contain;
@@ -420,15 +420,15 @@
 
 .select-02 .hidden-plate .pop-wrap{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10%;
+    left: -15%;
     display: flex;
     justify-content: center;
     align-items: center;
     width:  100%;
     height: 100%;
     pointer-events: none;
-    /* animation:opacity 2s forwards; */
+    animation:opacity 2s forwards;
 }
 
 .select-02 .hidden-plate img{

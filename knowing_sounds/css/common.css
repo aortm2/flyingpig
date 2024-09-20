@@ -143,7 +143,8 @@ img{
 }
 
 .btn-select.btn-select-01:hover{
-    left: 26%;
+    top: 48%;
+    left: 25%;
     background-image: url(../img/icon/ico_select_01_hover.png);
 }
 
@@ -157,7 +158,8 @@ img{
 }
 
 .btn-select.btn-select-02:hover{
-    right: 26%;
+    top: 48%;
+    right: 25%;
     background-image: url(../img/icon/ico_select_02_hover.png);
 }
 
@@ -222,11 +224,18 @@ img{
 .finish-wrap.type-1 .flex-box{
     padding-top: 10%;
 }
-
-
+.finish-wrap .bg-fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    background: rgba(0,0,0,0.4);
+    animation: finishTxt 2s forwards ;
+}
 .finish-wrap .txt{
     position: absolute;
-    animation: finishTxt 2s forwards ;
     animation-delay: 2s;
     z-index: 3;
     text-align: center;
@@ -234,13 +243,24 @@ img{
     left: 50%;
     transform: scale(1.4) translate(-30%, -50%);
 }
+.finish-wrap .txt .bg-black{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.pointer-none{
+    pointer-events: none;
+}
 
 @keyframes finishTxt {
-    0% {
+    90% {
       opacity: 1;
     }
     100% {
       opacity: 0;
+      display: none;
     }
   }
 

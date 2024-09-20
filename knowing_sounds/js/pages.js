@@ -10,6 +10,10 @@ $(function () {
   var intro = $(".intro")[0];
   if (intro) {
     intro.play();
+    $(".container").addClass("pointer-none")
+    intro.addEventListener('ended', function() {
+    $(".container").removeClass("pointer-none")
+    });
   }
 
   var activeBgm = $("#active")[0];
@@ -62,8 +66,8 @@ $(function () {
 
   // 스타트 버튼
   $(".btn-start").on("mouseover", function () {
-    const btnstart = new Audio("./sound/narration/yu2_na_1.mp3");
-    btnstart.play();
+    // const btnstart = new Audio("./sound/narration/yu2_na_1.mp3");
+    // btnstart.play();
   });
 
   // 오디오
@@ -137,6 +141,7 @@ $(function () {
           currentOpacity = previousOpacity; // 이전 투명도로 복원
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
+          stampMode = false;
           palette();
           break;
         case 'colored-pencil':
@@ -146,6 +151,7 @@ $(function () {
           currentOpacity = previousOpacity; // 이전 투명도로 복원
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
+          stampMode = false;
           palette();
           break;
         case 'highlighter':
@@ -156,6 +162,7 @@ $(function () {
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.freeDrawingBrush.width = getBrushSize(20);
           canvas.isDrawingMode = true;
+          stampMode = false;
           palette();
           break;
         case 'stamp':
@@ -174,6 +181,7 @@ $(function () {
           canvas.isDrawingMode = true;
           var audioEffect = new Audio('./sound/contents_01/tool_eraser.mp3');
           audioEffect.play();
+          stampMode = false;
           break;
         case 'color':
           // 색상 팔레트 토글
@@ -183,8 +191,9 @@ $(function () {
           //   $(".palette").css("display", "flex");
           // }
           palette();
+          stampMode = false;
           break;
-        default:
+       default:
           canvas.isDrawingMode = false;
       }
       updateBrush();
@@ -282,7 +291,7 @@ $(function () {
               canvas.renderAll();
           });
   
-          stampMode = false; // 스탬프 모드 비활성화
+          // stampMode = false; // 스탬프 모드 비활성화
       }
     });
 
@@ -311,7 +320,8 @@ $(function () {
 
         setTimeout(function () {
           // 현재 미션에 해당하는 오디오 재생
-          var currentMissionName = names[currentIndex];
+          var currentMissionName = names[currentIndex - 1];
+          console.log(currentMissionName)
           var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
           var audio = new Audio(audioSrc);
           audio.play();
@@ -359,13 +369,14 @@ $(function () {
         }
     });
 
-    canvas.on('mouse:up', function(event) {
+    canvas.on('mouse:down', function(event) {
         if (nowTool === 'brush' || nowTool === 'colored-pencil' || nowTool === 'highlighter') {
             var endTime = new Date();
             var duration = (endTime - startTime) / 1000; // 사용 시간 계산 (초 단위)
 
             if (duration > 1) {
                 playSound('tool_pen_long.ver.mp3');
+                console.log("11")
             } else {
                 playSound('tool_pen_short.ver.mp3');
             }
@@ -495,6 +506,7 @@ $(function () {
 
     // .plate에 .pop-wrap 추가
     $('.plate').append(popWrap);
+    $('.hidden-plate').addClass("pointer-none")
 
     // .pop-wrap 제거
     // setTimeout(function() {
@@ -504,7 +516,9 @@ $(function () {
     // correct 클래스가 추가된 div의 갯수 체크
     var correctCount = $(".plate > div.correct").length;
     if (correctCount === 4) {
+      setTimeout(function () {
         finish2(); // 4개일 때 finish 함수 호출
+      }, 2000);
     }
     // 악기소리 추가
      var name = $(this).data("name");
@@ -513,6 +527,7 @@ $(function () {
 
     audio.addEventListener('ended', function() {
       popWrap.remove();
+      $('.hidden-plate').removeClass("pointer-none")
     });
   });;
 
@@ -541,9 +556,9 @@ $(function () {
       // body에 메시지 추가
       $(".plate").append(wrongDiv);
 
-      var faliNarration = new Audio('./sound/narration/yu2_na_21.mp3'); // fali 나레이션
+      // var faliNarration = new Audio('./sound/narration/yu2_na_21.mp3'); // fali 나레이션
        // fali 오디오 재생
-       faliNarration.play();
+      //  faliNarration.play();
        faliEffect.play();
 
 
@@ -568,46 +583,63 @@ $(function () {
   
   // 현재 재생 중인 오디오를 추적하는 변수
   
-function showImage(index, playAudio = true) {
-  const url = $(".dialog").data("url");
-  const audioFiles = [
-    `./sound/${url}/more_01.mp3`, 
-    `./sound/${url}/more_02.mp3`, 
-    `./sound/${url}/more_03.mp3`, 
-    `./sound/${url}/more_04.mp3`
-  ];
+  let currentMoreAudio = null; // 전역 변수로 이동하여 모든 함수에서 접근 가능
 
-  let currentMoreAudio = null;
-
-  // 이미지 활성화 업데이트
-  images.removeClass("active").eq(index).addClass("active");
-  currentImg = index;
-
-  // 오디오 설정 및 재생
-  if (currentMoreAudio) {
-    currentMoreAudio.pause();
-    currentMoreAudio.currentTime = 0;
+  function showImage(index, playAudio = true) {
+    const url = $(".dialog").data("url");
+    const audioFiles = [
+      `./sound/${url}/more_01.mp3`, 
+      `./sound/${url}/more_02.mp3`, 
+      `./sound/${url}/more_03.mp3`, 
+      `./sound/${url}/more_04.mp3`
+    ];
+  
+    // 이미지 활성화 업데이트
+    images.removeClass("active").eq(index).addClass("active");
+    currentImg = index;
+    console.log(index)
+  
+    // 기존 오디오 중지
+    if (currentMoreAudio) {
+      currentMoreAudio.pause();
+      currentMoreAudio.currentTime = 0;
+      currentMoreAudio = null; // 이전 오디오 객체 초기화
+    }
+  
+    // 새로운 오디오 재생
+    if (audioFiles[index]) {
+      currentMoreAudio = new Audio(audioFiles[index]);
+      if (playAudio) currentMoreAudio.play();
+    }
+  
+    // 첫 번째 페이지에서 prev 버튼 숨기기
+    if (index === 0) {
+      $(".dialog .prev").hide();
+    } else {
+      $(".dialog .prev").show();
+    }
+  
+    // 마지막 페이지에서 next 버튼 숨기기
+    if (index === totalImages - 1) {
+      $(".dialog .next").hide();
+    } else {
+      $(".dialog .next").show();
+    }
   }
-
-  if (audioFiles[index]) {
-    currentMoreAudio = new Audio(audioFiles[index]);
-    if (playAudio) currentMoreAudio.play();
-  }
-
-  // 첫 번째 페이지에서 prev 버튼 숨기기
-  if (index === 0) {
-    $(".dialog .prev").hide();
-  } else {
-    $(".dialog .prev").show();
-  }
-
-  // 마지막 페이지에서 next 버튼 숨기기
-  if (index === totalImages - 1) {
-    $(".dialog .next").hide();
-  } else {
-    $(".dialog .next").show();
-  }
-}
+  
+  // next 버튼 클릭 시 이벤트 처리
+  $(".dialog .next").on('click', function() {
+    if (currentImg < totalImages - 1) {
+      showImage(currentImg + 1); // 다음 이미지 보여주기
+    }
+  });
+  
+  // prev 버튼 클릭 시 이벤트 처리
+  $(".dialog .prev").on('click', function() {
+    if (currentImg > 0) {
+      showImage(currentImg - 1); // 이전 이미지 보여주기
+    }
+  });
 
 // '더 알아보기' 버튼 클릭 시 첫 번째 이미지와 1번 오디오 재생
 $(".btn-more").click(function () {
@@ -615,7 +647,6 @@ $(".btn-more").click(function () {
   
   infoEffectAudio.play();
   showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
-  finishpause2();
 });
 
 // 더알아보기 버튼
@@ -638,19 +669,6 @@ $(".btn-muisc").click(function(){
     muisc.play();
 });
 
-// 다음 버튼 클릭 이벤트
-$(".dialog .next").click(function () {
-  if (currentImg < totalImages - 1) {
-    showImage(currentImg + 1, true);
-  }
-});
-
-// 이전 버튼 클릭 이벤트
-$(".dialog .prev").click(function () {
-  if (currentImg > 0) {
-    showImage(currentImg - 1, true);
-  }
-});
 
 // 초기 상태에서 첫 번째 이미지를 표시하지만 오디오 재생하지 않음
 showImage(currentImg, false);
