@@ -447,7 +447,20 @@ div[data-name="dragon"]{
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 1.5rem;
     box-shadow: 0.4rem 0 0.4rem rgba(0, 0, 0, 0.8);
+    animation: start 1s forwards;
+    animation-delay: 8s;
+    opacity: 0;
 }
+
+@keyframes start {
+    0% {
+      opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+  }
 .select-02 .character .txt-box img{
     width: 80%;
     object-fit: contain;

@@ -11,6 +11,13 @@ $(function () {
     }
   }
 
+  var intro = $(".intro")[0];
+  var intro2 = $(".intro2")[0];
+  if (intro) {
+    intro.play();
+    intro2.play();
+  }
+
   var activeBgm = $("#active")[0];
   if (activeBgm) {
     var file = activeBgm.src;
@@ -57,14 +64,6 @@ $(function () {
 
   $(".btn-select").on("mouseout", function () {
     $(".audio_wrap audio").currentTime = 0;
-  });
-
-  // 스타트 버튼
-  const btnstart = new Audio("./sound/narration/home_01.mp3");
-  const btnstart2 = new Audio("./sound/narration/home_02.mp3");
-  $(".btn-start").on("mouseover", function () {
-    btnstart.play();
-    btnstart2.play();
   });
 
   // 첫번째 컨텐츠
@@ -230,9 +229,9 @@ if (sliderWrap) {
         ui.helper.remove();
         drop++
       } else {
-        faliEffect.addEventListener("ended", function () {
-          faliAudio.play();
-        });
+        // faliEffect.addEventListener("ended", function () {
+        //   faliAudio.play();
+        // });
         faliEffect.play();
       }
       // 끝
@@ -351,7 +350,7 @@ $(".clothes-drop").droppable({
             if (dropZone.hasClass("boy")) {
                 boyCompletedCount++;
                 if (boyCompletedCount <= 4) { // 최대 4개까지 boyCompleteAudio 재생
-                    playCompleteAudio(boyCompleteAudio);
+                    // playCompleteAudio(boyCompleteAudio);
                 }
 
                 if (boyCompletedCount === 4) {
@@ -363,7 +362,7 @@ $(".clothes-drop").droppable({
             if (dropZone.hasClass("girl")) {
                 girlCompletedCount++;
                 if (girlCompletedCount <= 3) { // 최대 3개까지 girlCompleteAudio 재생
-                    playCompleteAudio(girlCompleteAudio);
+                    // playCompleteAudio(girlCompleteAudio);
                 }
 
                 if (girlCompletedCount === 3) {
@@ -373,7 +372,7 @@ $(".clothes-drop").droppable({
         } else {
             // 타겟이 일치하지 않거나 미션 항목이 일치하지 않는 경우 오디오 재생
             faliEffect.play();
-            faliAudio2.play();
+            // faliAudio2.play();
         }
     },
 });
