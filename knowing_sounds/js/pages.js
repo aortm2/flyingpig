@@ -6,6 +6,9 @@ $(function () {
   var bgm2 = $(".bgm2")[0];
   if (bgm) {
     bgm.play();
+  }
+  
+  if (bgm2) {
     bgm2.play();
   }
   // 처음 진입 나레이션
