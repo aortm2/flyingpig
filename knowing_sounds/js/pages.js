@@ -3,8 +3,10 @@ document.title = "소리알기"; // 제목
 $(function () {
   // bgm
   var bgm = $(".bgm")[0];
+  var bgm2 = $(".bgm2")[0];
   if (bgm) {
     bgm.play();
+    bgm2.play();
   }
   // 처음 진입 나레이션
   var intro = $(".intro")[0];
