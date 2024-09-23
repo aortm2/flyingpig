@@ -325,7 +325,7 @@ $(function () {
         $(".save-popup").css("display", "none");
 
         // 이전 미션 오디오 중지
-        if (currentMissionAudio || nextAudio) {
+        if (currentMissionAudio) {
             currentMissionAudio.pause();
             currentMissionAudio.currentTime = 0;
             console.log("중지됨?")
