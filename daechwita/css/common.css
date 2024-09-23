@@ -316,6 +316,7 @@ img{
     height: 100dvh;
     z-index: 12;
     max-width: 100%;    
+    background-color: rgba(0,0,0,0.6);
     aspect-ratio: 1634 / 919;
 }
 
@@ -327,6 +328,14 @@ img{
 }
 
 .dialog .dialog-close{
+    position: absolute;
+    top: 4%;
+    right: 2.5%;
+    width: 5.2%;
+    height: 8.7%;
+}
+
+.dialog .dialog-close2{
     position: absolute;
     top: 4%;
     right: 2.5%;
@@ -495,6 +504,29 @@ img{
       opacity: 1;
     }
   }
+
+  .bounce2 {
+    animation: shake 2s infinite;
+    animation-delay: 12s;
+  }
+
+  @keyframes shake {
+    0%{
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-3%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    75% {
+        transform: translateX(3%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 
 @media screen and (max-width: 1633px) {
     .container,.dialog{

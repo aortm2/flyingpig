@@ -212,7 +212,7 @@ if (sliderWrap) {
       var faliAudio = new Audio("./sound/narration/fali.mp3");
       
       if (answer === "true") {
-        var scucessAudio = new Audio("./sound/narration/" + name + ".mp3");
+        var scucessAudio = new Audio("./sound/effect/" + name + ".mp3");
         var musicalAudio = new Audio("./sound/contents_01/musical_" + name + ".mp3"); //악기소리
         
         originalElement.parent().addClass("disabled");
@@ -239,7 +239,6 @@ if (sliderWrap) {
         $(".select-01").addClass("complete")
         setTimeout(activeFinish01, 3000);
       }
-      console.log(drop)
     },
   });
 
@@ -265,6 +264,7 @@ if (sliderWrap) {
     congratsAudio.play();
 
     $(".finish").fadeIn();
+    $(".dropzon").addClass("bounce2")
   }
 
   function finishpause(){
@@ -274,11 +274,12 @@ if (sliderWrap) {
 
   $(".dialog-close").click(function () {
     $(".dialog").fadeOut();
+    infoNarrationAudio.pause();
   });
 
   var infoEffectAudio = new Audio("./sound/effect/info.mp3");
+  var infoNarrationAudio = new Audio("./sound/narration/info_01.mp3");
   $(".btn-more").click(function () {
-    var infoNarrationAudio = new Audio("./sound/narration/info_01.mp3");
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio.play();
     });
@@ -399,6 +400,7 @@ function activeFinish02() {
   
   congratsAudio.play();
   $(".finish").fadeIn();
+  $(".clothes-drop").addClass("bounce2")
 }
 
 
@@ -476,6 +478,12 @@ $(".btn-more2").click(function () {
   infoEffectAudio.play();
   showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
   finishpause2();
+});
+
+$(".dialog-close2").click(function () {
+  $(".dialog").fadeOut();
+  moreAudio1.pause()
+  moreAudio2.pause()
 });
 
 // 다음 버튼 클릭 이벤트

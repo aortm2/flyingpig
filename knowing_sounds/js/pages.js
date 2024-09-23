@@ -301,46 +301,66 @@ $(function () {
     });
 
     // 미션
-    // 처음 진입 오디오 재생이 끝났을 때
-    $(".start2").on('ended', function () {
-
-      // 3초 후에 다른 오디오 재생
-      setTimeout(function () {
-        var nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
-        nextAudio.play();
-      }, 3000); // 3초 지연
-    });
-    var secondAudio = new Audio('./sound/narration/yu2_na_6.mp3');
+    // 재생 중인 오디오 객체를 저장할 변수
+    let currentMissionAudio = null;
+    let nextAudio = null;
+    let secondAudio = new Audio('./sound/narration/yu2_na_6.mp3');
     const names = ['daegeum', 'piri', 'sogeum', 'saenghwang'];
     let currentIndex = 1;
 
-    $(".btn-ok").click(function () {
-      $(".save-popup").css("display", "none")
-      if (currentIndex < names.length) {
-        $('.mission-wrap').each(function (index) {
-          if (index < names.length) {
-            $(this).attr('data-name', names[(index + currentIndex) % names.length]);
-          }
-        });
-
+    // 첫 번째 오디오 종료 후 3초 후에 다른 오디오 재생
+    $(".start2").on('ended', function () {
         setTimeout(function () {
-          // 현재 미션에 해당하는 오디오 재생
-          var currentMissionName = names[currentIndex - 1];
-          console.log(currentMissionName)
-          var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
-          var audio = new Audio(audioSrc);
-          audio.play();
-          audio.onended = function () {
-            secondAudio.play();
-          };
-        }, 2000);
+            if (nextAudio) {
+                nextAudio.pause();
+                nextAudio.currentTime = 0;
+            }
+            nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
+            nextAudio.play();
+        }, 3000); // 3초 지연
+    });
 
-        currentIndex++
-      } else {
-        finish();
-      }
-      saveCanvasToFinishBox();
-      canvas.clear();
+    // "확인" 버튼 클릭 시 이벤트
+    $(".btn-ok").click(function () {
+        $(".save-popup").css("display", "none");
+
+        // 이전 미션 오디오 중지
+        if (currentMissionAudio || nextAudio) {
+            currentMissionAudio.pause();
+            currentMissionAudio.currentTime = 0;
+            console.log("중지됨?")
+        }
+
+        if (currentIndex < names.length) {
+            $('.mission-wrap').each(function (index) {
+                if (index < names.length) {
+                    $(this).attr('data-name', names[(index + currentIndex) % names.length]);
+                }
+            });
+
+            setTimeout(function () {
+                // 현재 미션에 해당하는 오디오 재생
+                var currentMissionName = names[currentIndex - 1];
+                console.log(currentMissionName);
+                var audioSrc = './sound/contents_01/musical_' + currentMissionName + '1.mp3';
+
+                // 새로운 오디오 객체 생성 및 재생
+                currentMissionAudio = new Audio(audioSrc);
+                currentMissionAudio.play();
+
+                // 현재 미션 오디오 종료 후 두 번째 오디오 재생
+                currentMissionAudio.onended = function () {
+                    secondAudio.play();
+                };
+            }, 2000);
+
+            currentIndex++;
+        } else {
+            finish();
+        }
+
+        saveCanvasToFinishBox();
+        canvas.clear();
     });
 
     $(".btn-ok").on("mouseover", function () {
@@ -523,7 +543,7 @@ $(function () {
     if (correctCount === 4) {
       setTimeout(function () {
         finish2(); // 4개일 때 finish 함수 호출
-      }, 2000);
+      }, 7000);
     }
     // 악기소리 추가
      var name = $(this).data("name");
