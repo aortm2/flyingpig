@@ -377,41 +377,67 @@ $(function () {
 
 
     // 툴 사운드
-    var nowTool = null; //현재 툴 저장
-    var startTime = null; //마우스 다운 시간 저장
+    var nowTool = null; // 현재 선택된 도구 저장
+    var startTime = null; // 드래그 시작 시간 저장
+    var isDragging = false; // 드래그 상태 추적
+    var longSoundInterval = null; // 긴 소리 무한 반복 재생을 위한 변수
+    var shortSoundPlayed = false; // 짧은 소리 재생 여부 추적
+    var longSoundAudio = null; // 무한 루프 소리 객체
 
     // 도구 선택 시 이벤트 핸들러
     $('.tool > button').on('click', function() {
         nowTool = $(this).data('name');
-        startTime = new Date(); // 도구 사용 시작 시간 기록
         console.log('Tool selected:', nowTool);
     });
 
-    // 브러시, 색연필, 형광펜의 마우스 다운 및 업 이벤트 처리
+    // 브러시, 색연필, 형광펜의 마우스 다운 이벤트 처리
     canvas.on('mouse:down', function(event) {
         if (nowTool === 'brush' || nowTool === 'colored-pencil' || nowTool === 'highlighter') {
-            startTime = new Date(); // 도구 사용 시작 시간 기록
+            isDragging = true; // 드래그 상태 활성화
+            startTime = new Date(); // 드래그 시작 시간 기록
+            shortSoundPlayed = false; // 짧은 소리 재생 여부 초기화
+
+            // 드래그 시작 시 짧은 소리 재생
+            playSound('tool_pen_short.ver.mp3');
+            shortSoundPlayed = true; // 짧은 소리 재생됨 표시
+
+            // 1초 후에 긴 소리 재생 시작 (무한 반복)
+            setTimeout(function() {
+                if (isDragging) { // 여전히 드래그 중일 경우에만
+                    playLongSoundLoop(); // 긴 소리 무한 반복 재생
+                    console.log("긴소리")
+                }
+            }, 1000); // 1초 지연
         }
     });
 
-    canvas.on('mouse:down', function(event) {
-        if (nowTool === 'brush' || nowTool === 'colored-pencil' || nowTool === 'highlighter') {
-            var endTime = new Date();
-            var duration = (endTime - startTime) / 1000; // 사용 시간 계산 (초 단위)
-
-            if (duration > 1) {
-                playSound('tool_pen_long.ver.mp3');
-                console.log("11")
-            } else {
-                playSound('tool_pen_short.ver.mp3');
-            }
-        } else if (nowTool === 'stamp') {
-            playSound('tool_stamp.mp3');
-        } else if (nowTool === 'eraser') {
-            playSound('tool_eraser.mp3');
+    // 마우스 업 이벤트 처리
+    canvas.on('mouse:up', function(event) {
+        if (isDragging) {
+            isDragging = false; // 드래그 상태 비활성화
+            stopLongSoundLoop(); // 긴 소리 재생 중지
         }
     });
 
+    // 긴 소리 무한 반복 재생 함수
+    function playLongSoundLoop() {
+        if (!longSoundAudio) {
+            longSoundAudio = new Audio('./sound/contents_01/tool_pen_long.ver.mp3');
+            longSoundAudio.loop = true; // 무한 반복 설정
+            longSoundAudio.play(); // 소리 재생 시작
+        }
+    }
+
+    // 긴 소리 재생 중지 함수
+    function stopLongSoundLoop() {
+        if (longSoundAudio) {
+            longSoundAudio.pause(); // 소리 재생 중지
+            longSoundAudio.currentTime = 0; // 재생 위치 초기화
+            longSoundAudio = null; // 객체 초기화
+        }
+    }
+
+    // 소리 재생 함수
     function playSound(filename) {
         var audio = new Audio('./sound/contents_01/' + filename);
         audio.play();
