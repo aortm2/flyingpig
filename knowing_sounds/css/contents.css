@@ -488,18 +488,18 @@
 }
 
 .select-02 .plate > .daegeum{
-    top: 43%;
-    left: 59%;
+    top: 40%;
+    left: 58.8%;
     width: 2.23%;
-    height: 42.66%;
+    height: 30.66%;
     background-image: url(../img/content_02/daegeum.png);
 }
 .select-02 .plate > .daegeum.active,
 .select-02 .plate > .daegeum:hover{
-    top: 38%;
+    top: 33%;
     left: 58%;
     width: 3.63%;
-    height: 49.82%;
+    height: 40.82%;
     background-image: url(../img/content_02/daegeum_over.png);
 }
 
@@ -513,6 +513,7 @@
 
 .select-02 .plate > .piri.active,
 .select-02 .plate > .piri:hover{
+    top: 41%;
     right: 15.7%;
     width: 2.05%;
     height: 28.02%;
@@ -536,7 +537,7 @@
 }
 
 .select-02 .plate > .saenghwang{
-    bottom: 16%;
+    bottom: 17%;
     left: 11%;
     width: 11.26%;
     height: 7.32%;
@@ -545,6 +546,7 @@
 
 .select-02 .plate > .saenghwang.active,
 .select-02 .plate > .saenghwang:hover{
+    bottom: 15%;
     left: 10%;
     width: 14.14%;
     height: 9.96%;
