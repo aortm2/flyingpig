@@ -272,11 +272,6 @@ if (sliderWrap) {
     commonFinishAudio.pause()
   }
 
-  $(".dialog-close").click(function () {
-    $(".dialog").fadeOut();
-    infoNarrationAudio.pause();
-  });
-
   var infoEffectAudio = new Audio("./sound/effect/info.mp3");
   var infoNarrationAudio = new Audio("./sound/narration/info_01.mp3");
   $(".btn-more").click(function () {
@@ -287,6 +282,13 @@ if (sliderWrap) {
     $(".dialog").fadeIn();
     finishpause(); //활동종료 오디오 중지
   });
+
+  $(".dialog-close").click(function () {
+    $(".dialog").fadeOut();
+    infoNarrationAudio.pause();
+    infoNarrationAudio.currentTime = 0;
+  });
+
 
   var missionItems = [
     "jeonlib",
@@ -484,6 +486,8 @@ $(".dialog-close2").click(function () {
   $(".dialog").fadeOut();
   moreAudio1.pause()
   moreAudio2.pause()
+  moreAudio1.currentTime = 0;
+  moreAudio2.currentTime = 0;
 });
 
 // 다음 버튼 클릭 이벤트
