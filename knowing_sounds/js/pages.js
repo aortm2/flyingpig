@@ -391,16 +391,15 @@ $(function () {
             shortSoundPlayed = false; // 짧은 소리 재생 여부 초기화
 
             // 드래그 시작 시 짧은 소리 재생
-            playSound('tool_pen_short.ver.mp3');
+            playSound('tool_pen_short_ver.mp3');
             shortSoundPlayed = true; // 짧은 소리 재생됨 표시
 
             // 1초 후에 긴 소리 재생 시작 (무한 반복)
             setTimeout(function() {
                 if (isDragging) { // 여전히 드래그 중일 경우에만
                     playLongSoundLoop(); // 긴 소리 무한 반복 재생
-                    console.log("긴소리")
                 }
-            }, 1000); // 1초 지연
+            }, 500); // 1초 지연
         }
     });
 
@@ -415,9 +414,10 @@ $(function () {
     // 긴 소리 무한 반복 재생 함수
     function playLongSoundLoop() {
         if (!longSoundAudio) {
-            longSoundAudio = new Audio('./sound/contents_01/tool_pen_long.ver.mp3');
+            longSoundAudio = new Audio('./sound/contents_01/tool_pen_long_ver.mp3');
             longSoundAudio.loop = true; // 무한 반복 설정
             longSoundAudio.play(); // 소리 재생 시작
+            console.log("긴소리")
         }
     }
 
