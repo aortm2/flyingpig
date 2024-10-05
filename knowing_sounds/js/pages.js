@@ -417,7 +417,6 @@ $(function () {
             longSoundAudio = new Audio('./sound/contents_01/tool_pen_long_ver.mp3');
             longSoundAudio.loop = true; // 무한 반복 설정
             longSoundAudio.play(); // 소리 재생 시작
-            console.log("긴소리")
         }
     }
 
