@@ -297,7 +297,7 @@ img{
 }
 
 .pointer-none{
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 
