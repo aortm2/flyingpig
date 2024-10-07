@@ -138,5 +138,60 @@ $(function () {
     infoNarrationAudio.pause();
     infoNarrationAudio.currentTime = 0;
   });
+
+  // 활동2
+   // bgm
+  const bgm2 = $("#bgm02")[0];
+  if (bgm2) {
+    bgm2.play();
+    const kkang = new Audio("./sound/contents_02/kkang.m4a");
+    bgm2.addEventListener("ended", function () {
+      kkang.play()
+    });
+  }
+
+  // 동물 소리 파일 경로 설정 (예: sheep.mp3, cat.mp3 등)
+  const sounds = {
+    sheep: new Audio('./sound/contents_02/sheep.mp3'),
+    cat: new Audio('./sound/contents_02/cat.mp3'),
+    duck: new Audio('./sound/contents_02/duck.mp3'),
+    cow: new Audio('./sound/contents_02/cow.mp3')
+  };
+
+  // 드래그 가능하게 설정
+  $(".drag .item").draggable({
+    revert: "invalid", // 올바르지 않은 drop 영역에 드롭 시 원래 위치로 돌아감
+  });
+
+  // 드롭 가능하게 설정
+  $(".drop .item").droppable({
+    accept: ".item", // 드래그 가능한 요소
+    drop: function (event, ui) {
+      // 아이템이 올바른 영역에 드롭되었을 때의 동작
+      $(this).addClass("active");
+      $(ui.draggable).addClass("dropped");
+      
+      
+      const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+      if (sounds[animal]) {
+        sounds[animal].currentTime = 0;
+        sounds[animal].play();
+      }
+      ui.draggable.remove();
+    }
+  });
+
+  
+
+  // 마우스 오버 이벤트 설정
+  $(".drag-wrap .item").on("mouseenter", function () {
+    const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+
+    // 해당 동물의 소리 재생
+    if (sounds[animal]) {
+      sounds[animal].currentTime = 0; // 소리를 처음부터 재생
+      sounds[animal].play();
+    }
+  });
 });
 

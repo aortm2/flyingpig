@@ -230,15 +230,6 @@
     padding-top:10%;
 }
 
-.select-02 .drag{
-    position: absolute;
-    width: 54.48%;
-    height: 20.65%;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%);
-    background-image: url(../img/content_02/bg_drag.png);
-}
 
 .select-02 .drop{
     position: absolute;
@@ -249,6 +240,72 @@
     transform: translate(-50%);
     background-image: url(../img/content_02/bg_drop.png);
 }
+
+.select-02 .drop .drop-wrap{
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    gap: 6%;
+    width: 100%;
+    height: 27%;
+    padding: 2% 5% 2% 12.5%;
+}
+
+.select-02 .drop .drop-wrap .area{
+    width: 14.2%;
+    height: 100%;
+}
+
+.select-02 .drop .drop-wrap .item{
+    width: 100%;
+    height: 100%;
+}
+
+
+.select-02 .drop .drop-wrap .area:nth-child(1){
+    background-image: url(../img/content_02/bg_sheep.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(1) .item.active{
+    background-image: url(../img/content_02/sheep.png);
+}
+
+
+.select-02 .drop .drop-wrap .area:nth-child(2){
+    background-image: url(../img/content_02/bg_cat.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(2) .item.active{
+    background-image: url(../img/content_02/cat.png);
+
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(3){
+    background-image: url(../img/content_02/bg_duck.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(3) .item.active{
+    background-image: url(../img/content_02/duck.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(4){
+    background-image: url(../img/content_02/bg_cow.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(4) .item.active{
+    background-image: url(../img/content_02/cow.png);
+}
+
+.select-02 .drag{
+    position: absolute;
+    width: 54.48%;
+    height: 20.65%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url(../img/content_02/bg_drag.png);
+}
+
 
 .select-02 .drag .drag-wrap{
     display: flex;
@@ -284,9 +341,7 @@
 
 .select-02 .drag .drag-wrap .area:nth-child(2) .item{
     background-image: url(../img/content_02/cat.png);
-
 }
-
 
 .select-02 .drag .drag-wrap .area:nth-child(3){
     background-image: url(../img/content_02/bg_duck.png);
@@ -296,7 +351,6 @@
     background-image: url(../img/content_02/duck.png);
 }
 
-
 .select-02 .drag .drag-wrap .area:nth-child(4){
     background-image: url(../img/content_02/bg_cow.png);
 }
@@ -304,6 +358,65 @@
 .select-02 .drag .drag-wrap .area:nth-child(4) .item{
     background-image: url(../img/content_02/cow.png);
 }
+
+.select-02 .sigimsae > div{
+    position: absolute;
+    z-index: 3;
+}
+.select-02 .sigimsae > div img{
+    width: 80%;
+}
+
+.select-02 .sigimsae > div.sheep{
+    top: 39%;
+    left: 28%;
+}
+
+.select-02 .sigimsae > div.cat{
+    top: 28%;
+    left: 38%;
+}
+.select-02 .sigimsae > div.duck{
+    top: 21.8%;
+    left: 49.5%;
+}
+
+.select-02 .sigimsae > div.cow{
+    top: 29.5%;
+    right: 35.5%;
+}
+
+.select-02 .sigimsae > div .txt{
+    display: none;
+    position: absolute;
+}
+
+.select-02 .sigimsae > .sheep .txt{
+    top: -180%;
+    left: -10%;
+}
+
+.select-02 .sigimsae > .cat .txt{
+    width: 150%;
+    bottom: -85%;
+    left: 70%;
+}
+
+.select-02 .sigimsae > .duck .txt{
+    width: 90%;
+    top: 0%;
+    left: 60%;
+}
+
+.select-02 .sigimsae > .cow .txt{
+    width: 200%;
+    bottom: -185%;
+    left: -40%;
+}
+
+
+
+
 
 @media screen and (max-width: 1450px) {
     
