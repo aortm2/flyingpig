@@ -270,16 +270,18 @@ img{
 
 .btn-wrap{
     width: 100%;
+    justify-content: center;
     height: 13%;
     /* margin-top:4%; */
     display: none;
     z-index: 10;
 }
+
 .btn-wrap a{
     display: block;
-    width: 50%;
+    width: 42%;
     height: 100%;
-    background-size: 100%;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 

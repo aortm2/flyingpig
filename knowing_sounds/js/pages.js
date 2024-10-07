@@ -143,7 +143,7 @@ $(function () {
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
           currentColor=''
           canvas.freeDrawingBrush.width = getBrushSize(10);
-          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          currentOpacity = previousOpacity;
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
           stampMode = false;
@@ -153,7 +153,7 @@ $(function () {
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
           canvas.freeDrawingBrush.width = getBrushSize(4);
           currentColor=''
-          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          currentOpacity = previousOpacity;
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
           stampMode = false;
@@ -161,7 +161,7 @@ $(function () {
           break;
         case 'highlighter':
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-          previousOpacity = currentOpacity; // 현재 투명도를 저장
+          previousOpacity = currentOpacity;
           currentColor=''
           currentOpacity = 0.5;
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
@@ -181,7 +181,7 @@ $(function () {
           canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
           canvas.freeDrawingBrush.width = getBrushSize(30);
           currentColor = 'rgba(255,255,255)';
-          currentOpacity = previousOpacity; // 이전 투명도로 복원
+          currentOpacity = previousOpacity;
           canvas.freeDrawingBrush.color = `rgba(${hexToRgb(currentColor)}, ${currentOpacity})`;
           canvas.isDrawingMode = true;
           var audioEffect = new Audio('./sound/contents_01/tool_eraser.mp3');
@@ -189,12 +189,6 @@ $(function () {
           stampMode = false;
           break;
         case 'color':
-          // 색상 팔레트 토글
-          // if ($(".palette").css("display") === "flex") {
-          //   $(".palette").css("display", "none");
-          // } else {
-          //   $(".palette").css("display", "flex");
-          // }
           palette();
           stampMode = false;
           break;
@@ -328,7 +322,6 @@ $(function () {
         if (currentMissionAudio) {
             currentMissionAudio.pause();
             currentMissionAudio.currentTime = 0;
-            console.log("중지됨?")
         }
 
         if (currentIndex < names.length) {
@@ -398,16 +391,15 @@ $(function () {
             shortSoundPlayed = false; // 짧은 소리 재생 여부 초기화
 
             // 드래그 시작 시 짧은 소리 재생
-            playSound('tool_pen_short.ver.mp3');
+            playSound('tool_pen_short_ver.mp3');
             shortSoundPlayed = true; // 짧은 소리 재생됨 표시
 
             // 1초 후에 긴 소리 재생 시작 (무한 반복)
             setTimeout(function() {
                 if (isDragging) { // 여전히 드래그 중일 경우에만
                     playLongSoundLoop(); // 긴 소리 무한 반복 재생
-                    console.log("긴소리")
                 }
-            }, 1000); // 1초 지연
+            }, 500); // 1초 지연
         }
     });
 
@@ -422,7 +414,7 @@ $(function () {
     // 긴 소리 무한 반복 재생 함수
     function playLongSoundLoop() {
         if (!longSoundAudio) {
-            longSoundAudio = new Audio('./sound/contents_01/tool_pen_long.ver.mp3');
+            longSoundAudio = new Audio('./sound/contents_01/tool_pen_long_ver.mp3');
             longSoundAudio.loop = true; // 무한 반복 설정
             longSoundAudio.play(); // 소리 재생 시작
         }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>대취타</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/import.css'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src='js/pages.js'></script>
+</head>
+<body>
+    <main>
+        <div class="wrap">
+            <div class="container">
+                <a href="#" onclick="window.history.back()" class="btn-top btn-back btn-effect">
+                    <span class="sr-only">뒤로가기</span>
+                </a>
+
+                <div class="title">
+                    <img src="img/content_01/title.png" />
+                </div>
+
+                <a href="index.html" class="btn-top btn-home btn-effect">
+                    <span class="sr-only">홈으로</span>
+                </a>
+                <div class="select-01 bg">
+                    <div class="board">
+                        <div class="board-wrap">
+                            <div class="drop">
+                                <div class="area" data-name="cho1_n_6"></div>
+                                <div class="area" data-name="cho1_n_7"></div>
+                                <div class="area" data-name="cho1_n_8"></div>
+                                <div class="area" data-name="cho1_n_9"></div>
+                                <div class="area" data-name="cho1_n_10"></div>
+                            </div>
+                            <div class="drag">
+                                <div class="piece" data-name="cho1_n_6"></div>
+                                <div class="piece" data-name="cho1_n_7"></div>
+                                <div class="piece" data-name="cho1_n_8"></div>
+                                <div class="piece" data-name="cho1_n_9"></div>
+                                <div class="piece" data-name="cho1_n_10"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="obj left">
+                        <img src="img/content_01/bg_obj_01.png">
+                    </div>
+                    <div class="obj right">
+                        <img src="img/content_01/bg_obj_02.png">
+                    </div>
+                </div>
+            </div>
+            <div class="finish" >
+                <div class="finish-wrap">
+                    <div class="flex-box">
+                        <div class="img">
+                            <div class="txt">
+                                <div class="finish-animation"></div>
+                                <img src="img/bg/bg_finish.png" />
+                            </div>
+                            <!-- <div class="score">
+                                <div class="star bounce"><div class="finish-animation"></div></div>
+                                <div class="star big bounce"><div class="finish-animation"></div></div>
+                                <div class="star bounce"><div class="finish-animation"></div></div>
+                            </div> -->
+                        </div>
+                        <div class="btn-wrap">
+                            <a href="javascript:void(0)" class="btn-more btn-effect btn-hover">
+                                <span class="sr-only">더 알아보기</span>
+                            </a>
+                            <a href="main.html" class="btn-effect btn-hover">
+                                <span class="sr-only">나가기</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog">
+                <div class="container">
+                    <div class="flex-box">
+                        <div class="img">
+                            <img src="img/content_01/dialog_01.png" />
+                            <a href="javascript:void(0)" class="dialog-close btn-effect btn-hover">
+                                <img src="img/icon/ico_dialog_close.png" title="팝업 닫기"/>
+                                <span class="sr-only">팝업 닫기</span>
+                            </a>
+                            <div class="btn-link">
+                                <div>
+                                    <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=33202&system_id=AV&recording_type_code=V" target="_blank"></a>
+                                    <span>동부민요</span>
+                                </div>
+                                <div>
+                                    <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=36667&system_id=AV&recording_type_code=V" target="_blank"></a>
+                                    <span>서도민요</span>
+                                </div>
+                                <div>
+                                    <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=36670&system_id=AV&recording_type_code=V" target="_blank"></a>
+                                    <span>남도민요</span>
+                                </div>
+                                <div>
+                                    <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=36671&system_id=AV&recording_type_code=V" target="_blank"></a>
+                                    <span>경기민요</span>
+                                </div>
+                                <div>
+                                    <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=20675&system_id=AV&recording_type_code=V" target="_blank"></a>
+                                    <span>제주민요</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img-char"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <audio id="active" src="sound/narration/cho1_n_5.mp3"></audio>
+        <audio id="bgm" src="sound/bgm/active_bgm.mp3" loop></audio>
+        <audio id="effect" src="sound/effect/active_effect.mp3"></audio>
+    </main>
+</body>
+</html>
