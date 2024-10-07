@@ -102,7 +102,10 @@ nav,
 section {
     display: block;
 }
-
+*{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 /* 버튼 초기화 */
 button,
 input[type="button"],
