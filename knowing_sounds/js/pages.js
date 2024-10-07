@@ -624,6 +624,7 @@ $(function () {
   // 팝업 닫기
   $(".dialog-close").click(function () {
     $(".dialog").fadeOut();
+    showImage(0, false)
   });
 
   // 팝업 슬라이드
