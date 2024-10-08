@@ -133,11 +133,6 @@ $(function () {
     finishpause(); //활동종료 오디오 중지
   });
 
-  $(".dialog-close").click(function () {
-    $(".dialog").fadeOut();
-    infoNarrationAudio.pause();
-    infoNarrationAudio.currentTime = 0;
-  });
 
   // 활동2
    // bgm
@@ -147,7 +142,13 @@ $(function () {
     const kkang = new Audio("./sound/contents_02/kkang.m4a");
     bgm2.addEventListener("ended", function () {
       kkang.play()
+      $(".sigimsae").addClass("first")
+      setTimeout(second,5000)
     });
+  }
+  const second = () =>{
+    $(".sigimsae").removeClass("first")
+    $(".sigimsae").addClass("second")
   }
 
   // 동물 소리 파일 경로 설정 (예: sheep.mp3, cat.mp3 등)
@@ -164,6 +165,7 @@ $(function () {
   });
 
   // 드롭 가능하게 설정
+  let dropComplete2 = 0
   $(".drop .item").droppable({
     accept: ".item", // 드래그 가능한 요소
     drop: function (event, ui) {
@@ -178,10 +180,32 @@ $(function () {
         sounds[animal].play();
       }
       ui.draggable.remove();
+      dropComplete2++
+
+      if(dropComplete2 == 4){
+        setTimeout(activeFinish02, 3000);
+      }
     }
   });
 
-  
+  function activeFinish02() {
+    const finishAudio = new Audio(`./sound/narration/cho1_n_16.mp3`);
+    const kkangFull = new Audio(`./sound/contents_02/kkang_full.m4a`);
+
+    congratsAudio.addEventListener("ended", function () {
+      finishAudio.play();
+    });
+
+    finishAudio.addEventListener("ended", function () {
+      kkangFull.play();
+      $(".btn-wrap").css("display","flex")
+    });
+
+    congratsAudio.play();
+
+    $(".finish").fadeIn();
+    
+  }
 
   // 마우스 오버 이벤트 설정
   $(".drag-wrap .item").on("mouseenter", function () {
@@ -193,5 +217,22 @@ $(function () {
       sounds[animal].play();
     }
   });
-});
 
+  const infoNarrationAudio2 = new Audio("./sound/narration/cho1_n_12.mp3");
+  $(".btn-more2").click(function () {
+    infoEffectAudio.addEventListener("ended", function () {
+      infoNarrationAudio2.play();
+    });
+    infoEffectAudio.play();
+    $(".dialog").fadeIn();
+    finishpause(); //활동종료 오디오 중지
+  });
+
+  $(".dialog-close").click(function () {
+    $(".dialog").fadeOut();
+    infoNarrationAudio.pause();
+    infoNarrationAudio.currentTime = 0;
+    infoNarrationAudio2.pause();
+    infoNarrationAudio2.currentTime = 0;
+  });
+});

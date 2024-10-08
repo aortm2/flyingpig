@@ -315,9 +315,24 @@
     height: 100%;
     padding: 2% 5% 2% 2%;
 }
+
+.select-02 .drag .drag-wrap .hover-txt{
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translateY(-100%);
+}
+
 .select-02 .drag .drag-wrap .area{
     width: 23%;
     height: 100%;
+    position: relative;
+}
+
+.select-02 .drag .drag-wrap .area:hover .hover-txt{
+    display: block;
 }
 
 .select-02 .drag .drag-wrap .area .item{
@@ -363,59 +378,116 @@
     position: absolute;
     z-index: 3;
 }
-.select-02 .sigimsae > div img{
-    width: 80%;
-}
 
 .select-02 .sigimsae > div.sheep{
     top: 39%;
     left: 28%;
+    width: 12.4%;
+    height: 6.02%;
 }
 
 .select-02 .sigimsae > div.cat{
     top: 28%;
     left: 38%;
+    width: 5.63%;
+    height: 8.98%;
 }
 .select-02 .sigimsae > div.duck{
     top: 21.8%;
     left: 49.5%;
+    width: 5.73%;
+    height: 8.61%;
 }
 
 .select-02 .sigimsae > div.cow{
     top: 29.5%;
     right: 35.5%;
+    width: 4.11%;
+    height: 4.81%;
 }
 
 .select-02 .sigimsae > div .txt{
-    display: none;
     position: absolute;
 }
 
 .select-02 .sigimsae > .sheep .txt{
-    top: -180%;
+    width: 45%;
+    top: -189%;
     left: -10%;
 }
 
 .select-02 .sigimsae > .cat .txt{
     width: 150%;
     bottom: -85%;
-    left: 70%;
+    left: 83%;
 }
 
 .select-02 .sigimsae > .duck .txt{
     width: 90%;
     top: 0%;
-    left: 60%;
+    left: 62%;
 }
 
 .select-02 .sigimsae > .cow .txt{
-    width: 200%;
+    width: 180%;
     bottom: -185%;
     left: -40%;
 }
 
+.select-02 .sigimsae img{
+    pointer-events: none;
+    opacity: 0;
+}
+
+.select-02 .sigimsae.first .sign{
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.select-02 .sigimsae.first > div:nth-child(2) .sign{
+    animation-delay: 1.06s;
+}
+
+.select-02 .sigimsae.first > div:nth-child(3) .sign{
+    animation-delay: 2.66s;
+}
+
+.select-02 .sigimsae.first > div:nth-child(4) .sign{
+    animation-delay: 4s;
+}
+
+.select-02 .sigimsae.second img{
+    opacity: 1;
+    
+}
+
+.select-02 .sigimsae.second > div{
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.select-02 .sigimsae.second > div:nth-child(2){
+    animation-delay: 1.5s;
+}
+
+.select-02 .sigimsae.second > div:nth-child(3){
+    animation-delay: 2.5s;
+}
+
+.select-02 .sigimsae.second > div:nth-child(4){
+    animation-delay: 3.74s;
+}
 
 
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 
 
 @media screen and (max-width: 1450px) {
