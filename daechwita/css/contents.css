@@ -103,6 +103,7 @@
     background-image: url(../img/content_01/img_human.png);
     background-size: 100%;
     background-repeat: no-repeat;
+    background-position: center bottom;
 }
 
 .select-01 .drop-wrap .dropzon.ui-droppable-hover{
