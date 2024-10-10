@@ -540,12 +540,21 @@ $(function () {
     // .pop-wrap 생성 및 스타일 설정
     var popWrap = $('<div class="pop-wrap"></div>');
     var img = $('<img>', {
-        src: './img/content_02/pop_' + name + '.png',
-        alt: 'pop image'
+        src: './img/content_02/pop_' + name + '1.png',
     });
 
     // .pop-wrap에 이미지 추가
     popWrap.append(img);
+
+    var isFirstImage = true;
+    setInterval(function() {
+    if (isFirstImage) {
+        img.attr('src', './img/content_02/pop_' + name + '2.png');
+    } else {
+        img.attr('src', './img/content_02/pop_' + name + '1.png');
+    }
+    isFirstImage = !isFirstImage;
+    }, 400); 
 
     // .plate에 .pop-wrap 추가
     $('.plate').append(popWrap);

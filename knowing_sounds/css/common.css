@@ -241,7 +241,7 @@ img{
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: scale(1.4) translate(-30%, -50%);
+    transform: scale(1) translate(-50%, -50%);
 }
 .finish-wrap .txt .bg-black{
     position: fixed;
