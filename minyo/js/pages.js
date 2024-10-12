@@ -88,6 +88,7 @@ $(function () {
         narrationAudio.play();
         $(".select-01").addClass("pointer-none")
         narrationAudio.addEventListener("ended", function () {
+          contentAudio.volume = 1
           contentAudio.play();
         });
         contentAudio.addEventListener("ended", function () {
@@ -141,9 +142,13 @@ $(function () {
     bgm2.play();
     const kkang = new Audio("./sound/contents_02/kkang.m4a");
     bgm2.addEventListener("ended", function () {
+      kkang.volume = 1;
       kkang.play()
       $(".sigimsae").addClass("first")
       setTimeout(second,5000)
+    });
+    kkang.addEventListener("ended", function () {
+      $(".drag-wrap").removeClass("pointer-none")
     });
   }
   const second = () =>{
@@ -161,7 +166,21 @@ $(function () {
 
   // 드래그 가능하게 설정
   $(".drag .item").draggable({
-    revert: "invalid", // 올바르지 않은 drop 영역에 드롭 시 원래 위치로 돌아감
+    revert: function(droppable) {
+      // droppable이 존재하지 않으면 revert (원래 위치로 돌아감)
+      if (!droppable) {
+        return true; // 드롭할 수 없는 영역에 떨어지면 원래 위치로 돌아감
+      }
+      const draggedName = $(this).data("name");
+      const droppedName = $(droppable).data("name");
+      return draggedName !== droppedName; // 이름이 일치하지 않으면 revert
+    },
+    start: function(event, ui) {
+      $(this).css("z-index", 10);
+    },
+    stop: function(event, ui) {
+      $(this).css("z-index", "");
+    }
   });
 
   // 드롭 가능하게 설정
@@ -169,19 +188,23 @@ $(function () {
   $(".drop .item").droppable({
     accept: ".item", // 드래그 가능한 요소
     drop: function (event, ui) {
-      // 아이템이 올바른 영역에 드롭되었을 때의 동작
-      $(this).addClass("active");
-      $(ui.draggable).addClass("dropped");
-      
-      
-      const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-      if (sounds[animal]) {
-        sounds[animal].currentTime = 0;
-        sounds[animal].play();
+      const draggedName = ui.draggable.data("name"); // 드래그된 요소의 data-name
+      const droppedName = $(this).data("name"); // 드랍된 영역의 data-name
+      if (draggedName === droppedName) {
+        $(this).addClass("active");
+        $(ui.draggable).addClass("dropped");
+        const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+        if (sounds[animal]) {
+          sounds[animal].currentTime = 0;
+          sounds[animal].play();
+        }
+        ui.draggable.remove();
+        dropComplete2++
+      } else{
+        failEffect.play();
       }
-      ui.draggable.remove();
-      dropComplete2++
-
+      
+      
       if(dropComplete2 == 4){
         setTimeout(activeFinish02, 3000);
       }
@@ -197,6 +220,7 @@ $(function () {
     });
 
     finishAudio.addEventListener("ended", function () {
+      kkangFull.volume = 1
       kkangFull.play();
       $(".btn-wrap").css("display","flex")
     });
