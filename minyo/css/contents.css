@@ -50,6 +50,7 @@
     width: 20%;
     height: 69.3%;
     left: 55%;
+    top: 10%;
     background-image: url(../img/content_01/cho1_n_6.png);
 }
 
@@ -117,6 +118,8 @@
 .select-01 .board-wrap .drop{
     position: relative;
 }
+
+
 .select-01 .board-wrap .drop .area{
     position: absolute;
     background-size: contain;
@@ -145,8 +148,8 @@
 }
 
 .select-01 .board-wrap .drop .area[data-name=cho1_n_7].active{
-    width: 47%;
-    height: 40.4%;
+    width: 47.5%;
+    height: 40.7%;
     top: 14%;
     left: 5.8%;
     background-image: url(../img/content_01/cho1_n_7_active.png);
@@ -163,7 +166,7 @@
     width: 26.2%;
     height: 21.5%;
     bottom: 10.2%;
-    left: 26.8%;
+    left: 27%;
     background-image: url(../img/content_01/cho1_n_8_active.png);
 
 }
@@ -176,9 +179,9 @@
 }
 
 .select-01 .board-wrap .drop .area[data-name=cho1_n_9].active{
-    width: 33%;
-    height: 24%;
-    bottom: 28%;
+    width: 33.2%;
+    height: 24.2%;
+    bottom: 27.7%;
     left: 27.6%;
     background-image: url(../img/content_01/cho1_n_9_active.png);
 }
@@ -479,6 +482,27 @@
     animation-delay: 3.74s;
 }
 
+
+.select-02 .drop .hidden-bg{
+    position: absolute;
+    top: 17%;
+    right: 18%;
+    width: 66%;
+    height: 42%;
+    background: rgb(255 243 215);
+    /* background: rgba(0, 0 ,0, 0.5); */
+    animation: width 4.5s forwards;
+    animation-delay: 7s;
+}
+
+@keyframes width{
+    0%{
+        width: 68%;
+    }
+    100%{
+        width: 0;
+    }
+}
 
 @keyframes fadeIn{
     0%{

@@ -68,7 +68,16 @@ $(function () {
   // 첫번째 컨텐츠
   // 슬라이드
   $(".piece").draggable({
-    revert: "invalid" // 드랍 영역이 아닐 경우 원래 위치로 돌아감
+    revert: "invalid", // 드랍 영역이 아닐 경우 원래 위치로 돌아감
+    helper: "clone",  // 드래그할 때 클론을 생성
+    start: function(event, ui) {
+      // 드래그가 시작되면 원본 요소의 투명도를 0으로 변경
+      $(this).css("opacity", 0);
+    },
+    stop: function(event, ui) {
+      // 드래그가 끝나면 원본 요소의 투명도를 다시 1로 변경
+      $(this).css("opacity", 1);
+    }
   });
 
   // 드랍 가능한 영역으로 설정
