@@ -1,0 +1,534 @@
+@charset "UTF-8";
+
+/* select-01 */
+.select-01 {
+    background: url(../img/content_01/bg.png) no-repeat;
+}
+.select-01 .board{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -47%);
+    width: 75.73%;
+    height: 96.57%;
+    background: url(../img/content_01/board.png) no-repeat;
+    background-size: 100%;
+}
+
+.select-01 .board-wrap{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 5% 8% 5% 6%;
+}
+
+.select-01 .board-wrap .drop{
+    width: 44%;
+    height: 100%;
+    background: url(../img/content_01/bg_puzzle.png) no-repeat;
+    background-size: auto 100%;
+}
+
+.select-01 .board-wrap .drag{
+    width: 50%;
+    height: 100%;
+}
+
+.select-01 .board-wrap .drag .piece{
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.select-01 .board-wrap .drag .piece:hover{
+    transform: scale(1.3);
+    transform-origin:center center;
+}
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_6]{
+    width: 20%;
+    height: 69.3%;
+    left: 55%;
+    top: 10%;
+    background-image: url(../img/content_01/cho1_n_6.png);
+}
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_6]:hover{
+    top: 10%;
+    background-image: url(../img/content_01/cho1_n_6_over.png);
+}
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_7]{
+    width: 18%;
+    height: 36.3%;
+    right: 8%;
+    top: 30%;
+    background-image: url(../img/content_01/cho1_n_7.png);
+}
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_7]:hover{
+    top: 33%;
+    right: 8.5%;
+    transform: scale(1.7);
+    background-image: url(../img/content_01/cho1_n_7_over.png);
+}
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_8]{
+    width: 10%;
+    height: 19.3%;
+    left: 47%;
+    bottom: 10%;
+    background-image: url(../img/content_01/cho1_n_8.png);
+}
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_8]:hover{
+    bottom: 9%;
+    left: 46.5%;
+    transform: scale(1.7);
+    background-image: url(../img/content_01/cho1_n_8_over.png);
+}
+
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_9]{
+    width: 12%;
+    height: 19.3%;
+    right: 11%;
+    top: 10%;
+    background-image: url(../img/content_01/cho1_n_9.png);
+}
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_9]:hover{
+    transform: scale(1.7);
+    background-image: url(../img/content_01/cho1_n_9_over.png);
+}
+
+
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_10]{
+    width: 7.5%;
+    height: 6.8%;
+    right: 18%;
+    bottom: 10%;
+    background-image: url(../img/content_01/cho1_n_10.png);
+}
+.select-01 .board-wrap .drag .piece[data-name=cho1_n_10]:hover{
+    transform: scale(2.2);
+    right: 17%;
+    bottom: 11%;
+    background-image: url(../img/content_01/cho1_n_10_over.png);
+}
+
+.select-01 .board-wrap .drop{
+    position: relative;
+}
+
+
+.select-01 .board-wrap .drop .area{
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.select-01 .board-wrap .drop .area[data-name=cho1_n_6]{
+    width: 46%;
+    height: 81%;
+    top: 3%;
+    right: 9%;
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_6].active{
+    width: 51%;
+    height: 81%;
+    top: 3.7%;
+    right: 13%;
+    background-image: url(../img/content_01/cho1_n_6_active.png);
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_7]{
+    width: 36%;
+    height: 40%;
+    top: 12%;
+    left: 4%;
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_7].active{
+    width: 47.5%;
+    height: 40.7%;
+    top: 14%;
+    left: 5.8%;
+    background-image: url(../img/content_01/cho1_n_7_active.png);
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_8]{
+    width: 25%;
+    height: 18%;
+    bottom: 12%;
+    left: 26%;
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_8].active{
+    width: 26.2%;
+    height: 21.5%;
+    bottom: 10.2%;
+    left: 27%;
+    background-image: url(../img/content_01/cho1_n_8_active.png);
+
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_9]{
+    width: 25%;
+    height: 18%;
+    bottom: 31%;
+    left: 29%;
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_9].active{
+    width: 33.2%;
+    height: 24.2%;
+    bottom: 27.7%;
+    left: 27.6%;
+    background-image: url(../img/content_01/cho1_n_9_active.png);
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_10]{
+    width: 12%;
+    height: 5%;
+    bottom: 3%;
+    left: 25%;
+}
+
+.select-01 .board-wrap .drop .area[data-name=cho1_n_10].active{
+    width: 14%;
+    height: 8%;
+    bottom: 2%;
+    left: 25%;
+    background-image: url(../img/content_01/cho1_n_10_active.png);
+
+}
+.select-01 .obj{
+    position: absolute;
+    bottom: 0;
+}
+
+.select-01 .obj img{
+    max-width: 100%;
+    pointer-events: none;
+}
+
+.select-01 .obj.left{
+    width: 22.60%;
+    height: 41%;
+    left:1%;
+}
+
+.select-01 .obj.right{
+    width: 22.03%;
+    height: 45.28%;
+    right:0;
+}
+
+
+/* select-02 */
+.select-02 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/content_02/bg.png);
+    padding-top:10%;
+}
+
+
+.select-02 .drop{
+    position: absolute;
+    width: 62.03%;
+    height: 55.93%;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url(../img/content_02/bg_drop.png);
+}
+
+.select-02 .drop .drop-wrap{
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    gap: 6%;
+    width: 100%;
+    height: 27%;
+    padding: 2% 5% 2% 12.5%;
+}
+
+.select-02 .drop .drop-wrap .area{
+    width: 14.2%;
+    height: 100%;
+}
+
+.select-02 .drop .drop-wrap .item{
+    width: 100%;
+    height: 100%;
+}
+
+
+.select-02 .drop .drop-wrap .area:nth-child(1){
+    background-image: url(../img/content_02/bg_sheep.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(1) .item.active{
+    background-image: url(../img/content_02/sheep.png);
+}
+
+
+.select-02 .drop .drop-wrap .area:nth-child(2){
+    background-image: url(../img/content_02/bg_cat.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(2) .item.active{
+    background-image: url(../img/content_02/cat.png);
+
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(3){
+    background-image: url(../img/content_02/bg_duck.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(3) .item.active{
+    background-image: url(../img/content_02/duck.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(4){
+    background-image: url(../img/content_02/bg_cow.png);
+}
+
+.select-02 .drop .drop-wrap .area:nth-child(4) .item.active{
+    background-image: url(../img/content_02/cow.png);
+}
+
+.select-02 .drag{
+    position: absolute;
+    width: 54.48%;
+    height: 20.65%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url(../img/content_02/bg_drag.png);
+}
+
+
+.select-02 .drag .drag-wrap{
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    width: 100%;
+    height: 100%;
+    padding: 2% 5% 2% 2%;
+}
+
+.select-02 .drag .drag-wrap .hover-txt{
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translateY(-100%);
+}
+
+.select-02 .drag .drag-wrap .area{
+    width: 23%;
+    height: 100%;
+    position: relative;
+}
+
+.select-02 .drag .drag-wrap .area:hover .hover-txt{
+    display: block;
+}
+
+.select-02 .drag .drag-wrap .area .item{
+    width: 100%;
+    height: 100%;
+    background-position: top center;
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(1){
+    background-image: url(../img/content_02/bg_sheep.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(1) .item{
+    background-image: url(../img/content_02/sheep.png);
+}
+
+
+.select-02 .drag .drag-wrap .area:nth-child(2){
+    background-image: url(../img/content_02/bg_cat.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(2) .item{
+    background-image: url(../img/content_02/cat.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(3){
+    background-image: url(../img/content_02/bg_duck.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(3) .item{
+    background-image: url(../img/content_02/duck.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(4){
+    background-image: url(../img/content_02/bg_cow.png);
+}
+
+.select-02 .drag .drag-wrap .area:nth-child(4) .item{
+    background-image: url(../img/content_02/cow.png);
+}
+
+.select-02 .sigimsae > div{
+    position: absolute;
+    z-index: 3;
+}
+
+.select-02 .sigimsae > div.sheep{
+    top: 39%;
+    left: 28%;
+    width: 12.4%;
+    height: 6.02%;
+}
+
+.select-02 .sigimsae > div.cat{
+    top: 28%;
+    left: 38%;
+    width: 5.63%;
+    height: 8.98%;
+}
+.select-02 .sigimsae > div.duck{
+    top: 21.8%;
+    left: 49.5%;
+    width: 5.73%;
+    height: 8.61%;
+}
+
+.select-02 .sigimsae > div.cow{
+    top: 29.5%;
+    right: 35.5%;
+    width: 4.11%;
+    height: 4.81%;
+}
+
+.select-02 .sigimsae > div .txt{
+    position: absolute;
+}
+
+.select-02 .sigimsae > .sheep .txt{
+    width: 45%;
+    top: -189%;
+    left: -10%;
+}
+
+.select-02 .sigimsae > .cat .txt{
+    width: 150%;
+    bottom: -85%;
+    left: 83%;
+}
+
+.select-02 .sigimsae > .duck .txt{
+    width: 90%;
+    top: 0%;
+    left: 62%;
+}
+
+.select-02 .sigimsae > .cow .txt{
+    width: 180%;
+    bottom: -185%;
+    left: -40%;
+}
+
+.select-02 .sigimsae img{
+    pointer-events: none;
+    opacity: 0;
+}
+
+.select-02 .sigimsae.first .sign{
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.select-02 .sigimsae.first > div:nth-child(2) .sign{
+    animation-delay: 1.06s;
+}
+
+.select-02 .sigimsae.first > div:nth-child(3) .sign{
+    animation-delay: 2.66s;
+}
+
+.select-02 .sigimsae.first > div:nth-child(4) .sign{
+    animation-delay: 4s;
+}
+
+.select-02 .sigimsae.second img{
+    opacity: 1;
+    
+}
+
+.select-02 .sigimsae.second > div{
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.select-02 .sigimsae.second > div:nth-child(2){
+    animation-delay: 1.5s;
+}
+
+.select-02 .sigimsae.second > div:nth-child(3){
+    animation-delay: 2.5s;
+}
+
+.select-02 .sigimsae.second > div:nth-child(4){
+    animation-delay: 3.74s;
+}
+
+
+.select-02 .drop .hidden-bg{
+    position: absolute;
+    top: 17%;
+    right: 18%;
+    width: 66%;
+    height: 42%;
+    background: rgb(255 243 215);
+    /* background: rgba(0, 0 ,0, 0.5); */
+    animation: width 4.5s forwards;
+    animation-delay: 7s;
+}
+
+@keyframes width{
+    0%{
+        width: 68%;
+    }
+    100%{
+        width: 0;
+    }
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+@media screen and (max-width: 1450px) {
+    
+}
+@media screen and (max-width: 1280px) {
+  
+}
+
+@media screen and (max-width: 1060px) {
+  
+}
+
+@media screen and (max-width: 768px) {
+   
+}
+
+@media screen and (max-width: 475px) {
+   
+}
