@@ -67,56 +67,45 @@ $(function () {
 
   // 첫번째 컨텐츠
   // 슬라이드
-  $(".piece").draggable({
-    revert: "invalid", // 드랍 영역이 아닐 경우 원래 위치로 돌아감
-    helper: "clone",  // 드래그할 때 클론을 생성
+  $('.piece').draggable({
+    revert: "invalid",
+    helper: "clone",
     start: function(event, ui) {
-      // 드래그가 시작되면 원본 요소의 투명도를 0으로 변경
-      $(this).css("opacity", 0);
-    },
-    stop: function(event, ui) {
-      // 드래그가 끝나면 원본 요소의 투명도를 다시 1로 변경
-      $(this).css("opacity", 1);
-    }
+      var offset = $(this).offset();
+      ui.helper.offset({
+          top: offset.top,
+          left: offset.left
+      });
+  }
   });
 
-  // 드랍 가능한 영역으로 설정
-  let dropComplete = 0
-  $(".area").droppable({
-    accept: ".piece", // 드래그 가능한 요소
-    drop: function (event, ui) {
-      const draggedName = ui.draggable.data("name"); // 드래그된 요소의 data-name
-      const droppedName = $(this).data("name"); // 드랍된 영역의 data-name
-
-      // data-name 비교
-      if (draggedName === droppedName) {
-        $(this).addClass("active");
-        ui.draggable.remove();
-        const narrationAudio = new Audio(`./sound/narration/${draggedName}.mp3`);
-        const contentAudio = new Audio(`./sound/contents_01/${draggedName}.m4a`);
-        narrationAudio.play();
-        $(".select-01").addClass("pointer-none")
-        narrationAudio.addEventListener("ended", function () {
-          contentAudio.volume = 1
-          contentAudio.play();
-        });
-        contentAudio.addEventListener("ended", function () {
-          $(".select-01").removeClass("pointer-none")
-        });
-        dropComplete++
-      } else {
-        ui.draggable.draggable("option", "revert", true);
-        failEffect.play()
+  // 드롭 가능하게 설정
+  let dropComplete1 = 0
+  $('.area').droppable({
+      accept: ".piece", // .piece만 드롭 가능
+      drop: function(event, ui) {
+          var area = $(this); // 드롭된 area
+          var pieceName = ui.draggable.data('name');
+          var areaNames = area.data('name').split('|'); // 여러 개의 data-name일 수 있으므로 분리
+          // data-name 값이 일치하는지 확인
+          if (areaNames.includes(pieceName)) {
+              area.addClass(pieceName); // data-name을 클래스에 추가
+              ui.draggable.draggable('disable'); // 드롭된 요소를 다시 드래그할 수 없게 설정 (옵션)
+              const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
+              audio.play()
+              ui.draggable.addClass("active")
+              dropComplete1++
+          }  else{
+            failEffect.play();
+          }
+          if(dropComplete1 >= 5){
+            activeFinish01(activeFinish01,1000)
+          }
       }
-
-      if(dropComplete >= 5){
-        setTimeout(activeFinish01, 3000);
-      }
-    }
   });
 
   function activeFinish01() {
-    const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);
+    const finishAudio = new Audio(`./sound/narration/cho2_n_11.mp3`);
 
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
@@ -133,14 +122,20 @@ $(function () {
   }
 
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");
-  const infoNarrationAudio = new Audio("./sound/narration/cho1_n_12.mp3");
+  const infoNarrationAudio = new Audio("./sound/narration/cho2_n_12.mp3");
   $(".btn-more").click(function () {
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio.play();
     });
     infoEffectAudio.play();
     $(".dialog").fadeIn();
-    finishpause(); //활동종료 오디오 중지
+  });
+
+  $(".drag .piece").on("mouseenter", function () {
+    const pieceName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+    const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
+    audio.currentTime = 0;
+    audio.play();
   });
 
 
@@ -149,29 +144,14 @@ $(function () {
   const bgm2 = $("#bgm02")[0];
   if (bgm2) {
     bgm2.play();
-    const kkang = new Audio("./sound/contents_02/kkang.m4a");
     bgm2.addEventListener("ended", function () {
-      kkang.volume = 1;
-      kkang.play()
-      $(".sigimsae").addClass("first")
-      setTimeout(second,5000)
-    });
-    kkang.addEventListener("ended", function () {
-      $(".drag-wrap").removeClass("pointer-none")
+      
     });
   }
   const second = () =>{
     $(".sigimsae").removeClass("first")
     $(".sigimsae").addClass("second")
   }
-
-  // 동물 소리 파일 경로 설정 (예: sheep.mp3, cat.mp3 등)
-  const sounds = {
-    sheep: new Audio('./sound/contents_02/sheep.mp3'),
-    cat: new Audio('./sound/contents_02/cat.mp3'),
-    duck: new Audio('./sound/contents_02/duck.mp3'),
-    cow: new Audio('./sound/contents_02/cow.mp3')
-  };
 
   // 드래그 가능하게 설정
   $(".drag .item").draggable({
@@ -184,53 +164,43 @@ $(function () {
       const droppedName = $(droppable).data("name");
       return draggedName !== droppedName; // 이름이 일치하지 않으면 revert
     },
-    start: function(event, ui) {
-      $(this).css("z-index", 10);
-    },
-    stop: function(event, ui) {
-      $(this).css("z-index", "");
-    }
+    helper: "clone",
   });
 
   // 드롭 가능하게 설정
   let dropComplete2 = 0
   $(".drop .item").droppable({
     accept: ".item", // 드래그 가능한 요소
+
     drop: function (event, ui) {
       const draggedName = ui.draggable.data("name"); // 드래그된 요소의 data-name
       const droppedName = $(this).data("name"); // 드랍된 영역의 data-name
-      if (draggedName === droppedName) {
+
+      if (draggedName == droppedName && $(".ui-droppable-hover").length < 1) {
+        console.log($(".ui-droppable-hover").length < 2)
         $(this).addClass("active");
-        $(ui.draggable).addClass("dropped");
-        const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-        if (sounds[animal]) {
-          sounds[animal].currentTime = 0;
-          sounds[animal].play();
-        }
-        ui.draggable.remove();
+        const itemName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+        const audio = new Audio('./sound/narration/' + itemName + '.mp3'); // Audio 객체 생성
+        audio.currentTime = 0;
+        audio.play();
+        ui.draggable.addClass("active");
         dropComplete2++
       } else{
         failEffect.play();
       }
       
       
-      if(dropComplete2 == 4){
-        setTimeout(activeFinish02, 3000);
+      if(dropComplete2 == 6){
+        setTimeout(activeFinish02, 1000);
       }
     }
   });
 
   function activeFinish02() {
-    const finishAudio = new Audio(`./sound/narration/cho1_n_16.mp3`);
-    const kkangFull = new Audio(`./sound/contents_02/kkang_full.m4a`);
+    const finishAudio = new Audio(`./sound/narration/cho2_n_23.mp3`);
 
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
-    });
-
-    finishAudio.addEventListener("ended", function () {
-      kkangFull.volume = 1
-      kkangFull.play();
       $(".btn-wrap").css("display","flex")
     });
 
@@ -241,24 +211,20 @@ $(function () {
   }
 
   // 마우스 오버 이벤트 설정
-  $(".drag-wrap .item").on("mouseenter", function () {
-    const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-
-    // 해당 동물의 소리 재생
-    if (sounds[animal]) {
-      sounds[animal].currentTime = 0; // 소리를 처음부터 재생
-      sounds[animal].play();
-    }
+  $(".drag .item").on("mouseenter", function () {
+    const itemName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+    const audio = new Audio('./sound/narration/' + itemName + '.mp3'); // Audio 객체 생성
+    audio.currentTime = 0;
+    audio.play();
   });
 
-  const infoNarrationAudio2 = new Audio("./sound/narration/cho1_n_12.mp3");
+  const infoNarrationAudio2 = new Audio("./sound/narration/cho2_n_24.mp3");
   $(".btn-more2").click(function () {
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio2.play();
     });
     infoEffectAudio.play();
     $(".dialog").fadeIn();
-    finishpause(); //활동종료 오디오 중지
   });
 
   $(".dialog-close").click(function () {

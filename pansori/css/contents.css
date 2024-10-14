@@ -4,41 +4,54 @@
 .select-01 {
     background: url(../img/content_01/bg.png) no-repeat;
 }
+
 .select-01 .board{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -47%);
-    width: 75.73%;
-    height: 96.57%;
-    background: url(../img/content_01/board.png) no-repeat;
-    background-size: 100%;
+    transform: translate(-50%, -42%);
+    width: 84.53%;
+    height: 88.70%;
 }
 
 .select-01 .board-wrap{
     position: relative;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding: 5% 8% 5% 6%;
+    /* padding: 5% 8% 5% 6%; */
 }
 
 .select-01 .board-wrap .drop{
-    width: 44%;
+    width: 64.88%;
     height: 100%;
-    background: url(../img/content_01/bg_puzzle.png) no-repeat;
-    background-size: auto 100%;
+    background: url(../img/content_01//board.png) no-repeat;
+    background-size: 98%;
+    padding: 0 0 2% 2%;
 }
 
 .select-01 .board-wrap .drag{
-    width: 50%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    width: 33%;
     height: 100%;
+    background: url(../img/content_01//bg_puzzle.png) no-repeat;
+    background-size: auto 98%;
+    padding: 3% 8% 4% 2%;
 }
 
 .select-01 .board-wrap .drag .piece{
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: contain;
+    width: 50%;
+    height: 33%;
+    background-position: center;
+}
+
+.select-01 .board-wrap .drag .piece.active{
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .select-01 .board-wrap .drag .piece:hover{
@@ -46,73 +59,29 @@
     transform-origin:center center;
 }
 
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_6]{
-    width: 20%;
-    height: 69.3%;
-    left: 55%;
-    top: 10%;
-    background-image: url(../img/content_01/cho1_n_6.png);
-}
-
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_6]:hover{
-    top: 10%;
-    background-image: url(../img/content_01/cho1_n_6_over.png);
-}
-
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_7]{
-    width: 18%;
-    height: 36.3%;
-    right: 8%;
-    top: 30%;
-    background-image: url(../img/content_01/cho1_n_7.png);
-}
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_7]:hover{
-    top: 33%;
-    right: 8.5%;
-    transform: scale(1.7);
-    background-image: url(../img/content_01/cho1_n_7_over.png);
-}
-
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_8]{
-    width: 10%;
-    height: 19.3%;
-    left: 47%;
-    bottom: 10%;
-    background-image: url(../img/content_01/cho1_n_8.png);
-}
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_8]:hover{
-    bottom: 9%;
-    left: 46.5%;
-    transform: scale(1.7);
-    background-image: url(../img/content_01/cho1_n_8_over.png);
+.select-01 .board-wrap .drag .piece[data-name=cho2_n_6]{
+    background-image: url(../img/content_01/i_cho2_n_6.png);
 }
 
 
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_9]{
-    width: 12%;
-    height: 19.3%;
-    right: 11%;
-    top: 10%;
-    background-image: url(../img/content_01/cho1_n_9.png);
-}
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_9]:hover{
-    transform: scale(1.7);
-    background-image: url(../img/content_01/cho1_n_9_over.png);
+.select-01 .board-wrap .drag .piece[data-name=cho2_n_7]{
+    background-image: url(../img/content_01/i_cho2_n_7.png);
 }
 
 
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_10]{
-    width: 7.5%;
-    height: 6.8%;
-    right: 18%;
-    bottom: 10%;
-    background-image: url(../img/content_01/cho1_n_10.png);
+.select-01 .board-wrap .drag .piece[data-name=cho2_n_8]{
+    width: 100%;
+    background-image: url(../img/content_01/i_cho2_n_8.png);
 }
-.select-01 .board-wrap .drag .piece[data-name=cho1_n_10]:hover{
-    transform: scale(2.2);
-    right: 17%;
-    bottom: 11%;
-    background-image: url(../img/content_01/cho1_n_10_over.png);
+
+
+.select-01 .board-wrap .drag .piece[data-name=cho2_n_9]{
+    background-image: url(../img/content_01/i_cho2_n_9.png);
+}
+
+
+.select-01 .board-wrap .drag .piece[data-name=cho2_n_10]{
+    background-image: url(../img/content_01/i_cho2_n_10.png);
 }
 
 .select-01 .board-wrap .drop{
@@ -125,51 +94,50 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.select-01 .board-wrap .drop .area[data-name=cho1_n_6]{
-    width: 46%;
-    height: 81%;
-    top: 3%;
-    right: 9%;
+
+.select-01 .board-wrap .drop .area .area-sub{
+    width: 100%;
+    height: 100%;
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_6].active{
-    width: 51%;
-    height: 81%;
-    top: 3.7%;
-    right: 13%;
-    background-image: url(../img/content_01/cho1_n_6_active.png);
+.select-01 .board-wrap .drop .area[data-name="cho2_n_6|cho2_n_10"]{
+    width: 26%;
+    height: 43%;
+    top: 18%;
+    right: 19%;
+    background-image: url(../img/content_01/cho2_n_6.png);
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_7]{
-    width: 36%;
+.select-01 .board-wrap .drop .area.cho2_n_6{
+    background-image: url(../img/content_01/a_cho2_n_6.png);
+}
+
+.select-01 .board-wrap .drop .area[data-name="cho2_n_7|cho2_n_9"]{
+    width: 27%;
     height: 40%;
-    top: 12%;
-    left: 4%;
+    top: 25%;
+    left: 28%;
+    background-image: url(../img/content_01/cho2_n_7.png);
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_7].active{
-    width: 47.5%;
-    height: 40.7%;
-    top: 14%;
-    left: 5.8%;
-    background-image: url(../img/content_01/cho1_n_7_active.png);
+.select-01 .board-wrap .drop .area.cho2_n_7{
+    background-image: url(../img/content_01/a_cho2_n_7.png);
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_8]{
-    width: 25%;
-    height: 18%;
-    bottom: 12%;
-    left: 26%;
+.select-01 .board-wrap .drop .area[data-name=cho2_n_8]{
+    width: 80%;
+    height: 29%;
+    bottom: 3%;
+    left: 10%;
+    background-image: url(../img/content_01/cho2_n_8.png);
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_8].active{
-    width: 26.2%;
-    height: 21.5%;
-    bottom: 10.2%;
-    left: 27%;
-    background-image: url(../img/content_01/cho1_n_8_active.png);
 
+.select-01 .board-wrap .drop .area.cho2_n_8{
+    background-position: center bottom 55%;
+    background-image: url(../img/content_01/a_cho2_n_8.png);
 }
+
 
 .select-01 .board-wrap .drop .area[data-name=cho1_n_9]{
     width: 25%;
@@ -178,12 +146,16 @@
     left: 29%;
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_9].active{
-    width: 33.2%;
-    height: 24.2%;
-    bottom: 27.7%;
-    left: 27.6%;
-    background-image: url(../img/content_01/cho1_n_9_active.png);
+
+.select-01 .board-wrap .drop .area.cho2_n_9::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-image: url(../img/content_01/a_cho2_n_9.png);
 }
 
 .select-01 .board-wrap .drop .area[data-name=cho1_n_10]{
@@ -193,14 +165,17 @@
     left: 25%;
 }
 
-.select-01 .board-wrap .drop .area[data-name=cho1_n_10].active{
-    width: 14%;
-    height: 8%;
-    bottom: 2%;
-    left: 25%;
-    background-image: url(../img/content_01/cho1_n_10_active.png);
-
+.select-01 .board-wrap .drop .area.cho2_n_10::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/content_01/a_cho2_n_10.png);
+    background-size: contain;
 }
+
 .select-01 .obj{
     position: absolute;
     bottom: 0;
@@ -212,9 +187,10 @@
 }
 
 .select-01 .obj.left{
-    width: 22.60%;
-    height: 41%;
-    left:1%;
+    width: 15%;
+    height: 21%;
+    top: 40%;
+    left:4%;
 }
 
 .select-01 .obj.right{
@@ -233,267 +209,137 @@
     padding-top:10%;
 }
 
-
-.select-02 .drop{
+.select-02 .drop .item{
     position: absolute;
-    width: 62.03%;
-    height: 55.93%;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%);
-    background-image: url(../img/content_02/bg_drop.png);
 }
 
-.select-02 .drop .drop-wrap{
-    position: absolute;
-    bottom: 5%;
-    display: flex;
-    gap: 6%;
-    width: 100%;
-    height: 27%;
-    padding: 2% 5% 2% 12.5%;
+.select-02 .drop .item[data-name=cho2_n_16]{
+    bottom:16%;
+    left: 29.2%;
+    width: 9.52%;
+    height: 30.10%;
+    background-image: url(../img/content_02/cho2_n_16.png);
+    z-index: 2;
 }
 
-.select-02 .drop .drop-wrap .area{
-    width: 14.2%;
-    height: 100%;
+.select-02 .drop .item[data-name=cho2_n_16].active{
+    background-image: url(../img/content_02/a_cho2_n_16.png);
 }
 
-.select-02 .drop .drop-wrap .item{
-    width: 100%;
-    height: 100%;
+.select-02 .drop .item[data-name=cho2_n_17]{
+    bottom:16%;
+    left: 5%;
+    width: 11.07%;
+    height: 34.26%;
+    background-image: url(../img/content_02/cho2_n_17.png);
+    z-index: 2;
 }
 
-
-.select-02 .drop .drop-wrap .area:nth-child(1){
-    background-image: url(../img/content_02/bg_sheep.png);
-}
-
-.select-02 .drop .drop-wrap .area:nth-child(1) .item.active{
-    background-image: url(../img/content_02/sheep.png);
+.select-02 .drop .item[data-name=cho2_n_17].active{
+    background-image: url(../img/content_02/a_cho2_n_17.png);
 }
 
 
-.select-02 .drop .drop-wrap .area:nth-child(2){
-    background-image: url(../img/content_02/bg_cat.png);
+.select-02 .drop .item[data-name=cho2_n_18]{
+    top: 28.5%;
+    left: 35.2%;
+    width: 11.40%;
+    height: 9.54%;
+    background-image: url(../img/content_02/cho2_n_18.png);
 }
 
-.select-02 .drop .drop-wrap .area:nth-child(2) .item.active{
-    background-image: url(../img/content_02/cat.png);
-
+.select-02 .drop .item[data-name=cho2_n_18].active{
+    background-image: url(../img/content_02/a_cho2_n_18.png);
 }
 
-.select-02 .drop .drop-wrap .area:nth-child(3){
-    background-image: url(../img/content_02/bg_duck.png);
+
+.select-02 .drop .item[data-name=cho2_n_19]{
+    bottom: 36%;
+    left: 46.8%;
+    width: 15.75%;
+    height: 21.23%;
+    background-image: url(../img/content_02/cho2_n_19.png);
 }
 
-.select-02 .drop .drop-wrap .area:nth-child(3) .item.active{
-    background-image: url(../img/content_02/duck.png);
+.select-02 .drop .item[data-name=cho2_n_19].active{
+    background-image: url(../img/content_02/a_cho2_n_19.png);
 }
 
-.select-02 .drop .drop-wrap .area:nth-child(4){
-    background-image: url(../img/content_02/bg_cow.png);
+
+.select-02 .drop .item[data-name=cho2_n_20]{
+    bottom: 30%;
+    left: 11%;
+    width: 24.30%;
+    height: 41.23%;
+    background-image: url(../img/content_02/cho2_n_20.png);   
 }
 
-.select-02 .drop .drop-wrap .area:nth-child(4) .item.active{
-    background-image: url(../img/content_02/cow.png);
+.select-02 .drop .item[data-name=cho2_n_20].active{
+    background-image: url(../img/content_02/a_cho2_n_20.png);
 }
+
+
+.select-02 .drop .item[data-name=cho2_n_21]{    
+    bottom: 13.5%;
+    left: 36.2%;
+    width: 17.95%;
+    height: 34.63%;
+    background-image: url(../img/content_02/cho2_n_21.png);
+}
+
+.select-02 .drop .item[data-name=cho2_n_21].active{
+    background-image: url(../img/content_02/a_cho2_n_21.png);
+}
+
 
 .select-02 .drag{
     position: absolute;
-    width: 54.48%;
-    height: 20.65%;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%);
-    background-image: url(../img/content_02/bg_drag.png);
-}
-
-
-.select-02 .drag .drag-wrap{
-    display: flex;
-    justify-content: center;
-    gap: 2%;
-    width: 100%;
-    height: 100%;
-    padding: 2% 5% 2% 2%;
-}
-
-.select-02 .drag .drag-wrap .hover-txt{
-    display: none;
-    width: 100%;
-    position: absolute;
     top: 0;
-    left: 5%;
-    transform: translateY(-100%);
-}
-
-.select-02 .drag .drag-wrap .area{
-    width: 23%;
+    right: 0;
+    width: 37.5%;
     height: 100%;
-    position: relative;
+    padding: 10% 6% 4% 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.select-02 .drag .item{
+    width: 50%;
+    height: 33%;
 }
 
-.select-02 .drag .drag-wrap .area:hover .hover-txt{
-    display: block;
-}
-
-.select-02 .drag .drag-wrap .area .item{
-    width: 100%;
-    height: 100%;
-    background-position: top center;
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(1){
-    background-image: url(../img/content_02/bg_sheep.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(1) .item{
-    background-image: url(../img/content_02/sheep.png);
-}
-
-
-.select-02 .drag .drag-wrap .area:nth-child(2){
-    background-image: url(../img/content_02/bg_cat.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(2) .item{
-    background-image: url(../img/content_02/cat.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(3){
-    background-image: url(../img/content_02/bg_duck.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(3) .item{
-    background-image: url(../img/content_02/duck.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(4){
-    background-image: url(../img/content_02/bg_cow.png);
-}
-
-.select-02 .drag .drag-wrap .area:nth-child(4) .item{
-    background-image: url(../img/content_02/cow.png);
-}
-
-.select-02 .sigimsae > div{
-    position: absolute;
-    z-index: 3;
-}
-
-.select-02 .sigimsae > div.sheep{
-    top: 39%;
-    left: 28%;
-    width: 12.4%;
-    height: 6.02%;
-}
-
-.select-02 .sigimsae > div.cat{
-    top: 28%;
-    left: 38%;
-    width: 5.63%;
-    height: 8.98%;
-}
-.select-02 .sigimsae > div.duck{
-    top: 21.8%;
-    left: 49.5%;
-    width: 5.73%;
-    height: 8.61%;
-}
-
-.select-02 .sigimsae > div.cow{
-    top: 29.5%;
-    right: 35.5%;
-    width: 4.11%;
-    height: 4.81%;
-}
-
-.select-02 .sigimsae > div .txt{
-    position: absolute;
-}
-
-.select-02 .sigimsae > .sheep .txt{
-    width: 45%;
-    top: -189%;
-    left: -10%;
-}
-
-.select-02 .sigimsae > .cat .txt{
-    width: 150%;
-    bottom: -85%;
-    left: 83%;
-}
-
-.select-02 .sigimsae > .duck .txt{
-    width: 90%;
-    top: 0%;
-    left: 62%;
-}
-
-.select-02 .sigimsae > .cow .txt{
-    width: 180%;
-    bottom: -185%;
-    left: -40%;
-}
-
-.select-02 .sigimsae img{
+.select-02 .drag .item.active{
+    opacity: 0.5;
     pointer-events: none;
-    opacity: 0;
 }
 
-.select-02 .sigimsae.first .sign{
-    display: block;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
+.select-02 .drag .item:hover{
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
-.select-02 .sigimsae.first > div:nth-child(2) .sign{
-    animation-delay: 1.06s;
+.select-02 .drag .item[data-name=cho2_n_16]{
+    background-image: url(../img/content_02/i_cho2_n_16.png);
 }
 
-.select-02 .sigimsae.first > div:nth-child(3) .sign{
-    animation-delay: 2.66s;
+.select-02 .drag .item[data-name=cho2_n_17]{
+    background-image: url(../img/content_02/i_cho2_n_17.png);
 }
-
-.select-02 .sigimsae.first > div:nth-child(4) .sign{
-    animation-delay: 4s;
+.select-02 .drag .item[data-name=cho2_n_18]{
+    background-image: url(../img/content_02/i_cho2_n_18.png);
 }
-
-.select-02 .sigimsae.second img{
-    opacity: 1;
+.select-02 .drag .item[data-name=cho2_n_19]{
+    background-image: url(../img/content_02/i_cho2_n_19.png);
+}
+.select-02 .drag .item[data-name=cho2_n_20]{
+    background-image: url(../img/content_02/i_cho2_n_20.png);
     
 }
-
-.select-02 .sigimsae.second > div{
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
+.select-02 .drag .item[data-name=cho2_n_21]{    
+    background-image: url(../img/content_02/i_cho2_n_21.png);
 }
 
-.select-02 .sigimsae.second > div:nth-child(2){
-    animation-delay: 1.5s;
-}
-
-.select-02 .sigimsae.second > div:nth-child(3){
-    animation-delay: 2.5s;
-}
-
-.select-02 .sigimsae.second > div:nth-child(4){
-    animation-delay: 3.74s;
-}
-
-
-.select-02 .drop .hidden-bg{
-    position: absolute;
-    top: 17%;
-    right: 18%;
-    width: 66%;
-    height: 42%;
-    background: rgb(255 243 215);
-    /* background: rgba(0, 0 ,0, 0.5); */
-    animation: width 4.5s forwards;
-    animation-delay: 7s;
-}
 
 @keyframes width{
     0%{
