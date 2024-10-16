@@ -190,4 +190,5 @@ $(function () {
     congratsAudio.play();
   }
 
+  // 활동2
 });
