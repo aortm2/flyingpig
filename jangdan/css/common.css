@@ -314,29 +314,17 @@ img{
     background-repeat: no-repeat;
 }
 
+
+
 .btn-wrap a:nth-child(1){
-    
-    background-image: url("../img/icon/ico_more.png");
-}
-
-.btn-wrap a:nth-child(1):active{
-    background-image: url("../img/icon/ico_more_click.png");
-}
-
-.btn-wrap a:nth-child(1):hover{
-    background-image: url("../img/icon/ico_more_over.png");
-}
-
-
-.btn-wrap a:nth-child(2){
     background-image: url("../img/icon/ico_exit.png");
 }
 
-.btn-wrap a:nth-child(2):hover{
+.btn-wrap a:nth-child(1):hover{
     background-image: url("../img/icon/ico_exit_over.png");
 }
 
-.btn-wrap a:nth-child(2):active{
+.btn-wrap a:nth-child(1):active{
     background-image: url("../img/icon/ico_exit_click.png");
 }
 
