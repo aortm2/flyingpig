@@ -185,10 +185,12 @@
 }
 
 .select-02 .btn > button{
+    position: relative;
     width: 33%;
     height: 100%;
     background-repeat: no-repeat;
     background-size: 100%;
+    pointer-events: none;
 }
 
 .select-02 .lyrics{
@@ -208,13 +210,21 @@
     color:#e26f6f;
 }
 
-.select-02 .btn > button::before{
+.select-02 .btn > button.active::before{
     content: '';
     position: absolute;
-    top: -10%;
-    width: 5%;
-    height: 15%;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 20%;
     background-image: url(../img/content_02/pointer.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.select-02 .btn > button.active{
+    pointer-events: all;
 }
 
 .select-02 .btn > button:active{

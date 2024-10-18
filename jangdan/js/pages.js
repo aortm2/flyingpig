@@ -259,9 +259,7 @@ $(function () {
         verses.forEach(({ start, end, name, spanIndex }) => {
           if (currentTime >= start && currentTime < end) {
             // 현재 구간에 맞는 버튼에 active 클래스 추가
-            if(!$(`.btn button[data-name="${name}"]`).has("active")){
-              $(`.btn button[data-name="${name}"]`).addClass('active');
-            }
+            $(`.btn button[data-name="${name}"]`).addClass('active');
             console.log(`Active: ${name}, spanIndex: ${spanIndex}`); // 활성화된 버튼의 이름과 spanIndex 출력
           }
         });
@@ -272,7 +270,7 @@ $(function () {
           console.log("All verses processed.");
           $(".container").removeClass("pointer-none");
         }
-      }, 100);
+      }, 500);
     });
   }
 });
