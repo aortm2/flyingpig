@@ -1,4 +1,4 @@
-document.title = "소리알기"; // 제목
+document.title = "장단익히기"; // 제목
 
 $(function () {
   // bgm
