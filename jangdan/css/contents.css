@@ -197,17 +197,58 @@
     position: absolute;
     top: 22%;
     color: #522a35;
-    font-size: 50px;
     font-family: 'BMJUA';
     border:3px solid #ffc4c4;
     border-radius: 25px;
     background: #fff ;
-    padding:2% 10%;
+    padding:2% 8%;
     width: 80dvw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-02 .lyrics span{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 3.5%;
+    height: 100%;
+    padding-top: 2.5%;
+    font-size: 500%;
+}
+
+.select-02 .lyrics span.heart.null{
+    color: #fff;
+}
+
+.select-02 .lyrics span.spacing{
+    margin-left:3.5%;
+}
+
+.select-02 .lyrics span.heart::before{
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 50%;
+    background-image: url(../img/content_02/heart.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.select-02 .lyrics span[data-verse="2"]{
+    display: none;
 }
 
 .select-02 .lyrics span.active{
     color:#e26f6f;
+}
+
+.select-02 .lyrics span.heart.active::before{
+    background-image: url(../img/content_02/heart2.png);
 }
 
 .select-02 .btn > button.active::before{

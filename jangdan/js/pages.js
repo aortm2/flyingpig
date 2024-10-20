@@ -230,7 +230,7 @@ $(function () {
     { start: 24400, end: 25020, name: "kung", spanIndex: 32 },
     { start: 25020, end: 25680, name: "duck", spanIndex: 33 },
     { start: 25680, end: 26600, name: "kung", spanIndex: 34 },
-    { start: 26600, end: 26660, name: "deong", spanIndex: 35 }
+    { start: 26600, end: 26660, name: "deong", spanIndex: 35 },
   ];
   
   if (intro) {
@@ -246,31 +246,67 @@ $(function () {
         // 오디오가 중지되면 이벤트 종료
         if (audio.paused) {
           clearInterval(updateButtons);
-          console.log("Audio paused. Event stopped.");
+          console.log("끝");
           return;
         }
   
-        const currentTime = audio.currentTime * 1000; // 밀리초로 변환
+        const currentTime = audio.currentTime * 1000;
   
-        // 모든 버튼에서 active 클래스 제거
         $('.btn button').removeClass('active');
+        $('.lyrics span').removeClass('active'); 
   
         // 현재 verse 처리
         verses.forEach(({ start, end, name, spanIndex }) => {
           if (currentTime >= start && currentTime < end) {
             // 현재 구간에 맞는 버튼에 active 클래스 추가
             $(`.btn button[data-name="${name}"]`).addClass('active');
-            console.log(`Active: ${name}, spanIndex: ${spanIndex}`); // 활성화된 버튼의 이름과 spanIndex 출력
+            $(`.lyrics span[spanIndex="${spanIndex}"]`).addClass('active');
+            console.log(`Active: ${name}, spanIndex: ${spanIndex}`);
           }
         });
+
+        if(currentTime > 16760){
+          $(".lyrics span[data-verse='1']").hide()
+          $(".lyrics span[data-verse='2']").css("display","inline-block")
+        }
   
         // 모든 구간이 끝나면 정지
         if (currentTime >= verses[verses.length - 1].end) {
-          clearInterval(updateButtons);
-          console.log("All verses processed.");
+
           $(".container").removeClass("pointer-none");
+          console.log("end");
+          clearInterval(updateButtons);
+          setTimeout(finish2(), 2000)
         }
-      }, 500);
+      }, 50);
     });
   }
+
+  function finish2() {
+    $(".finish").fadeIn();
+    var audio = new Audio('./sound/narration/yua3_21.m4a');
+    audio.play();
+    congratsAudio.play();
+  }
+
+
+  let currentAudio = null; // 현재 재생 중인 오디오
+
+  // 버튼 클릭 이벤트
+  $('.btn button').on('click', function() {
+    const soundName = $(this).data('name'); // 버튼의 data-name 속성 값
+    const audioSrc = `./sound/contents_02/${soundName}.mp3`; // mp3 파일 경로
+
+    // 이전 오디오가 있으면 중지하고 제거
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.remove();
+    }
+
+
+    currentAudio = new Audio(audioSrc);
+    currentAudio.play();
+
+    console.log(`Playing sound: ${audioSrc}`);
+  });
 });
