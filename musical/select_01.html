@@ -25,11 +25,23 @@
                     <span class="sr-only">홈으로</span>
                 </a>
                 <div class="select-01 bg">
-                    <div class="face"></div>
-                    <div class="hand"></div>
-                    <div class="star"></div>
-                    <a href="#" class="btn-face btn-effect"></a>
-                    <a href="#" class="btn-hand ponter-none btn-effect"></a>
+                    <div class="quiz">
+                        <div class="quiz-wrap active">
+                            <div class="m-01-01 btn-effect" data-audio="yua1_n_7" data-correct="yes"></div>
+                            <div class="m-01-02 btn-effect" data-audio="yua1_n_8" data-correct="no"></div>
+                        </div>
+
+                        <div class="quiz-wrap">
+                            <div class="m-02-01 btn-effect" data-audio="yua1_n_9" data-correct="no"></div>
+                            <div class="m-02-02 btn-effect" data-audio="yua1_n_10" data-correct="yes"></div>
+                        </div>
+
+                        <div class="quiz-wrap">
+                            <div class="m-03-01 btn-effect" data-audio="yua1_n_11" data-correct="no"></div>
+                            <div class="m-03-02 btn-effect" data-audio="yua1_n_12" data-correct="yes"></div>
+                        </div>
+                    </div>
+                    <div class="img-answer"></div>
                 </div>
             </div>
             <div class="finish s_01">
@@ -57,7 +69,7 @@
 
         </div>
         
-        <audio id="active" class="start2" src="sound/narration/yua3_6.m4a"></audio>
+        <audio id="active" class="start2" src="sound/narration/yua1_n_6.mp3"></audio>
         <!-- <audio class="bgm" src="sound/bgm/active_bgm.mp3" loop></audio> -->
         <audio id="effect" src="sound/effect/active_effect.mp3"></audio>
     </main>

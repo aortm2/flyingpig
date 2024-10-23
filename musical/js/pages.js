@@ -50,138 +50,47 @@ $(function () {
   });
 
   // 활동 01
-  $(".btn-face").click(async function(){
-    var yua3_7 = new Audio('./sound/narration/yua3_7.m4a');
-    var yua3_8 = new Audio('./sound/narration/yua3_8.m4a');
-    var yua3_9 = new Audio('./sound/narration/yua3_9.m4a');
-    var yua3_10 = new Audio('./sound/narration/yua3_10.m4a');
-    var music = new Audio('./sound/contents_01/music.mp3');
-    var star = new Audio('./sound/contents_01/star.wav');
-    $(this).addClass("active")
-    
-    function playAudio(audio) {
-      return new Promise((resolve) => {
-          audio.play();
-          audio.addEventListener('ended', resolve);
-      });
+  $(".quiz-wrap > div").on("click", function () {
+    $(this).parent().addClass("pointer-none");
+    var $currentQuiz = $(this).closest(".quiz-wrap");
+    var isCorrect = $(this).data("correct") === "yes";
+
+    // img-answer에 yes 또는 no 클래스 추가
+    if (isCorrect) {
+      $(".img-answer").addClass("yes");
+    } else {
+      $(".img-answer").addClass("no");
     }
 
-    try {
-      await playAudio(yua3_7);
+    // 2초 후 다음 퀴즈로 이동
+    setTimeout(function () {
+      // img-answer에서 yes, no 클래스 제거
+      $(".img-answer").removeClass("yes no");
 
-      $(".face").addClass("active");
-      await playAudio(music);
-      $(".face").removeClass("active");
+      // 현재 quiz-wrap에 complete 클래스 추가
+      $currentQuiz.addClass("complete");
 
-      await playAudio(yua3_8);
-      $(".face").addClass("active");
-      await playAudio(music);
-      $(".face").removeClass("active");
-
-      await playAudio(yua3_9);
-
-      // 별시작
-      await playAudio(yua3_8);
-      $(".face").addClass("active");
-      await playAudio(music);
-      $(".face").removeClass("active");
-      $(".star").addClass("active1");
-      await playAudio(star);
-
-      // 별 둘
-      await playAudio(yua3_8);
-      $(".face").addClass("active");
-      await playAudio(music);
-      $(".face").removeClass("active");
-      $(".star").removeClass("active1");
-      $(".star").addClass("active2");
-      await playAudio(star);
-
-       // 별 셋
-       await playAudio(yua3_8);
-       $(".face").addClass("active");
-       await playAudio(music);
-       $(".face").removeClass("active");
-       $(".star").removeClass("active2");
-       $(".star").addClass("active3");
-       await playAudio(star);
-       await playAudio(yua3_10);
-       $(".star").removeClass("active3");
-
-      //  완료 이후
-       $(this).addClass("end")
-       $(".star").removeClass("active3");
-       $(".btn-hand").removeClass("ponter-none")
-    } catch (error) {
-      console.error("Audio playback error:", error);
-    }
+      // 다음 quiz-wrap에 active 클래스 추가
+      var $nextQuiz = $currentQuiz.next(".quiz-wrap");
+      if ($nextQuiz.length > 0) {
+        $currentQuiz.removeClass("active");
+        $nextQuiz.addClass("active");
+      }
+    }, 2000);
+    const audioName = $(this).data("audio");
+    const audioSrc = new Audio(`./sound/narration/${audioName}.mp3`);
+    audioSrc.play();
   });
 
-  $(".btn-hand").click(async function(){
-    var yua3_11 = new Audio('./sound/narration/yua3_11.m4a');
-    var yua3_12 = new Audio('./sound/narration/yua3_12.m4a');
-    var yua3_13 = new Audio('./sound/narration/yua3_13.m4a');
-    var yua3_14 = new Audio('./sound/narration/yua3_14.m4a');
-    var music = new Audio('./sound/contents_01/music.mp3');
-    var star = new Audio('./sound/contents_01/star.wav');
-    $(this).addClass("active")
-    
-    function playAudio(audio) {
-      return new Promise((resolve) => {
-          audio.play();
-          audio.addEventListener('ended', resolve);
-      });
-    }
-
-    try {
-      await playAudio(yua3_11);
-
-      $(".hand").addClass("active");
-      await playAudio(music);
-      $(".hand").removeClass("active");
-
-      await playAudio(yua3_12);
-      $(".hand").addClass("active");
-      await playAudio(music);
-      $(".hand").removeClass("active");
-
-      await playAudio(yua3_13);
-
-      // 별시작
-      await playAudio(yua3_12);
-      $(".hand").addClass("active");
-      await playAudio(music);
-      $(".hand").removeClass("active");
-      $(".star").addClass("active1");
-      await playAudio(star);
-
-      // 별 둘
-      await playAudio(yua3_12);
-      $(".hand").addClass("active");
-      await playAudio(music);
-      $(".hand").removeClass("active");
-      $(".star").removeClass("active1");
-      $(".star").addClass("active2");
-      await playAudio(star);
-
-       // 별 셋
-       await playAudio(yua3_12);
-       $(".hand").addClass("active");
-       await playAudio(music);
-       $(".hand").removeClass("active");
-       $(".star").removeClass("active2");
-       $(".star").addClass("active3");
-       await playAudio(star);
-       await playAudio(yua3_14);
-
-       //  완료 이후
-       $(this).addClass("end");
-       finish();
-    } catch (error) {
-      console.error("Audio playback error:", error);
-    }
+  $(".quiz-wrap > div").on("mouseover", function () {
+    const audioName = $(this).data("audio");
+    const audioSrc = new Audio(`./sound/narration/${audioName}.mp3`);
+    audioSrc.paused();
+    audioSrc.play();
   });
-  var congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
+
+
+  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
 
   function finish() {
     $(".finish").fadeIn();

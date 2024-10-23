@@ -9,159 +9,107 @@
     pointer-events: none;
 }
 
-.select-01 .face{
-    display: none;
+.select-01 .quiz{
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70dvw;
+    height: 44.54%;
+}
+
+.select-01 .quiz .quiz-wrap{
+    display: none;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
-    background-image: url(../img/content_01/face_01.png);
 }
 
-.select-01 .face.active{
-    display: block;
-    animation:face 3s forwards;
-}
-
-@keyframes face{
-    0%{
-        background-image: url(../img/content_01/face_01.png);
-    }
-
-    20%{
-        background-image: url(../img/content_01/face_02.png);
-    }
-
-    40%{
-        background-image: url(../img/content_01/face_03.png);
-    }
-
-    60%{
-        background-image: url(../img/content_01/face_04.png);
-    }
-
-    70%{
-        background-image: url(../img/content_01/face_05.png);
-    }
-
-    85%{
-        background-image: url(../img/content_01/face_06.png);
-    }
-
-    100%{
-        background-image: url(../img/content_01/face_07.png);
-    }
-}
-
-.select-01 .hand{
+.select-01 .quiz .quiz-wrap.complete{
     display: none;
-    position: absolute;
-    width: 100%;
+}
+
+.select-01 .quiz .quiz-wrap.active{
+    display: flex;
+}
+
+.select-01 .quiz .quiz-wrap > div{
+    width: 27%;
     height: 100%;
-    left: 0;
-    top: 0;
-    background-image: url(../img/content_01/hand_01.png);
 }
 
-.select-01 .hand.active{
-    display: block;
-    animation:hand 3s forwards;
-}
-
-@keyframes hand{
-    0%{
-        background-image: url(../img/content_01/hand_01.png);
-    }
-
-    20%{
-        background-image: url(../img/content_01/hand_02.png);
-    }
-
-    40%{
-        background-image: url(../img/content_01/hand_03.png);
-    }
-
-    60%{
-        background-image: url(../img/content_01/hand_04.png);
-    }
-
-    70%{
-        background-image: url(../img/content_01/hand_05.png);
-    }
-
-    85%{
-        background-image: url(../img/content_01/hand_06.png);
-    }
-
-    100%{
-        background-image: url(../img/content_01/hand_07.png);
-    }
-}
-
-
-.select-01 .btn-face{
+.select-01 .img-answer{
     position: absolute;
-    bottom: 22%;
-    left: 5%;
-    width: 9.74%;
-    height: 16.85%;
-    background-image: url(../img/content_01/btn_face.png);
-    z-index: 3;
+    width: 30.16%;
+    height: 70.74%;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url(../img/content_01/dan.png);
 }
 
-.select-01 .btn-face.active{
-    transform: scale(1.5);
-    background-image: url(../img/content_01/btn_face_active.png);
-    pointer-events: none;
+.select-01 .img-answer.yes{
+    background-image: url(../img/content_01/dan_o.png);
 }
 
-.select-01 .btn-face.end{
-    transform: scale(1);
-    filter: grayscale(1);
+.select-01 .img-answer.no{
+    background-image: url(../img/content_01/dan_x.png);
 }
 
-.select-01 .btn-hand{
-    position: absolute;
-    bottom: 22%;
-    right: 5%;
-    width: 9.74%;
-    height: 16.85%;
-    background-image: url(../img/content_01/btn_hand.png);
-    z-index: 3;
+.select-01 .quiz .quiz-wrap > div:hover{
+    transform: scale(1.25);
+    transform-origin: left center;
 }
 
-.select-01 .btn-hand.active{
-    transform: scale(1.5);
-    background-image: url(../img/content_01/btn_hand_active.png);
+.select-01 .quiz .quiz-wrap .m-01-01{
+    background-image: url(../img/content_01/01_01.png);
 }
 
-.select-01 .btn-hand.end{
-    transform: scale(1);
-    filter: grayscale(1);
+.select-01 .quiz .quiz-wrap .m-01-01:hover{
+    background-image: url(../img/content_01/01_01_over.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-01-02{
+    background-image: url(../img/content_01/01_02.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-01-02:hover{
+    background-image: url(../img/content_01/01_02_over.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-02-01{
+    background-image: url(../img/content_01/02_01.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-02-01:hover{
+    background-image: url(../img/content_01/02_01_over.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-02-02{
+    background-image: url(../img/content_01/02_02.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-02-02:hover{
+    background-image: url(../img/content_01/02_02_over.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-03-01{
+    background-image: url(../img/content_01/03_01.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-03-01:hover{
+    background-image: url(../img/content_01/03_01_over.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-03-02{
+    background-image: url(../img/content_01/03_02.png);
+}
+
+.select-01 .quiz .quiz-wrap .m-03-02:hover{
+    background-image: url(../img/content_01/03_02_over.png);
 }
 
 
-.select-01 .star{
-    position: absolute;
-    top: 20%;
-    right: 2%;
-    width: 13.44%;
-    height: 11.48%;
-    background-image: url(../img/content_01/star.png);
-}
-
-.select-01 .star.active1{
-    background-image: url(../img/content_01/star_01.png);
-}
-
-.select-01 .star.active2{
-    background-image: url(../img/content_01/star_02.png);
-}
-
-.select-01 .star.active3{
-    background-image: url(../img/content_01/star_03.png);
-}
 
 
 /* select-02 */
