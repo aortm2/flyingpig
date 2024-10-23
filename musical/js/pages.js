@@ -50,6 +50,7 @@ $(function () {
   });
 
   // 활동 01
+  let complet1 = 0
   $(".quiz-wrap > div").on("click", function () {
     $(this).parent().addClass("pointer-none");
     var $currentQuiz = $(this).closest(".quiz-wrap");
@@ -80,12 +81,18 @@ $(function () {
     const audioName = $(this).data("audio");
     const audioSrc = new Audio(`./sound/narration/${audioName}.mp3`);
     audioSrc.play();
+    complet1++
+    console.log(complet1)
+    if(complet1 == 3){
+      setTimeout(() => {
+        finish()
+      }, 2000);
+    }
   });
 
   $(".quiz-wrap > div").on("mouseover", function () {
     const audioName = $(this).data("audio");
     const audioSrc = new Audio(`./sound/narration/${audioName}.mp3`);
-    audioSrc.paused();
     audioSrc.play();
   });
 
@@ -99,123 +106,78 @@ $(function () {
     congratsAudio.play();
   }
 
-  // 활동2
-  const audio = $('#audio')[0];
-  const intro = $(".intro")[0];
-  
-  const verses = [
-    { start: 6760, end: 7310, name: "deong", spanIndex: 0 },
-    { start: 7310, end: 7680, name: "duck", spanIndex: 1 },
-    { start: 7680, end: 8340, name: "kung", spanIndex: 2 },
-    { start: 8340, end: 8980, name: "kung", spanIndex: 3 },
-    { start: 8980, end: 9330, name: "duck", spanIndex: 4 },
-    { start: 9330, end: 9970, name: "kung", spanIndex: 5 },
-    { start: 9970, end: 10570, name: "deong", spanIndex: 6 },
-    { start: 10570, end: 10930, name: "duck", spanIndex: 7 },
-    { start: 10930, end: 11640, name: "kung", spanIndex: 8 },
-    { start: 11640, end: 12300, name: "kung", spanIndex: 9 },
-    { start: 12300, end: 12670, name: "duck", spanIndex: 10 },
-    { start: 12670, end: 13350, name: "kung", spanIndex: 11 },
-    { start: 13350, end: 13940, name: "deong", spanIndex: 12 },
-    { start: 13940, end: 14340, name: "duck", spanIndex: 13 },
-    { start: 14340, end: 15000, name: "kung", spanIndex: 14 },
-    { start: 15000, end: 15610, name: "kung", spanIndex: 15 },
-    { start: 15610, end: 16010, name: "duck", spanIndex: 16 },
-    { start: 16010, end: 16760, name: "deong", spanIndex: 17 },
-    { start: 16760, end: 17370, name: "duck", spanIndex: 18 },
-    { start: 17370, end: 17750, name: "kung", spanIndex: 19 },
-    { start: 17750, end: 18400, name: "kung", spanIndex: 20 },
-    { start: 18400, end: 19040, name: "duck", spanIndex: 21 },
-    { start: 19040, end: 19400, name: "kung", spanIndex: 22 },
-    { start: 19400, end: 20050, name: "deong", spanIndex: 23 },
-    { start: 20050, end: 20690, name: "duck", spanIndex: 24 },
-    { start: 20690, end: 21060, name: "kung", spanIndex: 25 },
-    { start: 21060, end: 21720, name: "kung", spanIndex: 26 },
-    { start: 21720, end: 22330, name: "duck", spanIndex: 27 },
-    { start: 22330, end: 22690, name: "kung", spanIndex: 28 },
-    { start: 22690, end: 23410, name: "deong", spanIndex: 29 },
-    { start: 23410, end: 23980, name: "duck", spanIndex: 30 },
-    { start: 23980, end: 24400, name: "kung", spanIndex: 31 },
-    { start: 24400, end: 25020, name: "kung", spanIndex: 32 },
-    { start: 25020, end: 25680, name: "duck", spanIndex: 33 },
-    { start: 25680, end: 26600, name: "kung", spanIndex: 34 },
-    { start: 26600, end: 26660, name: "deong", spanIndex: 35 },
-  ];
-  
-  if (intro) {
-    intro.play();
-    $(".container").addClass("pointer-none");
-  
-    intro.addEventListener('ended', function () {
-      $(".container").removeClass("pointer-none");
-      audio.play();
-      console.log("Intro ended, main audio started.");
-  
-      const updateButtons = setInterval(() => {
-        // 오디오가 중지되면 이벤트 종료
-        if (audio.paused) {
-          clearInterval(updateButtons);
-          console.log("끝");
-          return;
-        }
-  
-        const currentTime = audio.currentTime * 1000;
-  
-        $('.btn button').removeClass('active');
-        $('.lyrics span').removeClass('active'); 
-  
-        // 현재 verse 처리
-        verses.forEach(({ start, end, name, spanIndex }) => {
-          if (currentTime >= start && currentTime < end) {
-            // 현재 구간에 맞는 버튼에 active 클래스 추가
-            $(`.btn button[data-name="${name}"]`).addClass('active');
-            $(`.lyrics span[spanIndex="${spanIndex}"]`).addClass('active');
-            console.log(`Active: ${name}, spanIndex: ${spanIndex}`);
-          }
-        });
-
-        if(currentTime > 16760){
-          $(".lyrics span[data-verse='1']").hide()
-          $(".lyrics span[data-verse='2']").css("display","inline-block")
-        }
-  
-        // 모든 구간이 끝나면 정지
-        if (currentTime >= verses[verses.length - 1].end) {
-
-          $(".container").removeClass("pointer-none");
-          console.log("end");
-          clearInterval(updateButtons);
-          setTimeout(finish2(), 2000)
-        }
-      }, 50);
+    // 팝업 닫기
+    $(".dialog-close").click(function () {
+      $(".dialog").fadeOut();
+      showImage(0, false)
     });
-  }
-
-  function finish2() {
-    $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua3_21.m4a');
-    audio.play();
-    congratsAudio.play();
-  }
-
-
-  let currentAudio = null; // 현재 재생 중인 오디오
-
-  // 버튼 클릭 이벤트
-  $('.btn button').on('click', function() {
-    const soundName = $(this).data('name'); // 버튼의 data-name 속성 값
-    const audioSrc = `./sound/contents_02/${soundName}.mp3`; // mp3 파일 경로
-
-    // 이전 오디오가 있으면 중지하고 제거
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.remove();
+  
+    // 팝업 슬라이드
+    let currentImg = 0;
+    const images = $(".dialog .sd > div");
+    const totalImages = images.length;
+  
+    
+    // 현재 재생 중인 오디오를 추적하는 변수
+    
+    let currentMoreAudio = null; // 전역 변수로 이동하여 모든 함수에서 접근 가능
+  
+    function showImage(index, playAudio = true) {
+      const url = $(".dialog").data("url");
+      const audioFiles = [
+        `./sound/${url}/more_01.mp3`, 
+        `./sound/${url}/more_02.mp3`, 
+        `./sound/${url}/more_03.mp3`, 
+        `./sound/${url}/more_04.mp3`
+      ];
+    
+      // 이미지 활성화 업데이트
+      images.removeClass("active").eq(index).addClass("active");
+      currentImg = index;
+      console.log(index)
+    
+      // 기존 오디오 중지
+      if (currentMoreAudio) {
+        currentMoreAudio.pause();
+        currentMoreAudio.currentTime = 0;
+        currentMoreAudio = null; // 이전 오디오 객체 초기화
+      }
+    
+      // 새로운 오디오 재생
+      if (audioFiles[index]) {
+        currentMoreAudio = new Audio(audioFiles[index]);
+        if (playAudio) currentMoreAudio.play();
+      }
+    
+      // 첫 번째 페이지에서 prev 버튼 숨기기
+      if (index === 0) {
+        $(".dialog .prev").hide();
+      } else {
+        $(".dialog .prev").show();
+      }
+    
+      // 마지막 페이지에서 next 버튼 숨기기
+      if (index === totalImages - 1) {
+        $(".dialog .next").hide();
+      } else {
+        $(".dialog .next").show();
+      }
     }
+    
+    // next 버튼 클릭 시 이벤트 처리
+    $(".dialog .next").on('click', function() {
+      if (currentImg < totalImages - 1) {
+        showImage(currentImg + 1); // 다음 이미지 보여주기
+      }
+    });
+    
+    // prev 버튼 클릭 시 이벤트 처리
+    $(".dialog .prev").on('click', function() {
+      if (currentImg > 0) {
+        showImage(currentImg - 1); // 이전 이미지 보여주기
+      }
+    });
 
-
-    currentAudio = new Audio(audioSrc);
-    currentAudio.play();
-
-    console.log(`Playing sound: ${audioSrc}`);
-  });
+  // 활동2
+  
 });
