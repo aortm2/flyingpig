@@ -67,28 +67,21 @@ $(function () {
 
   // 첫번째 컨텐츠
   // 슬라이드
-  $('.piece').draggable({
-    revert: "invalid",
+  $(".select-01 .piece").draggable({
     helper: "clone",
-    start: function(event, ui) {
-      var offset = $(this).offset();
-      ui.helper.offset({
-          top: offset.top,
-          left: offset.left
-      });
-  }
+    revert: "invalid" 
   });
 
   // 드롭 가능하게 설정
   let dropComplete1 = 0
-  $('.area').droppable({
+  $('.select-01 .area').droppable({
       accept: ".piece", // .piece만 드롭 가능
       drop: function(event, ui) {
           var area = $(this); // 드롭된 area
           var pieceName = ui.draggable.data('name');
           var areaNames = area.data('name').split('|'); // 여러 개의 data-name일 수 있으므로 분리
           // data-name 값이 일치하는지 확인
-          if (areaNames.includes(pieceName)) {
+          if (pieceName === area.data('name')) {
               area.addClass(pieceName); // data-name을 클래스에 추가
               ui.draggable.draggable('disable'); // 드롭된 요소를 다시 드래그할 수 없게 설정 (옵션)
               const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
