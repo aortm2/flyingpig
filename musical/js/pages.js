@@ -44,10 +44,49 @@ $(function () {
     btnEffect.play();
   });
 
+  // 나가기 버튼
+  $(".btn-out").on("mouseover", function () {
+    const audio = new Audio("./sound/narration/yua1_n_15.mp3"); // 1번 오디오
+    audio.play();
+  });
+
+  // next 버튼 클릭 시 이벤트 처리
+  $(".dialog .next").on('click', function() {
+    if (currentImg < totalImages - 1) {
+      showImage(currentImg + 1); // 다음 이미지 보여주기
+    }
+  });
+  
+  // prev 버튼 클릭 시 이벤트 처리
+  $(".dialog .prev").on('click', function() {
+    if (currentImg > 0) {
+      showImage(currentImg - 1); // 이전 이미지 보여주기
+    }
+  });
+      // '더 알아보기' 버튼 클릭 시 첫 번째 이미지와 1번 오디오 재생
+  $(".btn-more").click(function () {
+    $(".dialog").show(); // 다이얼로그를 표시
+    
+    infoEffectAudio.play();
+    showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
+  });
+
+  // 더알아보기 버튼
+  $(".btn-more, .btn-more2").on("mouseover",function () {
+    const audio = new Audio("./sound/narration/yua1_n_14.mp3"); // 1번 오디오
+    audio.play()
+  });
+
+
   document.querySelectorAll("img").forEach(function (img) {
     img.setAttribute("aria-hidden", "true");
     img.setAttribute("alt", "");
   });
+
+  const successEffect = new Audio('./sound/effect/success_effect.mp3'); //정답 효과음
+  const faliEffect = new Audio('./sound/effect/fali_effect.mp3'); //오답 효과음
+  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
+  const infoEffectAudio = new Audio("./sound/effect/info.mp3"); //더알아보기 효과음
 
   // 활동 01
   let complet1 = 0
@@ -97,11 +136,11 @@ $(function () {
   });
 
 
-  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
+ 
 
   function finish() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua3_15.m4a');
+    var audio = new Audio('./sound/narration/yua1_n_13.mp3');
     audio.play();
     congratsAudio.play();
   }
@@ -125,10 +164,9 @@ $(function () {
     function showImage(index, playAudio = true) {
       const url = $(".dialog").data("url");
       const audioFiles = [
-        `./sound/${url}/more_01.mp3`, 
-        `./sound/${url}/more_02.mp3`, 
-        `./sound/${url}/more_03.mp3`, 
-        `./sound/${url}/more_04.mp3`
+        `./sound/narration/yua1_n_16.mp3`, 
+        `./sound/narration/yua1_n_17.mp3`, 
+        `./sound/narration/yua1_n_18.mp3`,
       ];
     
       // 이미지 활성화 업데이트
@@ -164,20 +202,72 @@ $(function () {
       }
     }
     
-    // next 버튼 클릭 시 이벤트 처리
-    $(".dialog .next").on('click', function() {
-      if (currentImg < totalImages - 1) {
-        showImage(currentImg + 1); // 다음 이미지 보여주기
-      }
-    });
     
-    // prev 버튼 클릭 시 이벤트 처리
-    $(".dialog .prev").on('click', function() {
-      if (currentImg > 0) {
-        showImage(currentImg - 1); // 이전 이미지 보여주기
-      }
-    });
-
   // 활동2
+  let complet2 = 0
+  $(".drag > div").draggable({
+    helper: "clone",
+    revert: "invalid" 
+  });
+
+  $(".drop > div").droppable({
+    accept: ".drag > div",
+    drop: function (event, ui) {
+      const draggable = ui.draggable; // 원본 드래그된 요소
+      const dropTarget = $(this); // 현재 드롭된 영역
+
+      // data-name 비교
+      if (draggable.data("name") === dropTarget.data("name")) {
+        dropTarget.addClass("active"); // 드롭된 요소에 active 클래스 추가
+        draggable.addClass("active"); // 원본 드래그 요소에 active 클래스 추가
+
+         const audioFile = dropTarget.data("audio");
+         const audioPath = `./sound/narration/${audioFile}.mp3`;
+         
+         // 오디오 재생
+         const audio = new Audio(audioPath); // Audio 객체 생성
+         audio.play();
+        
+        // 이미지 동적 생성
+        const imageName = `pop_${draggable.data("name")}.png`; // 이미지 파일 이름 생성
+        const image = $(`<img src="./img/content_02/${imageName}" alt="Success" class="pop-image" />`); // 이미지 요소 생성
+        // 이미지 삽입
+        $("body").append(image);
+            
+        // 이미지 스타일링
+        image.css({
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          zIndex: 10, 
+          transform: "translate(-50%, -50%)" 
+        });
+
+        setTimeout(() => {
+          image.fadeOut(500, () => {
+            image.remove(); // 페이드 아웃 후 이미지 제거
+          });
+        }, 2000);
+        complet2++;
+
+      } else {
+        faliEffect.play();
+        $(ui.helper).remove();
+      }
+
+      if (complet2 == 3) {
+        setTimeout(() => {
+          finish2();
+        }, 2000);
+      }
+    },
+  });
+
+  function finish2() {
+    $(".finish").fadeIn();
+    var audio = new Audio('./sound/narration/yua1_n_26.mp3');
+    audio.play();
+    congratsAudio.play();
+  }
   
 });

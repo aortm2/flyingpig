@@ -180,6 +180,16 @@ img{
     aspect-ratio: 1634 / 919;
 }
 
+.finish.s_01 .finish-wrap{
+    background: url(../img/content_01/bg_finish.png);
+    background-size: auto 100%;
+}
+
+.finish.s_02 .finish-wrap{
+    background: url(../img/content_02/bg_finish.png);
+    background-size: auto 100%;
+}
+
 .finish-animation{
     position: absolute;
     top: 50%;
@@ -317,14 +327,28 @@ img{
 
 
 .btn-wrap a:nth-child(1){
-    background-image: url("../img/icon/ico_exit.png");
-}
-
-.btn-wrap a:nth-child(1):hover{
-    background-image: url("../img/icon/ico_exit_over.png");
+    
+    background-image: url("../img/icon/ico_more.png");
 }
 
 .btn-wrap a:nth-child(1):active{
+    background-image: url("../img/icon/ico_more_click.png");
+}
+
+.btn-wrap a:nth-child(1):hover{
+    background-image: url("../img/icon/ico_more_over.png");
+}
+
+
+.btn-wrap a:nth-child(2){
+    background-image: url("../img/icon/ico_exit.png");
+}
+
+.btn-wrap a:nth-child(2):hover{
+    background-image: url("../img/icon/ico_exit_over.png");
+}
+
+.btn-wrap a:nth-child(2):active{
     background-image: url("../img/icon/ico_exit_click.png");
 }
 

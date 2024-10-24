@@ -23,57 +23,20 @@
                     <span class="sr-only">홈으로</span>
                 </a>
                 <div class="select-02 bg">
-                    <div class="lyrics">
-                        <span class="heart" data-verse="1" spanIndex="0">하</span>
-                        <span data-verse="1" spanIndex="0">나</span>
-                        <span class="heart" data-verse="1" spanIndex="1">가</span>
-                        <span class="heart" data-verse="1" spanIndex="2">없</span>
-                        <span data-verse="1" spanIndex="2">어</span>
-                        <span class="heart" data-verse="1" spanIndex="3">어</span>
-                        <span class="heart spacing" data-verse="1" spanIndex="4">색</span>
-                        <span class="heart" data-verse="1" spanIndex="5">해</span>
-                        <span class="heart spacing" data-verse="1" spanIndex="6">하</span>
-                        <span data-verse="1" spanIndex="6">나</span>
-                        <span class="heart" data-verse="1" spanIndex="7">가</span>
-                        <span class="heart" data-verse="1" spanIndex="8">많</span>
-                        <span data-verse="1" spanIndex="8">아</span>
-                        <span class="heart" data-verse="1" spanIndex="9">이</span>
-                        <span class="heart spacing" data-verse="1" spanIndex="10">상</span>
-                        <span class="heart" data-verse="1" spanIndex="11">해</span>
-                        <span class="heart" data-verse="1" spanIndex="12">나</span>
-                        <span class="heart" data-verse="1" spanIndex="13">-</span>
-                        <span class="heart" data-verse="1" spanIndex="14">를</span>
-                        <span class="heart" data-verse="1" spanIndex="15">이</span>
-                        <span class="heart" data-verse="1" spanIndex="19">-</span>
-                        <span data-verse="1" spanIndex="17">해</span>
-
-                        <span class="heart" data-verse="2" spanIndex="18">못</span>
-                        <span class="heart null" data-verse="2" spanIndex="19">노</span>
-                        <span class="heart" data-verse="2" spanIndex="20">할</span>
-                        <span class="heart spacing" data-verse="2" spanIndex="21">걸</span>
-                        <span class="heart null" data-verse="2" spanIndex="22">노</span>
-                        <span class="heart null" data-verse="2" spanIndex="23">노</span>
-                        <span class="heart spacing" data-verse="2" spanIndex="24">엇</span>
-                        <span class="heart" data-verse="2" spanIndex="25">엇</span>
-                        <span class="heart" data-verse="2" spanIndex="26">엇</span>
-                        <span class="heart spacing" data-verse="2" spanIndex="27">엇</span>
-                        <span class="heart" data-verse="2" spanIndex="28">나</span>
-                        <span class="heart" data-verse="2" spanIndex="29">갈</span>
-                        <span class="heart spacing" data-verse="2" spanIndex="30">래</span>
-                        <span class="heart null" data-verse="2" spanIndex="31">노</span>
-                        <span class="heart" data-verse="2" spanIndex="32">-</span>
-                        <span class="heart null" data-verse="2" spanIndex="33">노</span>
-                        <span class="heart null" data-verse="2" spanIndex="34">노</span>
-                        <span class="heart null" data-verse="2" spanIndex="35">노</span>
+                    <div class="drag">
+                        <div data-name="01_01"></div>
+                        <div data-name="01_02"></div>
+                        <div data-name="01_03"></div>
                     </div>
-                    <div class="btn">
-                        <button type="button" data-name="deong" class="deong"></button>
-                        <button type="button" data-name="duck" class="duck"></button>
-                        <button type="button" data-name="kung" class="kung"></button>
+
+                    <div class="drop">
+                        <div data-name="01_03" data-audio="yua1_n_25"></div>
+                        <div data-name="01_01" data-audio="yua1_n_24"></div>
+                        <div data-name="01_02" data-audio="yua1_n_23"></div>
                     </div>
                 </div>
             </div>
-            <div class="finish">
+            <div class="finish ">
                 <div class="container">
                     <div class="finish-wrap">
                         <div class="flex-box">
@@ -89,6 +52,9 @@
                                 </div>
                             </div>
                             <div class="btn-wrap">
+                                <a href="javascript:void(0)" class="btn-more btn-hover">
+                                    <span class="sr-only">더 알아보기</span>
+                                </a>
                                 <a href="main.html" class="btn-out btn-effect btn-hover">
                                     <span class="sr-only">나가기</span>
                                 </a>
@@ -98,11 +64,53 @@
                 </div>
             </div>
 
+            <div class="dialog" data-url="contents_02">
+                <div class="container">
+                    <div class="img">
+                        <div class="dialog-slide">
+                            <a href="javascript:void(0)" class="btn-controls prev btn-effect btn-hover">
+                                <span class="sr-only">이전</span>
+                            </a>
+                            <div class="sd">
+                                <div class="img_01 active">
+                                    <img src="img/content_01/dialog_01.png" />
+                                    <div class="btn-dialog">
+                                        <a href="https://academy.gugak.go.kr/open/open/lecture/detail.do?openLectureSeq=683&srchOpenCategorySeq=17&srchListType=CATEGORY&currentMenuId=900006001" class="btn-youtube btn-hover btn-effect" target="_blank"></a>
+                                    </div>
+                                </div>
+                                <div class="img_02">
+                                    <img src="img/content_01/dialog_02.png" />
+                                    <div class="btn-dialog">
+                                        <a href="https://academy.gugak.go.kr/open/open/lecture/detail.do?openLectureSeq=925&srchOpenCategorySeq=17&srchListType=CATEGORY&currentMenuId=900006001" class="btn-youtube btn-hover btn-effect" target="_blank"></a>
+                                    </div>
+                                </div>
+                                <div class="img_03">
+                                    <img src="img/content_01/dialog_03.png" />
+                                    <div class="btn-dialog">
+                                        <a href="https://archive.gugak.go.kr/portal/detail/searchVideoDetail?clipid=38614&system_id=AV&recording_type_code=V22" class="btn-youtube btn-hover btn-effect" target="_blank"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0)" class="btn-controls next btn-effect btn-hover">
+                                <span class="sr-only">다음</span>
+                            </a>
+                        </div>
+                        <a href="javascript:void(0)">
+                            <img src="img/icon/ico_dialog_close.png" class="dialog-close btn-effect btn-hover" title="팝업 닫기"/>
+                            <span class="sr-only">팝업 닫기</span>
+                        </a>
+                    </div>
+                    <div class="img-char girl">
+                        <!-- <img src="img/content_02/dialog_char.png" title="팝업 캐릭터"/> -->
+                        <span class="sr-only">팝업 캐릭터</span>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </main>
-    <audio class="intro" src="sound/narration/yua3_20.m4a"></audio>
+    <audio class="intro" src="sound/narration/yua1_n_22.mp3"></audio>
     <!-- <audio id="active" src="sound/bgm/active_bgm.mp3" loop></audio> -->
     <audio id="effect" src="sound/effect/active_effect.mp3"></audio>
-    <audio id="audio" src="sound/contents_02/music.m4a"></audio>
 </body>
 </html>

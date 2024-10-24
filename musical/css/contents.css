@@ -120,129 +120,85 @@
     padding-top:10%;
 }
 
-.select-02 .btn{
+.select-02 .drag{
     position: absolute;
-    display: flex;
-    gap: 15%;
-    left: 50%;
-    bottom:2%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 38.41%;
-    padding:0 11%;
-}
-
-.select-02 .btn > button{
-    position: relative;
-    width: 33%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    pointer-events: none;
-}
-
-.select-02 .lyrics{
-    position: absolute;
-    top: 22%;
-    color: #522a35;
-    font-family: 'BMJUA';
-    border:3px solid #ffc4c4;
-    border-radius: 25px;
-    background: #fff ;
-    padding:2% 8%;
-    width: 80dvw;
+    top: 25%;
+    width: 80%;
+    height: 20.93%;
     display: flex;
     justify-content: space-between;
 }
 
-.select-02 .lyrics span{
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    width: 3.5%;
+.select-02 .drag > div{
+    width: 25%;
     height: 100%;
-    padding-top: 2.5%;
-    font-size: 500%;
-}
-
-.select-02 .lyrics span.heart.null{
-    color: #fff;
-}
-
-.select-02 .lyrics span.spacing{
-    margin-left:3.5%;
-}
-
-.select-02 .lyrics span.heart::before{
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 50%;
-    background-image: url(../img/content_02/heart.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
-
-.select-02 .lyrics span[data-verse="2"]{
-    display: none;
-}
-
-.select-02 .lyrics span.active{
-    color:#e26f6f;
-}
-
-.select-02 .lyrics span.heart.active::before{
-    background-image: url(../img/content_02/heart2.png);
-}
-
-.select-02 .btn > button.active::before{
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20%;
-    height: 20%;
-    background-image: url(../img/content_02/pointer.png);
     background-size: contain;
-    background-repeat: no-repeat;
+    z-index: 3;
+}
+.select-02 .drag > div.active{
+    pointer-events: none;
+    opacity: 0.4;
 }
 
-.select-02 .btn > button.active{
-    pointer-events: all;
+.select-02 .drag > div:hover{
+    transform: scale(1.4);
 }
 
-.select-02 .btn > button:active{
-    transform: scale(1.3);
+.select-02 .drag > div[data-name="01_01"]{
+    background-image: url(../img/content_02/musical_01.png);
 }
 
-.select-02 .btn .deong{
-    background-image: url(../img/content_02/btn_01.png);
+.select-02 .drag > div[data-name="01_02"]{
+    background-image: url(../img/content_02/musical_02.png);
 }
 
-.select-02 .btn .deong:active{
-    background-image: url(../img/content_02/btn_01_active.png);
+.select-02 .drag > div[data-name="01_03"]{
+    background-image: url(../img/content_02/musical_03.png);
 }
 
-.select-02 .btn .duck{
-    background-image: url(../img/content_02/btn_02.png);
+
+.select-02 .drop{
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    height: 35.93%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.select-02 .btn .duck:active{
-    background-image: url(../img/content_02/btn_02_active.png);
+.select-02 .drop > div{
+    width: 30%;
+    height: 100%;
+    background-size: contain;
 }
 
-.select-02 .btn .kung{
-    background-image: url(../img/content_02/btn_03.png);
+.select-02 .drop > div[data-name="01_03"]{
+    background-image: url(../img/content_02/act_01.png);
 }
 
-.select-02 .btn .kung:active{
-    background-image: url(../img/content_02/btn_03_active.png);
+.select-02 .drop > div[data-name="01_01"]{
+    background-image: url(../img/content_02/act_02.png);
 }
+
+.select-02 .drop > div[data-name="01_02"]{
+    background-image: url(../img/content_02/act_03.png);
+}
+
+.select-02 .drop > div[data-name="01_03"].active{
+    background-image: url(../img/content_02/act_01_active.png);
+}
+
+.select-02 .drop > div[data-name="01_01"].active{
+    background-image: url(../img/content_02/act_02_active.png);
+}
+
+.select-02 .drop > div[data-name="01_02"].active{
+    background-image: url(../img/content_02/act_03_active.png);
+}
+
+
+
+
 
 
 @media screen and (max-width: 1450px) {
