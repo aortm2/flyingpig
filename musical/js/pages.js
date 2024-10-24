@@ -4,11 +4,16 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
+  var bgm3 = $(".bgm3")[0];
   if (bgm) {
     bgm.play();
   }
   
   if (bgm2) {
+    bgm2.play();
+  }
+
+  if (bgm3) {
     bgm2.play();
   }
   // 처음 진입 나레이션
