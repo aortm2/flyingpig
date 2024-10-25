@@ -69,19 +69,40 @@ $(function () {
   // 슬라이드
   $(".select-01 .piece").draggable({
     helper: "clone",
-    revert: "invalid" 
+    revert: function (droppable) {
+      if (!droppable) {
+        return true;
+      } else {
+        var pieceName = $(this).data("name");
+        var dropTarget = $(droppable[0]);
+        var areaNames = dropTarget.data("name").split("|");
+
+        if (!areaNames.includes(pieceName)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    start: function(event, ui) {
+      $(this).addClass("drag");
+    },
+    stop: function(event, ui) {
+      // 드래그가 끝난 후 원본에서 active 클래스 제거
+      $(this).removeClass("drag");
+  }
   });
 
   // 드롭 가능하게 설정
   let dropComplete1 = 0
   $('.select-01 .area').droppable({
       accept: ".piece", // .piece만 드롭 가능
+      revert: "invalid",
       drop: function(event, ui) {
           var area = $(this); // 드롭된 area
           var pieceName = ui.draggable.data('name');
           var areaNames = area.data('name').split('|'); // 여러 개의 data-name일 수 있으므로 분리
-          // data-name 값이 일치하는지 확인
-          if (pieceName === area.data('name')) {
+          if (areaNames.includes(pieceName)) {
               area.addClass(pieceName); // data-name을 클래스에 추가
               ui.draggable.draggable('disable'); // 드롭된 요소를 다시 드래그할 수 없게 설정 (옵션)
               const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
