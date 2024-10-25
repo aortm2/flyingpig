@@ -90,7 +90,7 @@ $(function () {
     stop: function(event, ui) {
       // 드래그가 끝난 후 원본에서 active 클래스 제거
       $(this).removeClass("drag");
-  }
+    }
   });
 
   // 드롭 가능하게 설정
@@ -176,9 +176,21 @@ $(function () {
       }
       const draggedName = $(this).data("name");
       const droppedName = $(droppable).data("name");
-      return draggedName !== droppedName; // 이름이 일치하지 않으면 revert
+      return draggedName !== droppedName;
     },
-    helper: "clone",
+    helper: function() {
+      const clone = $(this).clone().css({
+          zIndex: 1000 // z-index를 높게 설정
+      });
+      return clone; // 클론 반환
+  },
+    start: function(event, ui) {
+      $(this).addClass("d-drag");
+    },
+    stop: function(event, ui) {
+      // 드래그가 끝난 후 원본에서 active 클래스 제거
+      $(this).removeClass("d-drag");
+    }
   });
 
   // 드롭 가능하게 설정
@@ -217,11 +229,13 @@ $(function () {
       finishAudio.play();
       $(".btn-wrap").css("display","flex")
     });
-
-    congratsAudio.play();
-
-    $(".finish").fadeIn();
     
+    congratsAudio.play();
+    finishAudio.addEventListener("ended", function () {
+      setTimeout(() => {
+        $(".finish").fadeIn();
+      }, 1000);
+    });
   }
 
   // 마우스 오버 이벤트 설정
