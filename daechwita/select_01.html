@@ -11,6 +11,13 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src='js/pages.js'></script>
+    <script>
+        $(function(){
+            setTimeout(() => {
+                $(".select-01").removeClass("pointer-none")
+            }, 9000);
+        });
+    </script>
 </head>
 <body>
     <main>
@@ -23,7 +30,7 @@
                 <a href="index.html" class="btn-top btn-home btn-effect">
                     <span class="sr-only">홈으로</span>
                 </a>
-                <div class="select-01 bg">
+                <div class="select-01 bg pointer-none">
                     <div class="select-play">
                         <div class="slide">
                             <a href="javascript:void(0)" class="btn-controls prev btn-effect type-yellow">
@@ -197,7 +204,7 @@
                 </div>
             </div>
         </div>
-        
+        <!-- 나레이션 9초 -->
         <audio id="active" src="sound/bgm/select_01_start.mp3"></audio>
         <audio id="bgm" src="sound/bgm/active_bgm.mp3" loop></audio>
         <audio id="effect" src="sound/effect/active_effect.mp3"></audio>

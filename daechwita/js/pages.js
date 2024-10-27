@@ -1,6 +1,9 @@
 document.title = "대취타"; // 제목
 
 $(function () {
+  // 모바일 세로 팝업 삽입
+  $("body").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
+
   // bgm
   var bgm = $("#bgm")[0];
   if (bgm) {
@@ -22,9 +25,9 @@ $(function () {
   if (activeBgm) {
     var file = activeBgm.src;
     
-    activeBgm.onended = function() {
-      $(".slider-wrap").addClass("active")
-    };
+    // activeBgm.onended = function() {
+    //   $(".slider-wrap").addClass("active")
+    // };
     
     // BGM 재생 시작
     activeBgm.play();
@@ -221,8 +224,11 @@ if (sliderWrap) {
         $(this).find("success").addClass("acive");
         $(this).droppable("disable");
         //악기 소리후 나레이션
+        $(".slider-wrap").addClass("pointer-none")
+        console.log("11")
         musicalAudio.addEventListener("ended", function () {
           scucessAudio.play();
+        $(".slider-wrap").removeClass("pointer-none")
         });
         successEffect.play();
         musicalAudio.play(); //악기소리

@@ -127,12 +127,11 @@ $(function () {
 
     finishAudio.addEventListener("ended", function () {
       $(".btn-wrap").css("display","flex")
+      setTimeout(() => {
+        $(".finish").fadeIn();
+      }, 1000);
     });
-
-    congratsAudio.play();
-
-    $(".finish").fadeIn();
-    
+    congratsAudio.play(); 
   }
 
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");
