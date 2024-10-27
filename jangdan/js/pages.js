@@ -44,6 +44,18 @@ $(function () {
     btnEffect.play();
   });
 
+  //  셀렉트
+  $(".btn-select").on("mouseover", function () {
+    var btnIdx = $(".btn-select").index(this);
+
+    $(".audio_wrap audio").each(function () {
+      this.pause();
+      this.currentTime = 0;
+    });
+
+    $(".audio_wrap audio").eq(btnIdx)[0].play();
+  });
+
   document.querySelectorAll("img").forEach(function (img) {
     img.setAttribute("aria-hidden", "true");
     img.setAttribute("alt", "");

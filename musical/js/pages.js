@@ -43,16 +43,32 @@ $(function () {
     effect.play();
   }
 
+  // 오디오 정의
+  const successEffect = new Audio('./sound/effect/success_effect.mp3'); //정답 효과음
+  const faliEffect = new Audio('./sound/effect/fali_effect.mp3'); //오답 효과음
+  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
+  const infoEffectAudio = new Audio("./sound/effect/info.mp3"); //더알아보기 효과음
+  const finishBgm1 = new Audio('./sound/narration/yua1_n_13.mp3'); //활동1 종료 나레이션
+  const finishBgm2 = new Audio('./sound/narration/yua1_n_26.mp3'); //활동2 종료 나레이션
+  const moreAudio = new Audio("./sound/narration/yua1_n_14.mp3"); // 알아보기 버튼
+  const Exitaudio = new Audio("./sound/narration/yua1_n_15.mp3"); // 나가기 버튼
+
   // 버튼
   var btnEffect = new Audio("./sound/effect/button.mp3");
   $(".btn-effect").on("mouseover", function () {
     btnEffect.play();
   });
 
-  // 나가기 버튼
-  $(".btn-out").on("mouseover", function () {
-    const audio = new Audio("./sound/narration/yua1_n_15.mp3"); // 1번 오디오
-    audio.play();
+  //  셀렉트
+  $(".btn-select").on("mouseover", function () {
+    var btnIdx = $(".btn-select").index(this);
+
+    $(".audio_wrap audio").each(function () {
+      this.pause();
+      this.currentTime = 0;
+    });
+
+    $(".audio_wrap audio").eq(btnIdx)[0].play();
   });
 
   // next 버튼 클릭 시 이벤트 처리
@@ -78,55 +94,62 @@ $(function () {
 
   // 더알아보기 버튼
   $(".btn-more, .btn-more2").on("mouseover",function () {
-    const audio = new Audio("./sound/narration/yua1_n_14.mp3"); // 1번 오디오
-    audio.play()
+    moreAudio.play()
+    Exitaudio.pause();
   });
 
+  // 나가기 버튼
+  $(".btn-out").on("mouseover", function () {
+    moreAudio.pause();
+    Exitaudio.play();
+  });
 
   document.querySelectorAll("img").forEach(function (img) {
     img.setAttribute("aria-hidden", "true");
     img.setAttribute("alt", "");
   });
-
-  const successEffect = new Audio('./sound/effect/success_effect.mp3'); //정답 효과음
-  const faliEffect = new Audio('./sound/effect/fali_effect.mp3'); //오답 효과음
-  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
-  const infoEffectAudio = new Audio("./sound/effect/info.mp3"); //더알아보기 효과음
-
+  
   // 활동 01
   let complet1 = 0
   $(".quiz-wrap > div").on("click", function () {
-    $(this).parent().addClass("pointer-none");
+   
     var $currentQuiz = $(this).closest(".quiz-wrap");
-    var isCorrect = $(this).data("correct") === "yes";
+    $(this).addClass("active")
 
     // img-answer에 yes 또는 no 클래스 추가
-    if (isCorrect) {
+    if ($(this).data("correct") === "yes") {
       $(".img-answer").addClass("yes");
+      complet1++
+      // 2초 후 다음 퀴즈로 이동
+      setTimeout(function () {
+        // img-answer에서 yes, no 클래스 제거
+        $(".img-answer").removeClass("yes no");
+
+        // 현재 quiz-wrap에 complete 클래스 추가
+        $currentQuiz.addClass("complete");
+
+        // 다음 quiz-wrap에 active 클래스 추가
+        var $nextQuiz = $currentQuiz.next(".quiz-wrap");
+        if ($nextQuiz.length > 0) {
+          $currentQuiz.removeClass("active");
+          $nextQuiz.addClass("active");
+        }
+      }, 2000);
+      $(this).parent().addClass("pointer-none");
+      successEffect.play();
+      
+      const audioName = $(this).data("audio");
+      const audioSrc = new Audio(`./sound/contents_01/${audioName}.m4a`);
+      audioSrc.play();
     } else {
       $(".img-answer").addClass("no");
+      faliEffect.play();
+      setTimeout(function () {
+       $(".img-answer").removeClass("no");
+       $(".quiz-wrap > div").removeClass("active")
+      }, 1000);
     }
 
-    // 2초 후 다음 퀴즈로 이동
-    setTimeout(function () {
-      // img-answer에서 yes, no 클래스 제거
-      $(".img-answer").removeClass("yes no");
-
-      // 현재 quiz-wrap에 complete 클래스 추가
-      $currentQuiz.addClass("complete");
-
-      // 다음 quiz-wrap에 active 클래스 추가
-      var $nextQuiz = $currentQuiz.next(".quiz-wrap");
-      if ($nextQuiz.length > 0) {
-        $currentQuiz.removeClass("active");
-        $nextQuiz.addClass("active");
-      }
-    }, 2000);
-    const audioName = $(this).data("audio");
-    const audioSrc = new Audio(`./sound/narration/${audioName}.mp3`);
-    audioSrc.play();
-    complet1++
-    console.log(complet1)
     if(complet1 == 3){
       setTimeout(() => {
         finish()
@@ -141,13 +164,13 @@ $(function () {
   });
 
 
- 
 
   function finish() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua1_n_13.mp3');
-    audio.play();
     congratsAudio.play();
+    congratsAudio.addEventListener('ended', function() {
+      finishBgm1.play();
+     });
   }
 
     // 팝업 닫기
@@ -209,6 +232,16 @@ $(function () {
     
     
   // 활동2
+  let audioSrc;
+  $(".drag > div").on("mouseover", function () {
+    const audioName = $(this).data("name");
+    if (audioSrc) {
+      audioSrc.pause();
+      audioSrc.currentTime = 0;
+    }
+    audioSrc = new Audio(`./sound/contents_02/${audioName}.m4a`);
+    audioSrc.play();
+  });
   let complet2 = 0
   $(".drag > div").draggable({
     helper: "clone",
@@ -253,6 +286,8 @@ $(function () {
             image.remove(); // 페이드 아웃 후 이미지 제거
           });
         }, 2000);
+
+        audioSrc.pause(); //마우스 오버 오디오 멈춤
         complet2++;
 
       } else {
@@ -270,9 +305,17 @@ $(function () {
 
   function finish2() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua1_n_26.mp3');
-    audio.play();
     congratsAudio.play();
+    congratsAudio.addEventListener('ended', function() {
+      finishBgm2.play();
+     });
   }
   
+
+  $(".btn-wrap a").on("mouseover",function () {
+    finishBgm1.pause();
+    finishBgm2.pause();
+    congratsAudio.pause
+  });
+
 });
