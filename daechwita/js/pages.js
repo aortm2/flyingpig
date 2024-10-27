@@ -2,7 +2,7 @@ document.title = "대취타"; // 제목
 
 $(function () {
   // 모바일 세로 팝업 삽입
-  $("body").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
+  $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
 
   // bgm
   var bgm = $("#bgm")[0];
