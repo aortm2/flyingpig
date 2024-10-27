@@ -261,6 +261,7 @@ if (sliderWrap) {
 
     finishAudio.addEventListener("ended", function () {
       commonFinishAudio.play();
+      bgm.volume = 0;
     });
 
     commonFinishAudio.addEventListener("ended", function () {
@@ -400,6 +401,7 @@ function activeFinish02() {
 
   finishAudio2.addEventListener("ended", function () {
     commonFinishAudio.play();
+    activeBgm.pause()
   });
 
   commonFinishAudio.addEventListener("ended", function () {
