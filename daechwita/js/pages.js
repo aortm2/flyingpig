@@ -4,39 +4,80 @@ $(function () {
   // 모바일 세로 팝업 삽입
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
 
-  // bgm
-  var bgm = $("#bgm")[0];
-  if (bgm) {
-    var file = bgm.src;
-    bgm.play();
-    if (!bgm.paused) {
-      console.log(file); //재생되는 파일 확인
+  const winWidth = window.innerWidth
+  if (winWidth > 1420) {
+    // bgm
+    var bgm = $("#bgm")[0];
+    if (bgm) {
+      var file = bgm.src;
+      bgm.play();
+      if (!bgm.paused) {
+        console.log(file); //재생되는 파일 확인
+      }
     }
+    var intro = $(".intro")[0];
+    var intro2 = $(".intro2")[0];
+    if (intro) {
+      intro.play();
+      intro2.play();
+    }
+
+    var activeBgm = $("#active")[0];
+    if (activeBgm) {
+      var file = activeBgm.src;
+
+      // activeBgm.onended = function() {
+      //   $(".slider-wrap").addClass("active")
+      // };
+
+      // BGM 재생 시작
+      activeBgm.play();
+    }
+
+    var effect = $("#effect")[0];
+    if (effect) {
+      effect.play();
+    }
+  } else {
+    $("body").click(function () {
+      var bgm = $("#bgm")[0];
+      if (bgm) {
+        var file = bgm.src;
+        bgm.play();
+        if (!bgm.paused) {
+          console.log(file); //재생되는 파일 확인
+        }
+      }
+      var intro = $(".intro")[0];
+      var intro2 = $(".intro2")[0];
+      if (intro) {
+        intro.play();
+        intro2.play();
+      }
+
+      var activeBgm = $("#active")[0];
+      if (activeBgm) {
+        var file = activeBgm.src;
+
+        // activeBgm.onended = function() {
+        //   $(".slider-wrap").addClass("active")
+        // };
+
+        // BGM 재생 시작
+        activeBgm.play();
+      }
+
+      var effect = $("#effect")[0];
+      if (effect) {
+        effect.play();
+      }
+    });
+
   }
 
-  var intro = $(".intro")[0];
-  var intro2 = $(".intro2")[0];
-  if (intro) {
-    intro.play();
-    intro2.play();
-  }
+ 
 
-  var activeBgm = $("#active")[0];
-  if (activeBgm) {
-    var file = activeBgm.src;
-    
-    // activeBgm.onended = function() {
-    //   $(".slider-wrap").addClass("active")
-    // };
-    
-    // BGM 재생 시작
-    activeBgm.play();
-  }
-
-  var effect = $("#effect")[0];
-  if (effect) {
-    effect.play();
-  }
+ 
 
   document.querySelectorAll("img").forEach(function (img) {
     img.setAttribute("aria-hidden", "true");
