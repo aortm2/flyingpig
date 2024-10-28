@@ -124,6 +124,12 @@ img {
     transform: translateY(-50%) scale(1.5);
 }
 
+.btn-select.hover,
+.btn-select.active {
+    top: 43%;
+    transform: translateY(-50%) scale(1.5);
+}
+
 
 .btn-select.btn-select-01 {
     left: 20%;
@@ -138,6 +144,14 @@ img {
     background-image: url(../img/icon/ico_select_01_click.png);
 }
 
+.btn-select.btn-select-01.hover {
+    background-image: url(../img/icon/ico_select_01_hover.png);
+}
+
+.btn-select.btn-select-01.active {
+    background-image: url(../img/icon/ico_select_01_click.png);
+}
+
 .btn-select.btn-select-02 {
     right: 20%;
     background-image: url(../img/icon/ico_select_02.png);
@@ -148,6 +162,14 @@ img {
 }
 
 .btn-select.btn-select-02:active {
+    background-image: url(../img/icon/ico_select_02_click.png);
+}
+
+.btn-select.btn-select-02.hover {
+    background-image: url(../img/icon/ico_select_02_hover.png);
+}
+
+.btn-select.btn-select-02.active {
     background-image: url(../img/icon/ico_select_02_click.png);
 }
 

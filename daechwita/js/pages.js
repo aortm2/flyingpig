@@ -12,7 +12,6 @@ $(function () {
       var file = bgm.src;
       bgm.play();
       if (!bgm.paused) {
-        console.log(file); //재생되는 파일 확인
       }
     }
     var intro = $(".intro")[0];
@@ -90,17 +89,37 @@ $(function () {
     btnEffect.play();
   });
 
-  //  셀렉트
-  $(".btn-select").on("mouseover", function () {
-    var btnIdx = $(".btn-select").index(this);
-
-    $(".audio_wrap audio").each(function () {
-      this.pause();
-      this.currentTime = 0;
+   
+  // 셀렉트 화면
+  if (winWidth > 1420) {
+    $(".btn-select").on("mouseover", function () {
+      var btnIdx = $(".btn-select").index(this);
+  
+      $(".audio_wrap audio").each(function () {
+        this.pause();
+        this.currentTime = 0;
+      });
+  
+      $(".audio_wrap audio").eq(btnIdx)[0].play();
     });
-
-    $(".audio_wrap audio").eq(btnIdx)[0].play();
-  });
+  } else{
+    let touchNum = 0
+    $(".btn-select").on("click", function () {
+      event.preventDefault();
+      var btnIdx = $(".btn-select").index(this);
+      
+      $(".audio_wrap audio").each(function (item) {
+        this.pause();
+        this.currentTime = 0;
+      });
+      $(".audio_wrap audio").eq(btnIdx)[0].play();
+      touchNum++
+      if(touchNum == 2){
+        const link = $(this).attr("href");
+        window.location = link;
+      }
+    });
+  }
 
   $(".btn-select").on("mouseout", function () {
     $(".audio_wrap audio").currentTime = 0;
