@@ -44,7 +44,6 @@ $(function () {
         var file = bgm.src;
         bgm.play();
         if (!bgm.paused) {
-          console.log(file); //재생되는 파일 확인
         }
       }
       var intro = $(".intro")[0];
@@ -103,21 +102,35 @@ $(function () {
       $(".audio_wrap audio").eq(btnIdx)[0].play();
     });
   } else{
-    let touchNum = 0
-    $(".btn-select").on("click", function () {
+    let touchNum = 0;
+    let currentIdx = -1; // 현재 클릭된 버튼의 인덱스를 추적
+    
+    $(".btn-select").on("click", function (event) {
       event.preventDefault();
       var btnIdx = $(".btn-select").index(this);
-      
-      $(".audio_wrap audio").each(function (item) {
+    
+      // 클릭한 버튼이 이전 버튼과 다르면 touchNum을 초기화
+      if (btnIdx !== currentIdx) {
+        touchNum = 0;
+      }
+    
+      // 새로운 인덱스를 현재 인덱스로 설정
+      currentIdx = btnIdx;
+    
+      $(".audio_wrap audio").each(function () {
         this.pause();
         this.currentTime = 0;
       });
+    
       $(".audio_wrap audio").eq(btnIdx)[0].play();
-      touchNum++
-      if(touchNum == 2){
+    
+      if (touchNum === 1) {
+        touchNum++;
         const link = $(this).attr("href");
         window.location = link;
       }
+    
+      touchNum++;
     });
   }
 
