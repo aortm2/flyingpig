@@ -621,10 +621,11 @@ $(function () {
     // 악기소리 추가
      var name = $(this).data("name");
      var audio = new Audio("./sound/contents_02/musical_" + name + "2.mp3");
-    //  audio.play();
+     audio.play();
 
     audio.addEventListener('ended', function() {
       popWrap.remove();
+      console.log("11")
       $('.hidden-plate').removeClass("pointer-none")
     });
   });;
