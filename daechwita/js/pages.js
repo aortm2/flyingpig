@@ -108,7 +108,7 @@ $(function () {
     $(".btn-select").on("click", function (event) {
       event.preventDefault();
       var btnIdx = $(".btn-select").index(this);
-    
+
       // 클릭한 버튼이 이전 버튼과 다르면 touchNum을 초기화
       if (btnIdx !== currentIdx) {
         touchNum = 0;
