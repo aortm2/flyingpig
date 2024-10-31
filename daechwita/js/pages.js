@@ -8,11 +8,16 @@ $(function () {
   if (winWidth > 1420) {
     // bgm
     var bgm = $("#bgm")[0];
+    var bgm2 = $("#bgm02")[0];
     if (bgm) {
       var file = bgm.src;
       bgm.play();
       if (!bgm.paused) {
       }
+    }
+
+    if (bgm2) {
+      bgm2.play();
     }
     var intro = $(".intro")[0];
     var intro2 = $(".intro2")[0];
@@ -40,11 +45,15 @@ $(function () {
   } else {
     $("body").click(function () {
       var bgm = $("#bgm")[0];
+      var bgm2 = $("#bgm02")[0];
       if (bgm) {
         var file = bgm.src;
         bgm.play();
         if (!bgm.paused) {
         }
+      }
+      if(bgm2){
+        bgm2.play();
       }
       var intro = $(".intro")[0];
       var intro2 = $(".intro2")[0];
@@ -377,7 +386,7 @@ if (sliderWrap) {
   ]; // 미션 항목 배열
   var currentIndex = 0; // 현재 미션 항목 인덱스
   var faliAudio2 = new Audio("sound/narration/fali_02.mp3"); // 실패 시 재생할 오디오 파일
-  var bgm02 = document.getElementById("bgm02"); // 배경 음악 요소
+  // var bgm02 = document.getElementById("bgm02"); // 배경 음악 요소
   var missionAudio = new Audio(); // 미션 오디오 객체
   var boyCompleteAudio = new Audio("sound/narration/boy_complete.mp3"); // boy 드래그 완료 시 재생할 오디오
   var girlCompleteAudio = new Audio("sound/narration/girl_complete.mp3"); // girl 드래그 완료 시 재생할 오디오
@@ -601,7 +610,7 @@ $(".dialog").hide();
         $(this).removeClass("cl-active");
       }
     });
-
+    console.log(bgm02.hasPlayed)
     // 배경 음악을 재생하고, 끝난 후 미션 오디오를 재생합니다.
     if (!bgm02.hasPlayed) {
       bgm02.volume = 1; // 배경 음악의 음량을 원래대로 복구

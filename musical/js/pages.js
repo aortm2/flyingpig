@@ -3,6 +3,9 @@ document.title = "장단익히기"; // 제목
 $(function () {
   // 모바일 세로 팝업 삽입
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
+  const winWidth = window.innerWidth
+  console.log(winWidth)
+
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
@@ -62,16 +65,49 @@ $(function () {
   });
 
   //  셀렉트
-  $(".btn-select").on("mouseover", function () {
-    var btnIdx = $(".btn-select").index(this);
-
-    $(".audio_wrap audio").each(function () {
-      this.pause();
-      this.currentTime = 0;
+  if (winWidth > 1420) {
+    $(".btn-select").on("mouseover", function () {
+      var btnIdx = $(".btn-select").index(this);
+  
+      $(".audio_wrap audio").each(function () {
+        this.pause();
+        this.currentTime = 0;
+      });
+  
+      $(".audio_wrap audio").eq(btnIdx)[0].play();
     });
+  } else{
+    let touchNum = 0;
+    let currentIdx = -1; // 현재 클릭된 버튼의 인덱스를 추적
+    
+    $(".btn-select").on("click", function (event) {
+      event.preventDefault();
+      var btnIdx = $(".btn-select").index(this);
 
-    $(".audio_wrap audio").eq(btnIdx)[0].play();
-  });
+      // 클릭한 버튼이 이전 버튼과 다르면 touchNum을 초기화
+      if (btnIdx !== currentIdx) {
+        touchNum = 0;
+      }
+    
+      // 새로운 인덱스를 현재 인덱스로 설정
+      currentIdx = btnIdx;
+    
+      $(".audio_wrap audio").each(function () {
+        this.pause();
+        this.currentTime = 0;
+      });
+    
+      $(".audio_wrap audio").eq(btnIdx)[0].play();
+    
+      if (touchNum === 1) {
+        touchNum++;
+        const link = $(this).attr("href");
+        window.location = link;
+      }
+    
+      touchNum++;
+    });
+  }
 
   // next 버튼 클릭 시 이벤트 처리
   $(".dialog .next").on('click', function() {

@@ -169,7 +169,7 @@ img{
         background-color: rgba(0,0,0,0.68);
     }
     100%{
-        background-color: transparent;
+        /* background-color: transparent; */
         z-index: 9;
     }
 }
