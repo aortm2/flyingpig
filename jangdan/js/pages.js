@@ -100,9 +100,9 @@ $(function () {
 
   // 활동 01
   $(".btn-face").click(async function(){
-    var yua3_7 = new Audio('./sound/narration/yua3_7.m4a');
-    var yua3_8 = new Audio('./sound/narration/yua3_8.m4a');
-    var yua3_9 = new Audio('./sound/narration/yua3_9.m4a');
+    var yua3_7 = new Audio('./sound/narration/yua3_7.mp3');
+    var yua3_8 = new Audio('./sound/narration/yua3_8.mp3');
+    var yua3_9 = new Audio('./sound/narration/yua3_9.mp3');
     var yua3_10 = new Audio('./sound/narration/yua3_10.m4a');
     var music = new Audio('./sound/contents_01/music.mp3');
     var star = new Audio('./sound/contents_01/star.wav');
@@ -167,10 +167,10 @@ $(function () {
   });
 
   $(".btn-hand").click(async function(){
-    var yua3_11 = new Audio('./sound/narration/yua3_11.m4a');
+    var yua3_11 = new Audio('./sound/narration/yua3_11.mp3');
     var yua3_12 = new Audio('./sound/narration/yua3_12.m4a');
-    var yua3_13 = new Audio('./sound/narration/yua3_13.m4a');
-    var yua3_14 = new Audio('./sound/narration/yua3_14.m4a');
+    var yua3_13 = new Audio('./sound/narration/yua3_13.mp3');
+    var yua3_14 = new Audio('./sound/narration/yua3_14.mp3');
     var music = new Audio('./sound/contents_01/music.mp3');
     var star = new Audio('./sound/contents_01/star.wav');
     $(this).addClass("active")
@@ -234,7 +234,7 @@ $(function () {
 
   function finish() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua3_15.m4a');
+    var audio = new Audio('./sound/narration/yua3_15.mp3');
     audio.play();
     congratsAudio.play();
   }

@@ -339,21 +339,24 @@ $(function () {
     let currentIndex = 1;
 
     // 첫 번째 오디오 종료 후 3초 후에 다른 오디오 재생
+    nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
     $(".start2").on('ended', function () {
         setTimeout(function () {
             if (nextAudio) {
                 nextAudio.pause();
                 nextAudio.currentTime = 0;
             }
-            nextAudio = new Audio('sound/contents_01/musical_daegeum1.mp3');
             nextAudio.play();
-        }, 3000); // 3초 지연
+        }, 3000); 
     });
 
     // "확인" 버튼 클릭 시 이벤트
     $(".btn-ok").click(function () {
         $(".save-popup").css("display", "none");
-
+        if (nextAudio) {
+          nextAudio.pause();
+          nextAudio.currentTime = 0;
+         }
         // 이전 미션 오디오 중지
         if (currentMissionAudio) {
             currentMissionAudio.pause();
@@ -618,7 +621,7 @@ $(function () {
     // 악기소리 추가
      var name = $(this).data("name");
      var audio = new Audio("./sound/contents_02/musical_" + name + "2.mp3");
-     audio.play();
+    //  audio.play();
 
     audio.addEventListener('ended', function() {
       popWrap.remove();

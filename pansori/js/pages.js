@@ -16,10 +16,8 @@ $(function () {
   }
 
   var intro = $(".intro")[0];
-  var intro2 = $(".intro2")[0];
   if (intro) {
     intro.play();
-    intro2.play();
   }
 
   var activeBgm = $("#active")[0];

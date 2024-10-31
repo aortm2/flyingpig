@@ -43,17 +43,19 @@ $(function () {
       effect.play();
     }
   } else {
+    let count1 = true;
+    let count2 = true;
+    let effect3 = true;
     $("body").click(function () {
       var bgm = $("#bgm")[0];
       var bgm2 = $("#bgm02")[0];
-      if (bgm) {
-        var file = bgm.src;
+      if (bgm && count1 == true) {
         bgm.play();
-        if (!bgm.paused) {
-        }
+        count1 = false
       }
-      if(bgm2){
+      if(bgm2 && count2 === true){
         bgm2.play();
+        count2 = false
       }
       var intro = $(".intro")[0];
       var intro2 = $(".intro2")[0];
@@ -64,19 +66,14 @@ $(function () {
 
       var activeBgm = $("#active")[0];
       if (activeBgm) {
-        var file = activeBgm.src;
-
-        // activeBgm.onended = function() {
-        //   $(".slider-wrap").addClass("active")
-        // };
-
         // BGM 재생 시작
         activeBgm.play();
       }
 
       var effect = $("#effect")[0];
-      if (effect) {
+      if (effect && effect3 == true) {
         effect.play();
+        effect3 = false
       }
     });
 
@@ -614,7 +611,7 @@ $(".dialog").hide();
     // 배경 음악을 재생하고, 끝난 후 미션 오디오를 재생합니다.
     if (!bgm02.hasPlayed) {
       bgm02.volume = 1; // 배경 음악의 음량을 원래대로 복구
-      bgm02.play();
+      
 
       // 배경 음악이 끝난 후 미션 오디오 재생
       bgm02.onended = function () {

@@ -16,10 +16,8 @@ $(function () {
   }
 
   var intro = $(".intro")[0];
-  var intro2 = $(".intro2")[0];
   if (intro) {
     intro.play();
-    intro2.play();
   }
 
   var activeBgm = $("#active")[0];
@@ -133,14 +131,29 @@ $(function () {
         const contentAudio = new Audio(`./sound/contents_01/${draggedName}.m4a`);
         narrationAudio.play();
         $(".select-01").addClass("pointer-none")
+        const image = $(`<img src="./img/content_01/pop_${droppedName}.png" alt="Success" class="pop-image" />`); // 이미지 요소 생성
+        // 이미지 삽입
+        $("body").append(image);
+            
+        // 이미지 스타일링
+        image.css({
+          position: "absolute",
+          top: "50%",
+          left: "62.5%",
+          zIndex: 10, 
+          transform: "translate(-50%, -50%)" 
+        });
+        
         narrationAudio.addEventListener("ended", function () {
           contentAudio.volume = 1
           contentAudio.play();
         });
         contentAudio.addEventListener("ended", function () {
           $(".select-01").removeClass("pointer-none")
+          image.remove();
         });
         dropComplete++
+        
       } else {
         ui.draggable.draggable("option", "revert", true);
         failEffect.play()
@@ -196,6 +209,7 @@ $(function () {
     kkang.addEventListener("ended", function () {
       $(".drag-wrap").removeClass("pointer-none")
     });
+    
   }
   const second = () =>{
     $(".sigimsae").removeClass("first")
@@ -250,7 +264,6 @@ $(function () {
         failEffect.play();
       }
       
-      
       if(dropComplete2 == 4){
         setTimeout(activeFinish02, 3000);
       }
@@ -288,7 +301,7 @@ $(function () {
     }
   });
 
-  const infoNarrationAudio2 = new Audio("./sound/narration/cho1_n_12.mp3");
+  const infoNarrationAudio2 = new Audio("./sound/narration/cho1_n_17.mp3");
   $(".btn-more2").click(function () {
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio2.play();

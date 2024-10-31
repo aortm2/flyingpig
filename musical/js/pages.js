@@ -9,7 +9,6 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
-  var bgm3 = $(".bgm3")[0];
   if (bgm) {
     bgm.play();
   }
@@ -18,9 +17,7 @@ $(function () {
     bgm2.play();
   }
 
-  if (bgm3) {
-    bgm2.play();
-  }
+
   // 처음 진입 나레이션
   // var intro = $(".intro")[0];
   // if (intro) {
@@ -166,12 +163,7 @@ $(function () {
         // 현재 quiz-wrap에 complete 클래스 추가
         $currentQuiz.addClass("complete");
 
-        // 다음 quiz-wrap에 active 클래스 추가
-        var $nextQuiz = $currentQuiz.next(".quiz-wrap");
-        if ($nextQuiz.length > 0) {
-          $currentQuiz.removeClass("active");
-          $nextQuiz.addClass("active");
-        }
+      
       }, 2000);
       $(this).parent().addClass("pointer-none");
       successEffect.play();
@@ -179,6 +171,16 @@ $(function () {
       const audioName = $(this).data("audio");
       const audioSrc = new Audio(`./sound/contents_01/${audioName}.m4a`);
       audioSrc.play();
+      audioSrc.addEventListener('ended',function(){
+          // 다음 quiz-wrap에 active 클래스 추가
+          setTimeout(function () {  
+            var $nextQuiz = $currentQuiz.next(".quiz-wrap");
+            if ($nextQuiz.length > 0) {
+              $currentQuiz.removeClass("active");
+              $nextQuiz.addClass("active");
+            }
+          }, 1000);
+      });
     } else {
       $(".img-answer").addClass("no");
       faliEffect.play();
