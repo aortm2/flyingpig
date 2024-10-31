@@ -173,6 +173,10 @@ $(function () {
     congratsAudio.addEventListener('ended', function() {
       finishBgm1.play();
      });
+
+     finishBgm1.addEventListener('ended', function() {
+      $(".btn-wrap").css("display","flex")
+     });
   }
 
     // 팝업 닫기
@@ -267,6 +271,8 @@ $(function () {
          // 오디오 재생
          const audio = new Audio(audioPath); // Audio 객체 생성
          audio.play();
+
+         
         
         // 이미지 동적 생성
         const imageName = `pop_${draggable.data("name")}.png`; // 이미지 파일 이름 생성
@@ -284,23 +290,33 @@ $(function () {
         });
 
         setTimeout(() => {
+          // image.fadeOut(500, () => {
+          //   image.remove(); 
+          // });
+        }, 2000);
+
+        audio.addEventListener('ended', function() {
+          console.log("끝남?")
           image.fadeOut(500, () => {
             image.remove(); // 페이드 아웃 후 이미지 제거
           });
-        }, 2000);
+        });
 
         audioSrc.pause(); //마우스 오버 오디오 멈춤
+        
         complet2++;
+        
+        if (complet2 == 3) {
+          audio.addEventListener('ended', function() {
+            setTimeout(() => {
+              finish2();
+            }, 1000);
+           });
+        }
 
       } else {
         faliEffect.play();
         $(ui.helper).remove();
-      }
-
-      if (complet2 == 3) {
-        setTimeout(() => {
-          finish2();
-        }, 2000);
       }
     },
   });
@@ -310,6 +326,9 @@ $(function () {
     congratsAudio.play();
     congratsAudio.addEventListener('ended', function() {
       finishBgm2.play();
+     });
+     finishBgm2.addEventListener('ended', function() {
+      $(".btn-wrap").css("display","flex")
      });
   }
   

@@ -311,7 +311,7 @@ img{
     bottom: 5%;
     width: 100%;
     height: 10.74%;
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 2%;
     z-index: 10;
