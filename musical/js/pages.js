@@ -125,6 +125,7 @@ $(function () {
     
     infoEffectAudio.play();
     showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
+    moreAudio.pause()
   });
 
   // 더알아보기 버튼

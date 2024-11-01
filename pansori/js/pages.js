@@ -151,18 +151,18 @@ $(function () {
 
   function activeFinish01() {
     const finishAudio = new Audio(`./sound/narration/cho2_n_11.mp3`);
-
+    congratsAudio.play(); 
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
     });
 
+    $(".finish").fadeIn();
     finishAudio.addEventListener("ended", function () {
-      $(".btn-wrap").css("display","flex")
       setTimeout(() => {
-        $(".finish").fadeIn();
+        $(".btn-wrap").css("display","flex")
       }, 1000);
     });
-    congratsAudio.play(); 
+   
   }
 
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");

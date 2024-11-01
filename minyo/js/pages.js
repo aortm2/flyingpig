@@ -116,54 +116,56 @@ $(function () {
   });
 
   // 드랍 가능한 영역으로 설정
-  let dropComplete = 0
-  $(".area").droppable({
-    accept: ".piece", // 드래그 가능한 요소
-    drop: function (event, ui) {
-      const draggedName = ui.draggable.data("name"); // 드래그된 요소의 data-name
-      const droppedName = $(this).data("name"); // 드랍된 영역의 data-name
+  let dropComplete = 0;
+$(".area").droppable({
+  accept: ".piece", // 드래그 가능한 요소
+  drop: function (event, ui) {
+    const draggedName = ui.draggable.data("name"); // 드래그된 요소의 data-name
+    const droppedName = $(this).data("name"); // 드랍된 영역의 data-name
 
-      // data-name 비교
-      if (draggedName === droppedName) {
-        $(this).addClass("active");
-        ui.draggable.remove();
-        const narrationAudio = new Audio(`./sound/narration/${draggedName}.mp3`);
-        const contentAudio = new Audio(`./sound/contents_01/${draggedName}.m4a`);
-        narrationAudio.play();
-        $(".select-01").addClass("pointer-none")
-        const image = $(`<img src="./img/content_01/pop_${droppedName}.png" alt="Success" class="pop-image" />`); // 이미지 요소 생성
-        // 이미지 삽입
-        $("body").append(image);
-            
-        // 이미지 스타일링
-        image.css({
-          position: "absolute",
-          top: "50%",
-          left: "62.5%",
-          zIndex: 10, 
-          transform: "translate(-50%, -50%)" 
-        });
-        
-        narrationAudio.addEventListener("ended", function () {
-          contentAudio.volume = 1
-          contentAudio.play();
-        });
-        contentAudio.addEventListener("ended", function () {
-          $(".select-01").removeClass("pointer-none")
-          image.remove();
-        });
-        dropComplete++
-        
-      } else {
-        ui.draggable.draggable("option", "revert", true);
-        failEffect.play()
-      }
+    // data-name 비교
+    if (draggedName === droppedName) {
+      $(this).addClass("active"); // 성공한 드랍 영역에 active 클래스 추가
+      $(this).droppable("disable"); // 드랍 영역 비활성화
+      ui.draggable.remove();
+      const narrationAudio = new Audio(`./sound/narration/${draggedName}.mp3`);
+      const contentAudio = new Audio(`./sound/contents_01/${draggedName}.m4a`);
+      narrationAudio.play();
+      $(".select-01").addClass("pointer-none");
 
-      if(dropComplete >= 5){
-        setTimeout(activeFinish01, 3000);
-      }
+      const image = $(`<img src="./img/content_01/pop_${droppedName}.png" alt="Success" class="pop-image" />`);
+      $("body").append(image);
+
+      // 이미지 스타일링
+      image.css({
+        position: "absolute",
+        top: "50%",
+        left: "62.5%",
+        zIndex: 10, 
+        transform: "translate(-50%, -50%)" 
+      });
+
+      narrationAudio.addEventListener("ended", function () {
+        contentAudio.volume = 1;
+        contentAudio.play();
+      });
+
+      contentAudio.addEventListener("ended", function () {
+        $(".select-01").removeClass("pointer-none");
+        image.remove();
+        if(dropComplete >= 5) {
+          activeFinish01();
+        }
+      });
+
+      dropComplete++;
+
+    } else {
+      ui.draggable.draggable("option", "revert", true);
+      failEffect.play();
     }
-  });
+  }
+});
 
   function activeFinish01() {
     const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);

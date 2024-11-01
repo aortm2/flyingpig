@@ -125,8 +125,13 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.select-01 .board-wrap .drop .area.active{
+    pointer-events: none;
+}
+
 .select-01 .board-wrap .drop .area[data-name=cho1_n_6]{
-    width: 46%;
+    width: 38%;
     height: 81%;
     top: 3%;
     right: 9%;
