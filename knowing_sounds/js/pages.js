@@ -252,11 +252,7 @@ $(function () {
       canvas.clear();
     });
 
-    // 삭제 버튼 클릭 이벤트
-    $('.btn-del').on('mouseover', function() {
-      var audio = new Audio('./sound/narration/yu2_Na_5c.mp3');
-      audio.play();
-    });
+    
   
     // 브러시 색상 및 투명도 업데이트
     function updateBrush() {
@@ -347,7 +343,11 @@ $(function () {
                 nextAudio.currentTime = 0;
             }
             nextAudio.play();
+            nextAudio.addEventListener('ended', function(){
+              secondAudio.play();
+            });
         }, 3000); 
+        
     });
 
     // "확인" 버튼 클릭 시 이벤트
@@ -396,14 +396,14 @@ $(function () {
     });
 
     $(".btn-ok").on("mouseover", function () {
-      var audio = new Audio('./sound/narration/yu2_na_10.mp3');
+      var audio = new Audio('./sound/narration/yu2_na_8.mp3');
       audio.play();
     });
 
     function finish() {
       $(".select-01").fadeOut();
       $(".finish").fadeIn();
-      const audio = new Audio('./sound/narration/yu2_na_11.mp3');
+      const audio = new Audio('./sound/narration/yu2_na_10.mp3');
       congratsAudio.play();
       congratsAudio.addEventListener("ended", function () {
         audio.play();
@@ -481,20 +481,32 @@ $(function () {
         audio.play();
     }
   }
+
   
+  var savehover = new Audio('./sound/narration/yu2_Na_5b.mp3'); //저장 버튼
+  var delAudio = new Audio('./sound/narration/yu2_Na_5c.mp3');// 삭제 버튼
+
+  $(".board-tool .btn > .btn-save").on('mouseover', function () {
+    savehover.play();
+    delAudio.pause();
+    delAudio.currentTime = 0;
+  });
+
   // save-pop
-  $(".board-tool .btn > .btn-save").click(function(){
-    $(".save-popup").css("display","flex")
-    var audio = new Audio('./sound/narration/yu2_na_8.mp3');
-    audio.play();
+  var saveClick = new Audio('./sound/narration/yu2_na_7.mp3');
+  $(".board-tool .btn > .btn-save").click(function () {
+    $(".save-popup").css("display", "flex")
+    saveClick.play();
+    savehover.pause();
   });
 
-   // 삭제 마우스오버 클릭 이벤트
-   $(".board-tool .btn > .btn-save").on('mouseover', function() {
-    var audio = new Audio('./sound/narration/yu2_Na_5b.mp3');
-    audio.play();
-  });
 
+  $('.btn-del').on('mouseover', function() {
+    delAudio.play();
+    savehover.pause();
+    savehover.currentTime = 0;
+  });
+  
   $(".btn-no, .close").click(function(){
     $(".save-popup").css("display","none")
   });
@@ -755,18 +767,32 @@ $(".btn-more").click(function () {
 });
 
 // 더알아보기 버튼
-$(".btn-more, .btn-more2").on("mouseover",function () {
-  const audio = new Audio("./sound/narration/yu2_Na_12a.mp3"); // 1번 오디오
-  audio.play()
+$(".btn-more").on("mouseover",function () {
+  const audio = new Audio("./sound/narration/yu2_na_11.mp3");
+  if(!$(this).hasClass("btn-more2")){
+
+    audio.play()
+  }
 });
 
+$(".btn-more2").on("mouseover",function () {
+  const audio = new Audio("./sound/narration/yu2_na_23.mp3");
+  audio.play()
+});
 
 // 나가기 버튼
 $(".btn-out").on("mouseover",function () {
-  const audio = new Audio("./sound/narration/yu2_Na_12.mp3"); // 1번 오디오
-  audio.play()
+  const audio = new Audio("./sound/narration/yu2_na_12.mp3");
+  if(!$(this).hasClass("btn-out2")){
+
+    audio.play()
+  }
 });
 
+$(".btn-out2").on("mouseover",function () {
+  const audio = new Audio("./sound/narration/yu2_na_24.mp3");
+  audio.play()
+});
 
 $(".btn-muisc").click(function(){
     var name = $(this).data("name");

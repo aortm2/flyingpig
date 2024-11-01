@@ -9,11 +9,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src='js/pages.js'></script>
+    <script>
+        $(function(){
+           setTimeout(() => {
+               $(".container").removeClass("pointer-none")
+           }, 2500);
+       });
+   </script>
 </head>
 <body>
     <main>
         <div class="wrap">
-            <div class="container">
+            <div class="container pointer-none">
                 <a href="index.html" class="btn-top btn-home btn-effect">
                     <span class="sr-only">홈으로</span>
                 </a>
@@ -30,10 +37,10 @@
             </div>
         </div>
         <!-- <audio class="bgm" src="sound/bgm/main_bgm.mp3" loop></audio> -->
-        <audio class="bgm2" src="sound/narration/yu2_na_2.mp3"></audio>
+        <audio class="bgm2" src="sound/narration/yu2_na_3.mp3"></audio>
         <div class="audio_wrap">
-            <audio src="sound/narration/yu2_na_3.mp3"></audio>
             <audio src="sound/narration/yu2_na_4.mp3"></audio>
+            <audio src="sound/narration/yu2_na_5.mp3"></audio>
         </div>
     </main>
 </body>

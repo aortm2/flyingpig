@@ -129,7 +129,7 @@ $(".area").droppable({
       $(this).droppable("disable"); // 드랍 영역 비활성화
       ui.draggable.remove();
       const narrationAudio = new Audio(`./sound/narration/${draggedName}.mp3`);
-      const contentAudio = new Audio(`./sound/contents_01/${draggedName}.m4a`);
+      const contentAudio = new Audio(`./sound/contents_01/${draggedName}.mp3`);
       narrationAudio.play();
       $(".select-01").addClass("pointer-none");
 
@@ -201,7 +201,7 @@ $(".area").droppable({
   const bgm2 = $("#bgm02")[0];
   if (bgm2) {
     bgm2.play();
-    const kkang = new Audio("./sound/contents_02/kkang.m4a");
+    const kkang = new Audio("./sound/contents_02/kkang.mp3");
     bgm2.addEventListener("ended", function () {
       kkang.volume = 1;
       kkang.play()
