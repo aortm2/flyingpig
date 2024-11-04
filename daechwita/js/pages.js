@@ -56,6 +56,7 @@ $(function () {
       if(bgm2 && count2 === true){
         bgm2.play();
         count2 = false
+        console.log(count2)
       }
       var intro = $(".intro")[0];
       var intro2 = $(".intro2")[0];
@@ -598,35 +599,43 @@ $(".dialog").hide();
     var missionItem = missionItems[currentIndex];
     var imageUrl = "img/content_02/lg_txt_" + missionItem + ".png"; // 이미지 파일 경로
     var audioUrl = "sound/narration/" + missionItem + ".mp3"; // 미션 오디오 파일 경로
-    
-    $(".cl_effect").each(function () {
-      var name = $(this).data("name");
-      if (missionItem == name) {
-        $(this).addClass("cl-active");
-      } else {
-        $(this).removeClass("cl-active");
-      }
-    });
-    console.log(bgm02.hasPlayed)
-    // 배경 음악을 재생하고, 끝난 후 미션 오디오를 재생합니다.
-    if (!bgm02.hasPlayed) {
-      bgm02.volume = 1; // 배경 음악의 음량을 원래대로 복구
-      
-
-      // 배경 음악이 끝난 후 미션 오디오 재생
-      bgm02.onended = function () {
-        missionAudio.src = audioUrl; // 미션 오디오의 소스 설정
-        missionAudio.play(); // 미션 오디오 재생
-        isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
-        bgm02.hasPlayed = true; // 배경 음악이 재생되었음을 표시
-      };
-    } else {
-      missionAudio.src = audioUrl; // 미션 오디오의 소스 설정
-      missionAudio.play(); // 미션 오디오 재생
-      isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
-    }
 
     // 이미지 업데이트
     $(".txt-box").html('<img src="' + imageUrl + '" alt="미션 이미지"/>');
-  }
+    
+    // 배경 음악을 재생하고, 끝난 후 미션 오디오를 재생합니다.
+    if (!bgm02.hasPlayed) {
+        bgm02.volume = 1; // 배경 음악의 음량을 원래대로 복구
+
+        bgm02.onended = function () {
+            // cl-active를 처음 한 번만 추가
+            $(".cl_effect").each(function () {
+                var name = $(this).data("name");
+                if (missionItem == name) {
+                    $(this).addClass("cl-active");
+                }
+            });
+
+            missionAudio.src = audioUrl; // 미션 오디오의 소스 설정
+            missionAudio.play(); // 미션 오디오 재생
+            isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
+            bgm02.hasPlayed = true; // 배경 음악이 재생되었음을 표시
+        };
+
+        bgm02.play(); // 배경 음악을 재생
+    } else {
+        $(".cl_effect").each(function () {
+            var name = $(this).data("name");
+            if (missionItem == name) {
+                $(this).addClass("cl-active");
+            } else {
+                $(this).removeClass("cl-active");
+            }
+        });
+
+        missionAudio.src = audioUrl; // 미션 오디오의 소스 설정
+        missionAudio.play(); // 미션 오디오 재생
+        isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
+    }
+}
 });

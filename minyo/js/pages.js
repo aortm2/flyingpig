@@ -226,6 +226,13 @@ $(".area").droppable({
     cow: new Audio('./sound/contents_02/cow.mp3')
   };
 
+  const soundsComplet = {
+    sheep: new Audio('./sound/contents_02/sheep_complete.mp3'),
+    cat: new Audio('./sound/contents_02/cat_complete.mp3'),
+    duck: new Audio('./sound/contents_02/duck_complete.mp3'),
+    cow: new Audio('./sound/contents_02/cow_complete.mp3')
+  };
+
   // 드래그 가능하게 설정
   $(".drag .item").draggable({
     revert: function(droppable) {
@@ -256,9 +263,9 @@ $(".area").droppable({
         $(this).addClass("active");
         $(ui.draggable).addClass("dropped");
         const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-        if (sounds[animal]) {
-          sounds[animal].currentTime = 0;
-          sounds[animal].play();
+        if (soundsComplet[animal]) {
+          soundsComplet[animal].currentTime = 0;
+          soundsComplet[animal].play();
         }
         ui.draggable.remove();
         dropComplete2++

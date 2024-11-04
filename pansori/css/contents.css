@@ -76,6 +76,7 @@
 .select-01 .board-wrap .drag .piece[data-name=cho2_n_8]{
     width: 100%;
     background-image: url(../img/content_01/i_cho2_n_8.png);
+    background-size: 100%;
 }
 
 
