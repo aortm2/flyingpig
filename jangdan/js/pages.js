@@ -230,13 +230,19 @@ $(function () {
       console.error("Audio playback error:", error);
     }
   });
-  var congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
+  const congratsAudio = new Audio("./sound/effect/congrats.mp3"); // 축하 효과음
 
   function finish() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua3_15.mp3');
-    audio.play();
+    const finishAudio = new Audio('./sound/narration/yua3_15.mp3');
     congratsAudio.play();
+    congratsAudio.addEventListener("ended", function () {
+      finishAudio.play();
+    });
+
+    finishAudio.addEventListener("ended", function () {
+      $(".btn-wrap").css("display","flex")
+    });
   }
 
   // 활동2
@@ -333,9 +339,14 @@ $(function () {
 
   function finish2() {
     $(".finish").fadeIn();
-    var audio = new Audio('./sound/narration/yua3_21.m4a');
-    audio.play();
+    const finishAudio = new Audio('./sound/narration/yua3_21.m4a');
     congratsAudio.play();
+    congratsAudio.addEventListener("ended", function () {
+      finishAudio.play();
+    });
+    finishAudio.addEventListener("ended", function () {
+      $(".btn-wrap").css("display","flex")
+    });
   }
 
 

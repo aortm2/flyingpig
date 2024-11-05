@@ -283,17 +283,14 @@ $(".area").droppable({
     const finishAudio = new Audio(`./sound/narration/cho1_n_16.mp3`);
     const kkangFull = new Audio(`./sound/contents_02/kkang_full.m4a`);
 
+    congratsAudio.play();
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
     });
 
     finishAudio.addEventListener("ended", function () {
-      kkangFull.volume = 1
-      kkangFull.play();
       $(".btn-wrap").css("display","flex")
     });
-
-    congratsAudio.play();
 
     $(".finish").fadeIn();
     

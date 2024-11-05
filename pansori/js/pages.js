@@ -152,15 +152,13 @@ $(function () {
   function activeFinish01() {
     const finishAudio = new Audio(`./sound/narration/cho2_n_11.mp3`);
     congratsAudio.play(); 
+    $(".finish").fadeIn();
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
     });
 
-    $(".finish").fadeIn();
     finishAudio.addEventListener("ended", function () {
-      setTimeout(() => {
-        $(".btn-wrap").css("display","flex")
-      }, 1000);
+      $(".btn-wrap").css("display","flex")
     });
    
   }
@@ -254,17 +252,14 @@ $(function () {
 
   function activeFinish02() {
     const finishAudio = new Audio(`./sound/narration/cho2_n_23.mp3`);
-
+    $(".finish").fadeIn();
+    congratsAudio.play();
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
-      $(".btn-wrap").css("display","flex")
     });
     
-    congratsAudio.play();
     finishAudio.addEventListener("ended", function () {
-      setTimeout(() => {
-        $(".finish").fadeIn();
-      }, 1000);
+      $(".btn-wrap").css("display","flex")
     });
   }
 

@@ -19,11 +19,10 @@ $(function () {
     if (bgm2) {
       bgm2.play();
     }
+
     var intro = $(".intro")[0];
-    var intro2 = $(".intro2")[0];
     if (intro) {
       intro.play();
-      intro2.play();
     }
 
     var activeBgm = $("#active")[0];
@@ -229,15 +228,15 @@ if (sliderWrap) {
   var currentAudio = null; // 현재 재생 중인 오디오를 추적할 변수
 
   $(".draggable").on("mouseover", function () {
-    var audioName = $(this).data("name");
-    var audioSrc = "sound/effect/" + audioName + ".mp3";
+    var audioName = $(this).data("audio");
+    var audioSrc = "sound/narration/" + audioName + ".mp3";
 
     // 새로운 오디오 객체 생성
     var newAudio = new Audio(audioSrc);
 
     if (currentAudio) {
       currentAudio.pause(); // 오디오를 일시 정지
-      currentAudio.currentTime = 0; // 현재 재생 위치를 0으로 설정 (필요 시)
+      currentAudio.currentTime = 0;
     }
 
     // 오디오가 이미 재생된 적이 있는지 확인
@@ -284,6 +283,7 @@ if (sliderWrap) {
     drop: function (event, ui) {
       var answer = ui.helper.attr("answer");
       var name = ui.helper.data("name");
+      var audio = ui.helper.data("audio");
       var originalElement = ui.draggable;
       
       // 나레이션 재생
@@ -291,7 +291,7 @@ if (sliderWrap) {
       var faliAudio = new Audio("./sound/narration/fali.mp3");
       
       if (answer === "true") {
-        var scucessAudio = new Audio("./sound/effect/" + name + ".mp3");
+        var scucessAudio = new Audio("./sound/narration/" + audio + ".mp3");
         var musicalAudio = new Audio("./sound/contents_01/musical_" + name + ".mp3"); //악기소리
         
         originalElement.parent().addClass("disabled");
@@ -329,7 +329,7 @@ if (sliderWrap) {
   
   
   //활동1 미션 성공
-  var finishAudio = new Audio("./sound/narration/finish.mp3"); // 미션 완료 오디오
+  var finishAudio = new Audio("./sound/narration/cho3_n_16.mp3"); // 미션 완료 오디오
   function activeFinish01() {
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
@@ -356,7 +356,7 @@ if (sliderWrap) {
   }
 
   var infoEffectAudio = new Audio("./sound/effect/info.mp3");
-  var infoNarrationAudio = new Audio("./sound/narration/info_01.mp3");
+  var infoNarrationAudio = new Audio("./sound/narration/cho3_n_17.mp3");
   $(".btn-more").click(function () {
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio.play();
@@ -469,7 +469,7 @@ function finishpause2(){
 }
 
 // 완료
-var finishAudio2 = new Audio("./sound/narration/finish02.mp3");
+var finishAudio2 = new Audio("./sound/narration/cho3_n_26.mp3");
 function activeFinish02() {
   congratsAudio.addEventListener("ended", function () {
     finishAudio2.play();
@@ -512,8 +512,8 @@ let currentImg = 0;
 const images = $(".dialog .sd > div");
 const totalImages = images.length;
 
-const moreAudio1 = new Audio("./sound/contents_02/more_01.mp3"); // 1번 오디오
-const moreAudio2 = new Audio("./sound/contents_02/more_02.mp3"); // 2번 오디오
+const moreAudio1 = new Audio("./sound/narration/cho3_n_28.mp3"); // 1번 오디오
+const moreAudio2 = new Audio("./sound/narration/cho3_n_29.mp3"); // 2번 오디오
 
 // 현재 재생 중인 오디오를 추적하는 변수
 let currentMoreAudio = null;
