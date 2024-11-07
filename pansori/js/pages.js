@@ -233,6 +233,7 @@ $(function () {
       if (draggedName == droppedName && $(".ui-droppable-hover").length < 1) {
         console.log($(".ui-droppable-hover").length < 2)
         $(this).addClass("active");
+        $(this).droppable("disable");
         const itemName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
         const audio = new Audio('./sound/narration/' + itemName + '.mp3'); // Audio 객체 생성
         audio.currentTime = 0;
