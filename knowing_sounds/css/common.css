@@ -362,6 +362,10 @@ img{
     aspect-ratio: 1634 / 919;
 }
 
+.dialog img{
+    width: 100%;
+}
+
 .dialog .container{
     padding-top:1%;
     background: rgba(255,255,255,0.6);

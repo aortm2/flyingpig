@@ -349,6 +349,10 @@ img{
     aspect-ratio: 1634 / 919;
 }
 
+.dialog img{
+    width: 100%;
+}
+
 .dialog .img {
     position: relative;
     margin-right: -6.5%;

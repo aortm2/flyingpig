@@ -380,6 +380,10 @@ img {
     height: 77.1%;
 }
 
+.dialog img{
+    width: 100%;
+}
+
 .dialog .dialog-close {
     position: absolute;
     top: 4%;

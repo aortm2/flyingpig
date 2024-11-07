@@ -619,7 +619,6 @@ div[data-name="dragon"]{
     }
   }
 
-
 @media screen and (max-width: 1450px) {
     .select-02 .character .girl{
         width: 23.27rem;
@@ -644,6 +643,7 @@ div[data-name="dragon"]{
         height: 85.4%;
     }
 }
+
 @media screen and (max-width: 1280px) {
     .select-01 .slide .btn-controls {
         width: 4.3rem;
