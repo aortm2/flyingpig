@@ -213,6 +213,7 @@
 
 .select-01 .obj img{
     max-width: 100%;
+    width: 100%;
     pointer-events: none;
 }
 
