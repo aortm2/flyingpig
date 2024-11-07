@@ -297,19 +297,24 @@ div[data-name="dragon"]{
 .select-02.complete .character .txt-wrap{
     display: none;
 }
+.select-02.complete  .character{
+    left: 50%;
+    transform: translate(-50%);
+}
 
 .select-02 .clothes{
     /* position: absolute; */
-    width: 42.9%;
-    height: 87.4%;
+    width: 48.9%;
+    height: 82.4%;
     margin-left: 5%;
     /* right: 1%;
     bottom: 4%; */
-    padding: 9% 0 0 0;
+    padding: 10.5% 0 0 0;
     display: flex;
     justify-content: center;
     background-image: url(../img/content_02/bg_wardrobe.png);
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .select-02 .clothes .clothes-wrap{
@@ -354,7 +359,7 @@ div[data-name="dragon"]{
     bottom: 0rem;
     pointer-events:none;
     z-index: 7;
-    width: 60%;
+    width: 50%;
 }
 
 .select-02 .clothes .box .txt img{
@@ -364,31 +369,31 @@ div[data-name="dragon"]{
 }
 
 .select-02 .clothes .box.gugunbog {
-    height: 43.3%;;
+    height: 40.3%;;
 }
 
 .select-02 .clothes .box.deungchae {
-    height: 18.9%; /* 원래 11.8rem */
+    height: 20.5%; /* 원래 11.8rem */
 }
 
 .select-02 .clothes .box.heughye {
-    height: 19.4%; /* 원래 12.1rem */
+    height: 20.4%; /* 원래 12.1rem */
 }
 
 .select-02 .clothes .box.jeonlib {
-    height: 24.1%; /* 원래 15rem */
+    height: 23.1%; /* 원래 15rem */
 }
 
 .select-02 .clothes .box.hwang {
-    height: 27.8%; /* 원래 17.3rem */
+    height: 29.8%; /* 원래 17.3rem */
 }
 
 .select-02 .clothes .box.jeondae {
-    height: 14.3%; /* 원래 8.9rem */
+    height: 13.3%; /* 원래 8.9rem */
 }
 
 .select-02 .clothes .box.mituli {
-    height: 14.9%; /* 원래 9.3rem */
+    height: 13.8%; /* 원래 9.3rem */
 }
 
 .select-02 .clothes .box.gugunbog .cl_draggable{
@@ -401,6 +406,7 @@ div[data-name="dragon"]{
 
 .select-02 .clothes .box.heughye .cl_draggable{
     background-image: url("../img/content_02/heughye.png");
+    background-size: 80%;
 }
 
 .select-02 .clothes .box.jeonlib .cl_draggable{
@@ -413,10 +419,13 @@ div[data-name="dragon"]{
 
 .select-02 .clothes .box.jeondae .cl_draggable{
     background-image: url("../img/content_02/jeondae.png");
+    background-size: 90%;
+
 }
 
 .select-02 .clothes .box.mituli .cl_draggable{
     background-image: url("../img/content_02/mituli.png");
+    background-size: 80%;
 }
 
 
@@ -431,10 +440,10 @@ div[data-name="dragon"]{
 
 .select-02 .character .txt-wrap{
     position: absolute;
-    top: 13.06%;
+    top: -12%;
     left: 11.63%;
-    width: 32.5%;
-    height: 12.8%;
+    width: 80%;
+    height: 15.8%;
     display: flex;
     justify-content: center;
 }
@@ -443,7 +452,7 @@ div[data-name="dragon"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 1.5rem;
@@ -467,10 +476,26 @@ div[data-name="dragon"]{
     object-fit: contain;
 }
 
+.select-02 .character{
+    position: absolute;
+    left: 2%;
+    bottom: 4%;
+    width: 45%;
+    height: 70%;
+}
+.select-02 .clothes{
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+}
+.character-wrap{
+    width: 100%;
+    height: 100%;
+}
 
 .select-02 .character .girl{
-    width: 34.9rem;
-    height: 60.7rem;
+    width: 49%;
+    height: 100%;
 }
 .select-02 .character .ch{
     width: 100%;
@@ -480,6 +505,7 @@ div[data-name="dragon"]{
 }
 .select-02 .character .ch-girl{
     background-image: url(../img/content_02/girl.png);
+    background-position-y: bottom;
 }
 
 .select-02 .girl.gugunbog .ch-girl{
@@ -487,8 +513,8 @@ div[data-name="dragon"]{
 }
 
 .select-02 .character .boy{
-    width: 35.1rem;
-    height: 62.1rem;
+    width: 50%;
+    height: 100%;
 }
 
 .select-02 .character .ch-boy{
@@ -620,28 +646,12 @@ div[data-name="dragon"]{
   }
 
 @media screen and (max-width: 1450px) {
-    .select-02 .character .girl{
-        width: 23.27rem;
-        height: 40.47rem;
-    }
-
-    .select-02 .character .boy{
-        width: 23.4rem;
-        height: 41.4rem;
-    }
 
     .select-02{
         align-items: flex-end;
         padding-bottom: 2%;
     }
-    .select-02 .clothes .cl_draggable{
-        width: 80%;
-        background-size: 100%;
-    }
-    .select-02 .clothes{
-        width: 40%;
-        height: 85.4%;
-    }
+
 }
 
 @media screen and (max-width: 1280px) {
@@ -669,18 +679,6 @@ div[data-name="dragon"]{
 }
 
 @media screen and (max-width: 1060px) {
-    .select-02 .character .girl{
-        width: 15.51rem;
-        height: 26.98rem;
-    }
-
-    .select-02 .character .boy{
-        width: 15.6rem;
-        height: 27.6rem;
-    }
-    .select-02 .character .txt-wrap{
-        top: 25%;
-    }
     .select-02 .character .txt-box{
         border-radius: 0.7rem;
     }
@@ -697,25 +695,9 @@ div[data-name="dragon"]{
     }
 
     
-    .select-02 .character .girl{
-        width: 10.34rem;
-        height: 17.99rem;
-    }
 
-    .select-02 .character .boy{
-        width: 10.4rem;
-        height: 18.4rem;
-    }
 }
 
 @media screen and (max-width: 475px) {
-    .select-02 .character .girl{
-        width: 6.89rem;
-        height:11.99rem;
-    }
 
-    .select-02 .character .boy{
-        width: 6.93rem;
-        height: 12.27rem;
-    }
 }

@@ -1,6 +1,8 @@
 document.title = "대취타"; // 제목
 
+ 
 $(function () {
+ 
   // 모바일 세로 팝업 삽입
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
 
@@ -638,4 +640,5 @@ $(".dialog").hide();
         isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
     }
 }
+
 });
