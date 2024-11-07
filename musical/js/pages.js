@@ -1,4 +1,4 @@
-document.title = "장단익히기"; // 제목
+document.title = "국악기 알기"; // 제목
 
 $(function () {
   // 모바일 세로 팝업 삽입

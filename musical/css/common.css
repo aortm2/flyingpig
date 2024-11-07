@@ -180,6 +180,7 @@ img{
     aspect-ratio: 1634 / 919;
 }
 
+
 .finish.s_01 .finish-wrap{
     background: url(../img/content_01/bg_finish.png);
     background-size: auto 100%;
@@ -251,6 +252,8 @@ img{
     text-align: center;
     top: 50%;
     left: 50%;
+    width: 47.19%;
+    height: 73.24%;
     transform: scale(1) translate(-50%, -50%);
 }
 .finish-wrap .txt .bg-black{
