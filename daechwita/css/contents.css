@@ -544,10 +544,12 @@ div[data-name="dragon"]{
 
 .select-02 .character .girl .cl_01{
     z-index: 5;
+    background-position-y: bottom;
 }
 
 .select-02 .character .girl .cl_02{
     z-index: 6;
+    background-position-y: bottom;
 }
 
 .select-02 .character .girl .cl_03{

@@ -330,7 +330,7 @@ $(function () {
     // 재생 중인 오디오 객체를 저장할 변수
     let currentMissionAudio = null;
     let nextAudio = null;
-    let secondAudio = new Audio('./sound/narration/yu2_na_6.mp3');
+    let secondAudio = new Audio('./sound/narration/yu2_na_29.mp3');
     const names = ['daegeum', 'piri', 'sogeum', 'saenghwang'];
     let currentIndex = 1;
 
