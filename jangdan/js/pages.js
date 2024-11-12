@@ -188,8 +188,9 @@ $(function () {
       $(".hand").addClass("active");
       await playAudio(music);
       $(".hand").removeClass("active");
+      
 
-      await playAudio(yua3_12);
+      await playAudio(yua3_8);
       $(".hand").addClass("active");
       await playAudio(music);
       $(".hand").removeClass("active");
@@ -197,7 +198,7 @@ $(function () {
       await playAudio(yua3_13);
 
       // 별시작
-      await playAudio(yua3_12);
+      await playAudio(yua3_8);
       $(".hand").addClass("active");
       await playAudio(music);
       $(".hand").removeClass("active");
@@ -205,7 +206,7 @@ $(function () {
       await playAudio(star);
 
       // 별 둘
-      await playAudio(yua3_12);
+      await playAudio(yua3_8);
       $(".hand").addClass("active");
       await playAudio(music);
       $(".hand").removeClass("active");
@@ -214,7 +215,7 @@ $(function () {
       await playAudio(star);
 
        // 별 셋
-       await playAudio(yua3_12);
+       await playAudio(yua3_8);
        $(".hand").addClass("active");
        await playAudio(music);
        $(".hand").removeClass("active");
