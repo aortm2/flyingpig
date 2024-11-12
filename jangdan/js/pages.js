@@ -103,7 +103,7 @@ $(function () {
     var yua3_7 = new Audio('./sound/narration/yua3_7.mp3');
     var yua3_8 = new Audio('./sound/narration/yua3_8.mp3');
     var yua3_9 = new Audio('./sound/narration/yua3_9.mp3');
-    var yua3_10 = new Audio('./sound/narration/yua3_10.m4a');
+    var yua3_10 = new Audio('./sound/narration/yua3_10.mp3');
     var music = new Audio('./sound/contents_01/music.mp3');
     var star = new Audio('./sound/contents_01/star.wav');
     $(this).addClass("active")
@@ -339,7 +339,7 @@ $(function () {
 
   function finish2() {
     $(".finish").fadeIn();
-    const finishAudio = new Audio('./sound/narration/yua3_21.m4a');
+    const finishAudio = new Audio('./sound/narration/yua3_22.mp4');
     congratsAudio.play();
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
