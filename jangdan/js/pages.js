@@ -339,7 +339,7 @@ $(function () {
 
   function finish2() {
     $(".finish").fadeIn();
-    const finishAudio = new Audio('./sound/narration/yua3_22.mp4');
+    const finishAudio = new Audio('./sound/narration/yua3_19.mp3');
     congratsAudio.play();
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
