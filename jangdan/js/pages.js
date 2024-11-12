@@ -167,6 +167,7 @@ $(function () {
   });
 
   $(".btn-hand").click(async function(){
+    var yua3_8 = new Audio('./sound/narration/yua3_8.mp3');
     var yua3_11 = new Audio('./sound/narration/yua3_11.mp3');
     var yua3_12 = new Audio('./sound/narration/yua3_12.m4a');
     var yua3_13 = new Audio('./sound/narration/yua3_13.mp3');
