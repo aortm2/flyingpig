@@ -252,9 +252,9 @@ $(function () {
   const intro = $(".intro")[0];
   
   const verses = [
-    { start: 6760, end: 7310, name: "deong", spanIndex: 0 },
-    { start: 7310, end: 7680, name: "duck", spanIndex: 1 },
-    { start: 7680, end: 8340, name: "kung", spanIndex: 2 },
+    { start: 7000, end: 7190, name: "deong"},
+    { start: 7190, end: 8000, name: "duck"},
+    { start: 8000, end: 8340, name: "kung"},
     { start: 8340, end: 8980, name: "kung", spanIndex: 3 },
     { start: 8980, end: 9330, name: "duck", spanIndex: 4 },
     { start: 9330, end: 9970, name: "kung", spanIndex: 5 },
@@ -289,6 +289,46 @@ $(function () {
     { start: 25680, end: 26600, name: "kung", spanIndex: 34 },
     { start: 26600, end: 26660, name: "deong", spanIndex: 35 },
   ];
+
+  const audioFiles = {
+    deong: './sound/contents_02/deong.mp3',
+    duck: './sound/contents_02/duck.mp3',
+    kung: './sound/contents_02/kung.mp3'
+  };
+  
+  const lyricsTimestamps = [
+    { start: 0, end: 10090 },
+    { start: 10090, end: 13180 },
+    { start: 13180, end: 16260 },
+    { start: 16260, end: 20070 },
+    { start: 20070, end: 23150 },
+    { start: 23150, end: Infinity },
+  ];
+
+  $(".btn-rendition").click(function () {
+    const currentTime = audio.currentTime * 1000; // 현재 오디오의 시간 (초 -> 밀리초)
+    
+    // currentTime에 해당하는 verse를 찾아서 해당하는 name을 추출
+    const currentVerse = verses.find(verse => currentTime >= verse.start && currentTime < verse.end);
+    
+    if (currentVerse) {
+      const { name } = currentVerse; // name을 추출
+      console.log(`현재 verse: ${name} (시간: ${currentTime}ms)`);
+  
+      // name에 해당하는 오디오 파일을 audioFiles에서 찾아서 재생
+      const audioFile = audioFiles[name];
+  
+      if (audioFile) {
+        const audioClip = new Audio(audioFile); // 해당 오디오 파일 객체 생성
+        audioClip.play(); // 오디오 재생
+        console.log(`Reproducing audio for ${name}`);
+      } else {
+        console.log(`오디오 파일을 찾을 수 없습니다: ${name}`);
+      }
+    } else {
+      console.log("현재 시간에 맞는 verse를 찾을 수 없습니다.");
+    }
+  });
   
   if (intro) {
     intro.play();
@@ -299,43 +339,65 @@ $(function () {
       audio.play();
       console.log("Intro ended, main audio started.");
   
-      const updateButtons = setInterval(() => {
+      const updateLyricsAndButtons = setInterval(() => {
         // 오디오가 중지되면 이벤트 종료
         if (audio.paused) {
-          clearInterval(updateButtons);
+          clearInterval(updateLyricsAndButtons);
           console.log("끝");
           return;
         }
   
-        const currentTime = audio.currentTime * 1000;
+        const currentTime = audio.currentTime * 1000; // 초를 밀리초로 변환
   
-        $('.btn button').removeClass('active');
-        $('.lyrics span').removeClass('active'); 
-  
-        // 현재 verse 처리
-        verses.forEach(({ start, end, name, spanIndex }) => {
+        // `lyrics-wrap` 전환 로직
+        $(".lyrics-wrap").each((index, element) => {
+          const { start, end } = lyricsTimestamps[index];
           if (currentTime >= start && currentTime < end) {
-            // 현재 구간에 맞는 버튼에 active 클래스 추가
-            $(`.btn button[data-name="${name}"]`).addClass('active');
-            $(`.lyrics span[spanIndex="${spanIndex}"]`).addClass('active');
-            console.log(`Active: ${name}, spanIndex: ${spanIndex}`);
+            $(element).css("display", "block");
+          } else {
+            $(element).css("display", "none");
           }
         });
-
-        if(currentTime > 16760){
-          $(".lyrics span[data-verse='1']").hide()
-          $(".lyrics span[data-verse='2']").css("display","inline-block")
-        }
   
-        // 모든 구간이 끝나면 정지
-        if (currentTime >= verses[verses.length - 1].end) {
+        $(".lyrics-wrap > div").each((index, element) => {
+          const start = $(element).data('start'); // data-start 값을 가져옴
+          const end = $(element).data('end'); // data-end 값을 가져옴
+  
+          // 현재 재생 시간이 start와 end 사이에 있으면 active 클래스 추가
+          if (currentTime >= start && currentTime < end) {
+            $(element).addClass('active');
+          } else {
+            $(element).removeClass('active');
+          }
+        });
+  
+        const currentVerse = verses.find(verse => currentTime >= verse.start && currentTime < verse.end);
+    
+        if (currentVerse) {
+          const { name } = currentVerse;
+          console.log(`현재 verse: ${name} (시간: ${currentTime}ms)`);
 
+          $(".chat").each(function () {
+            const chatName = $(this).data("name"); // data-name 값을 가져옴
+            const namesArray = chatName.split(" | "); // '|'를 기준으로 나눔
+
+            // verse.name과 일치하는 chat 요소에 active 클래스 추가/제거
+            if (namesArray.includes(name)) {
+              $(this).addClass('active'); // active 클래스 추가
+            } else {
+              $(this).removeClass('active'); // active 클래스 제거
+            }
+          });
+        }
+
+        // 마지막 구간 종료 처리
+        if (currentTime >= verses[verses.length - 1].end) {
           $(".container").removeClass("pointer-none");
           console.log("end");
-          clearInterval(updateButtons);
-          setTimeout(finish2(), 2000)
+          clearInterval(updateLyricsAndButtons);
+          setTimeout(finish2(), 2000);
         }
-      }, 50);
+      }, 50); // 50ms마다 실행
     });
   }
 
@@ -351,24 +413,4 @@ $(function () {
     });
   }
 
-
-  let currentAudio = null; // 현재 재생 중인 오디오
-
-  // 버튼 클릭 이벤트
-  $('.btn button').on('click', function() {
-    const soundName = $(this).data('name'); // 버튼의 data-name 속성 값
-    const audioSrc = `./sound/contents_02/${soundName}.mp3`; // mp3 파일 경로
-
-    // 이전 오디오가 있으면 중지하고 제거
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.remove();
-    }
-
-
-    currentAudio = new Audio(audioSrc);
-    currentAudio.play();
-
-    console.log(`Playing sound: ${audioSrc}`);
-  });
 });

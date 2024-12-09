@@ -175,7 +175,7 @@
 .select-02 .btn{
     position: absolute;
     display: flex;
-    gap: 15%;
+    gap: 10%;
     left: 50%;
     bottom:2%;
     transform: translateX(-50%);
@@ -190,31 +190,67 @@
     height: 100%;
     background-repeat: no-repeat;
     background-size: 100%;
-    pointer-events: none;
 }
 
 .select-02 .lyrics{
     position: absolute;
     top: 22%;
     color: #522a35;
-    font-family: 'BMJUA';
-    border:3px solid #ffc4c4;
-    border-radius: 25px;
-    background: #fff ;
-    padding:2% 8%;
-    width: 80dvw;
+    width: 68.10%;
+    height: 25%;
     display: flex;
     justify-content: space-between;
 }
 
-.select-02 .lyrics span{
+.select-02 .lyrics .lyrics-wrap{
+    width: 100%;
+    font-size: 0;
+    display: none;
+}
+
+.select-02 .lyrics .lyrics-wrap > div{
     position: relative;
     display: inline-block;
     text-align: center;
-    width: 3.5%;
     height: 100%;
-    padding-top: 2.5%;
-    font-size: 500%;
+    pointer-events: none;
+}
+
+.select-02 .lyrics .lyrics-wrap > div.active::before{
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    outline:6px solid #4399f0;
+    outline-offset: -6px;
+    z-index: 10;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.select-02 .lyrics .lyrics-wrap > div.active:first-child::before{
+    border-radius: 12% 0 0 12%;
+}
+
+.select-02 .lyrics .lyrics-wrap > div.active:last-child::before{
+    border-radius: 0 12% 12% 0;
+}
+
+
+.select-02 .lyrics .lyrics-wrap > div img{
+    height: 100%;
+}
+
+.select-02 .lyrics .lyrics-wrap div:nth-child(1),
+.select-02 .lyrics .lyrics-wrap div:nth-child(3){
+    width: 30%;
+}
+
+.select-02 .lyrics .lyrics-wrap div:nth-child(2),
+.select-02 .lyrics .lyrics-wrap div:nth-child(4){
+    width: 20%;
 }
 
 .select-02 .lyrics span.heart.null{
@@ -264,36 +300,35 @@
     background-repeat: no-repeat;
 }
 
-.select-02 .btn > button.active{
-    pointer-events: all;
-}
-
 .select-02 .btn > button:active{
     transform: scale(1.3);
 }
 
-.select-02 .btn .deong{
-    background-image: url(../img/content_02/btn_01.png);
+.select-02 .btn .btn-rendition{
+    background-image: url(../img/content_02/btn.png);
 }
 
-.select-02 .btn .deong:active{
-    background-image: url(../img/content_02/btn_01_active.png);
+.select-02 .btn .btn-rendition:active{
+    background-image: url(../img/content_02/btn_over.png);
+}
+.select-02 .btn .chat{
+    width: 22.292%;
+    height: 82.63%;
+    background-size: 100%;
 }
 
-.select-02 .btn .duck{
-    background-image: url(../img/content_02/btn_02.png);
+.select-02 .btn .chat.active{
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
 }
 
-.select-02 .btn .duck:active{
-    background-image: url(../img/content_02/btn_02_active.png);
+.select-02 .btn .chat.chat-01{
+    background-image: url(../img/content_02/chat.png);
 }
 
-.select-02 .btn .kung{
-    background-image: url(../img/content_02/btn_03.png);
-}
 
-.select-02 .btn .kung:active{
-    background-image: url(../img/content_02/btn_03_active.png);
+
+.select-02 .btn .chat.chat-02{
+    background-image: url(../img/content_02/chat_02.png);
 }
 
 
