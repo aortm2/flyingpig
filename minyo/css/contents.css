@@ -229,7 +229,6 @@
     right:0;
 }
 
-
 /* select-02 */
 .select-02 {
     display: flex;
@@ -238,7 +237,6 @@
     background-image: url(../img/content_02/bg.png);
     padding-top:10%;
 }
-
 
 .select-02 .drop{
     position: absolute;
