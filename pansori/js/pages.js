@@ -265,12 +265,12 @@ $(function () {
   }
 
   // 마우스 오버 이벤트 설정
-  $(".drag .item").on("mouseenter", function () {
-    const itemName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-    const audio = new Audio('./sound/narration/' + itemName + '.mp3'); // Audio 객체 생성
-    audio.currentTime = 0;
-    audio.play();
-  });
+  // $(".drag .item").on("mouseenter", function () {
+  //   const itemName = $(this).data("name");
+  //   const audio = new Audio('./sound/narration/' + itemName + '.mp3');
+  //   audio.currentTime = 0;
+  //   audio.play();
+  // });
 
   const infoNarrationAudio2 = new Audio("./sound/narration/cho2_n_24.mp3");
   $(".btn-more2").click(function () {
