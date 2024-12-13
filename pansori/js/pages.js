@@ -245,7 +245,7 @@ $(function () {
       }
       
       
-      if(dropComplete2 == 6){
+      if(dropComplete2 == 7){
         setTimeout(activeFinish02, 1000);
       }
     }
