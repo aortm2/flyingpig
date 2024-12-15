@@ -173,12 +173,12 @@ $(function () {
     $(".dialog").fadeIn();
   });
 
-  $(".drag .piece").on("mouseenter", function () {
-    const pieceName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
-    const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
-    audio.currentTime = 0;
-    audio.play();
-  });
+  // $(".drag .piece").on("mouseenter", function () {
+  //   const pieceName = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
+  //   const audio = new Audio('./sound/narration/' + pieceName + '.mp3'); // Audio 객체 생성
+  //   audio.currentTime = 0;
+  //   audio.play();
+  // });
 
 
   // 활동2

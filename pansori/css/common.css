@@ -655,7 +655,7 @@ img{
 }
 
 
-@media (orientation: portrait) and (max-width: 500px) {
+@media (orientation: portrait) and (max-width: 1024px) {
 
     /* 세로 방향일 때 적용할 스타일 */
     .container {
@@ -664,10 +664,11 @@ img{
     }
 }
 
-@media (orientation: landscape) and (max-width: 768px) {
+@media (orientation: landscape) and (max-width: 900px) {
 
     /* 가로 방향일 때 적용할 스타일 */
-    .container {
+    .container,
+    .dialog {
         height: 100%;
     }
 }

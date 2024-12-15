@@ -293,6 +293,7 @@ $(function () {
     { start: 24280, end: 25280, name: "duck",},
     { start: 25280, end: 26090, name: "kung",},
     { start: 26090, end: 26270, name: "deong",},
+    { start: 26270, end: 33465, name: "",},
   ];
 
   const audioFiles = {
@@ -400,6 +401,7 @@ $(function () {
           $(".container").removeClass("pointer-none");
           console.log("end");
           clearInterval(updateLyricsAndButtons);
+          $(".lyrics-wrap > div").removeClass("active")
           setTimeout(finish2(), 2000);
         }
       }, 50); // 50ms마다 실행
