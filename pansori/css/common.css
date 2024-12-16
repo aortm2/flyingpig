@@ -602,29 +602,19 @@ img{
     .container,.dialog{
         height: auto;
     }
-    .dialog .btn-link > div span{
-        font-size: 300%;
-    }
+
 }
 
 @media screen and (max-width: 1280px) {
-    .dialog .btn-link > div span{
-        font-size: 250%;
-    }
+
 }
 
 
 @media screen and (max-width: 768px) {
-    .dialog .btn-link > div span{
-        font-size: 150%;
-    }
+
 }
 
 @media screen and (max-width: 480px) {
-    .dialog .btn-link > div span{
-        font-size: 100%;
-    }
-
 }
 
 .mobile-pop{

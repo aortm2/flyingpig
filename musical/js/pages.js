@@ -317,7 +317,8 @@ $(function () {
         const imageName = `pop_${draggable.data("name")}.png`; // 이미지 파일 이름 생성
         const image = $(`<img src="./img/content_02/${imageName}" alt="Success" class="pop-image" />`); // 이미지 요소 생성
         // 이미지 삽입
-        $("body").append(image);
+        $(".select-02").append(image);
+        $(".drag").addClass("pointer-none")
             
         // 이미지 스타일링
         image.css({
@@ -325,7 +326,9 @@ $(function () {
           top: "50%",
           left: "50%",
           zIndex: 10, 
-          transform: "translate(-50%, -50%)" 
+          transform: "translate(-50%, -50%)",
+          width: "34.48%",
+          height: "40.09%"
         });
 
         setTimeout(() => {
@@ -338,6 +341,8 @@ $(function () {
           console.log("끝남?")
           image.fadeOut(500, () => {
             image.remove(); // 페이드 아웃 후 이미지 제거
+          $(".drag").removeClass("pointer-none")
+
           });
         });
 
