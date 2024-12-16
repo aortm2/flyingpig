@@ -276,6 +276,34 @@ $(function () {
     }
     
     
+    
+    let currentAudio = null;
+
+    $(".btn-muisc").click(function () {
+        const name = $(this).data("name");
+        const audioPath = "./sound/contents_01/" + name + ".m4a";
+
+      
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+
+        
+        currentAudio = new Audio(audioPath);
+        currentAudio.play();
+    });
+
+    // .btn-controls 클릭 이벤트
+    $(".btn-controls").click(function () {
+      
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0; 
+            currentAudio = null; 
+        }
+    });
+
   // 활동2
   let audioSrc;
   $(".drag > div").on("mouseover", function () {
