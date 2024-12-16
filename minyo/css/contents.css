@@ -225,7 +225,7 @@
 
 .select-01 .obj.right{
     width: 22.03%;
-    height: 45.28%;
+    height: 36.28%;
     right:0;
 }
 
@@ -316,11 +316,11 @@
 
 .select-02 .drag .drag-wrap{
     display: flex;
-    justify-content: center;
-    gap: 2%;
-    width: 100%;
-    height: 100%;
-    padding: 2% 5% 2% 2%;
+        justify-content: center;
+        gap: 2%;
+        width: 100%;
+        height: 100%;
+        padding: 1.5% 5% 4% 2%;
 }
 
 .select-02 .drag .drag-wrap .hover-txt{
@@ -328,14 +328,15 @@
     width: 100%;
     position: absolute;
     top: 0;
-    left: 5%;
-    transform: translateY(-100%);
+    left: 50%;
+    transform: translate(-50%, -100%);
 }
 
 .select-02 .drag .drag-wrap .area{
     width: 23%;
     height: 100%;
     position: relative;
+    background-position: center;
 }
 
 .select-02 .drag .drag-wrap .area:hover .hover-txt{

@@ -134,7 +134,7 @@ $(".area").droppable({
       $(".select-01").addClass("pointer-none");
 
       const image = $(`<img src="./img/content_01/pop_${droppedName}.png" alt="Success" class="pop-image" />`);
-      $("body").append(image);
+      $(".select-01").append(image);
 
       // 이미지 스타일링
       image.css({
@@ -142,7 +142,9 @@ $(".area").droppable({
         top: "50%",
         left: "62.5%",
         zIndex: 10, 
-        transform: "translate(-50%, -50%)" 
+        transform: "translate(-50%, -50%)",
+        width: "29.11%",
+        height: "58.43%",
       });
 
       narrationAudio.addEventListener("ended", function () {
@@ -194,6 +196,89 @@ $(".area").droppable({
     $(".dialog").fadeIn();
     finishpause(); //활동종료 오디오 중지
   });
+
+  $(".dialog .next").on('click', function() {
+    if (currentImg < totalImages - 1) {
+      showImage(currentImg + 1); // 다음 이미지 보여주기
+    }
+  });
+  
+  // prev 버튼 클릭 시 이벤트 처리
+  $(".dialog .prev").on('click', function() {
+    if (currentImg > 0) {
+      showImage(currentImg - 1); // 이전 이미지 보여주기
+    }
+  });
+      // '더 알아보기' 버튼 클릭 시 첫 번째 이미지와 1번 오디오 재생
+  $(".btn-more").click(function () {
+    $(".dialog").show(); // 다이얼로그를 표시
+    
+    infoEffectAudio.play();
+    showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
+    moreAudio.pause()
+  });
+
+
+  // 더알아보기 버튼
+  $(".btn-more, .btn-more2").on("mouseover",function () {
+    moreAudio.play()
+    Exitaudio.pause();
+  });
+
+  // 나가기 버튼
+  $(".btn-out").on("mouseover", function () {
+    moreAudio.pause();
+    Exitaudio.play();
+  });
+
+
+  let currentImg = 0;
+  const images = $(".dialog .sd > div");
+  const totalImages = images.length;
+  let currentMoreAudio = null;
+  
+  function showImage(index, playAudio = true) {
+    const url = $(".dialog").data("url");
+    const audioFiles = [
+      `./sound/narration/cho1_n_18.mp3`, 
+      `./sound/narration/cho1_n_19.mp3`, 
+      `./sound/narration/cho1_n_20.mp3`,
+      `./sound/narration/cho1_n_21.mp3`,
+      `./sound/narration/cho1_n_22.mp3`,
+    ];
+  
+    // 이미지 활성화 업데이트
+    images.removeClass("active").eq(index).addClass("active");
+    currentImg = index;
+    console.log(index)
+  
+    // 기존 오디오 중지
+    if (currentMoreAudio) {
+      currentMoreAudio.pause();
+      currentMoreAudio.currentTime = 0;
+      currentMoreAudio = null; // 이전 오디오 객체 초기화
+    }
+  
+    // 새로운 오디오 재생
+    if (audioFiles[index]) {
+      currentMoreAudio = new Audio(audioFiles[index]);
+      if (playAudio) currentMoreAudio.play();
+    }
+  
+    // 첫 번째 페이지에서 prev 버튼 숨기기
+    if (index === 0) {
+      $(".dialog .prev").hide();
+    } else {
+      $(".dialog .prev").show();
+    }
+  
+    // 마지막 페이지에서 next 버튼 숨기기
+    if (index === totalImages - 1) {
+      $(".dialog .next").hide();
+    } else {
+      $(".dialog .next").show();
+    }
+  }
 
 
   // 활동2
