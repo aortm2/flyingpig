@@ -632,10 +632,10 @@ img {
     }
 }
 
-@media (orientation: landscape) and (max-width: 768px) {
+@media (orientation: landscape) and (max-width: 950px) {
 
     /* 가로 방향일 때 적용할 스타일 */
     .container {
-        height: 100%;
+        height: 100dvh;
     }
 }
