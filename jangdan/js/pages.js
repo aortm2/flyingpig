@@ -252,47 +252,47 @@ $(function () {
   const intro = $(".intro")[0];
   
   const verses = [
-    { "start": 6190, "end": 6856, "name": "deong" },
-    { "start": 6856, "end": 7189, "name": "duck" },
-    { "start": 7189, "end": 7855, "name": "kung" },
-    { "start": 7855, "end": 8521, "name": "kung" },
-    { "start": 8521, "end": 8854, "name": "duck" },
-    { "start": 8854, "end": 9520, "name": "kung" },
-  
-    { "start": 9520, "end": 10186, "name": "deong" },
-    { "start": 10186, "end": 10519, "name": "duck" },
-    { "start": 10519, "end": 11185, "name": "kung" },
-    { "start": 11185, "end": 11851, "name": "kung" },
-    { "start": 11851, "end": 12184, "name": "duck" },
-    { "start": 12184, "end": 12850, "name": "kung" },
-  
-    { "start": 12850, "end": 13516, "name": "deong" },
-    { "start": 13516, "end": 13849, "name": "duck" },
-    { "start": 13849, "end": 14515, "name": "kung" },
-    { "start": 14515, "end": 15181, "name": "kung" },
-    { "start": 15181, "end": 15514, "name": "duck" },
-    { "start": 15514, "end": 16180, "name": "kung" },
-  
-    { "start": 16180, "end": 16846, "name": "deong" },
-    { "start": 16846, "end": 17179, "name": "duck" },
-    { "start": 17179, "end": 17845, "name": "kung" },
-    { "start": 17845, "end": 18511, "name": "kung" },
-    { "start": 18511, "end": 18844, "name": "duck" },
-    { "start": 18844, "end": 19510, "name": "kung" },
-  
-    { "start": 19510, "end": 20176, "name": "deong" },
-    { "start": 20176, "end": 20509, "name": "duck" },
-    { "start": 20509, "end": 21175, "name": "kung" },
-    { "start": 21175, "end": 21841, "name": "kung" },
-    { "start": 21841, "end": 22174, "name": "duck" },
-    { "start": 22174, "end": 22840, "name": "kung" },
-  
-    { "start": 22840, "end": 23506, "name": "deong" },
-    { "start": 23506, "end": 23839, "name": "duck" },
-    { "start": 23839, "end": 24505, "name": "kung" },
-    { "start": 24505, "end": 25171, "name": "kung" },
-    { "start": 25171, "end": 25504, "name": "duck" },
-    { "start": 25504, "end": 26170, "name": "kung" },
+    { "start": 6210, "end": 6876, "name": "deong" },
+    { "start": 6876, "end": 7209, "name": "duck" },
+    { "start": 7209, "end": 7875, "name": "kung" },
+    { "start": 7875, "end": 8541, "name": "kung" },
+    { "start": 8541, "end": 8874, "name": "duck" },
+    { "start": 8874, "end": 9540, "name": "kung" },
+
+    { "start": 9540, "end": 10106, "name": "deong" },
+    { "start": 10106, "end": 10439, "name": "duck" },
+    { "start": 10439, "end": 11105, "name": "kung" },
+    { "start": 11105, "end": 11771, "name": "kung" },
+    { "start": 11771, "end": 12104, "name": "duck" },
+    { "start": 12104, "end": 12770, "name": "kung" },
+
+    { "start": 12770, "end": 13436, "name": "deong" },
+    { "start": 13436, "end": 13769, "name": "duck" },
+    { "start": 13769, "end": 14435, "name": "kung" },
+    { "start": 14435, "end": 15101, "name": "kung" },
+    { "start": 15101, "end": 15434, "name": "duck" },
+    { "start": 15434, "end": 16100, "name": "kung" },
+
+    { "start": 16100, "end": 16766, "name": "deong" },
+    { "start": 16766, "end": 17099, "name": "duck" },
+    { "start": 17099, "end": 17765, "name": "kung" },
+    { "start": 17765, "end": 18431, "name": "kung" },
+    { "start": 18431, "end": 18764, "name": "duck" },
+    { "start": 18764, "end": 19430, "name": "kung" },
+
+    { "start": 19430, "end": 20096, "name": "deong" },
+    { "start": 20096, "end": 20429, "name": "duck" },
+    { "start": 20429, "end": 21095, "name": "kung" },
+    { "start": 21095, "end": 21761, "name": "kung" },
+    { "start": 21761, "end": 22094, "name": "duck" },
+    { "start": 22094, "end": 22760, "name": "kung" },
+
+    { "start": 22760, "end": 23426, "name": "deong" },
+    { "start": 23426, "end": 23759, "name": "duck" },
+    { "start": 23759, "end": 24425, "name": "kung" },
+    { "start": 24425, "end": 25091, "name": "kung" },
+    { "start": 25091, "end": 25424, "name": "duck" },
+    { "start": 25424, "end": 26090, "name": "kung" },
   ];
 
   const audioFiles = {
