@@ -187,14 +187,15 @@ $(".area").droppable({
   }
 
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");
-  const infoNarrationAudio = new Audio("./sound/narration/cho1_n_12.mp3");
+  const infoNarrationAudio = new Audio("./sound/narration/cho1_n_18.mp3");
   $(".btn-more").click(function () {
     infoEffectAudio.addEventListener("ended", function () {
       infoNarrationAudio.play();
     });
     infoEffectAudio.play();
     $(".dialog").fadeIn();
-    finishpause(); //활동종료 오디오 중지
+    7
+
   });
 
   $(".dialog .next").on('click', function() {
@@ -217,7 +218,6 @@ $(".area").droppable({
     showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
     moreAudio.pause()
   });
-
 
   // 더알아보기 버튼
   $(".btn-more, .btn-more2").on("mouseover",function () {
@@ -385,11 +385,11 @@ $(".area").droppable({
   $(".drag-wrap .item").on("mouseenter", function () {
     const animal = $(this).data("name"); // 현재 요소의 data-name 값 가져오기
 
-    // 해당 동물의 소리 재생
-    if (sounds[animal]) {
-      sounds[animal].currentTime = 0; // 소리를 처음부터 재생
-      sounds[animal].play();
-    }
+    // // 해당 동물의 소리 재생
+    // if (sounds[animal]) {
+    //   sounds[animal].currentTime = 0; // 소리를 처음부터 재생
+    //   sounds[animal].play();
+    // }
   });
 
   const infoNarrationAudio2 = new Audio("./sound/narration/cho1_n_17.mp3");
@@ -399,7 +399,6 @@ $(".area").droppable({
     });
     infoEffectAudio.play();
     $(".dialog").fadeIn();
-    finishpause(); //활동종료 오디오 중지
   });
 
   $(".dialog-close").click(function () {

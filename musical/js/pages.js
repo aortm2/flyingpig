@@ -194,7 +194,7 @@ $(function () {
     if(complet1 == 3){
       setTimeout(() => {
         finish()
-      }, 2000);
+      }, 6000);
     }
   });
 
