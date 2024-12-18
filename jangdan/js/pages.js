@@ -252,47 +252,47 @@ $(function () {
   const intro = $(".intro")[0];
   
   const verses = [
-    { start: 6190, end: 7100, name: "deong" },
-    { start: 7100, end: 7190, name: "duck" },
-    { start: 7190, end: 8080, name: "kung" },
-    { start: 8080, end: 8250, name: "kung" },
-    { start: 8250, end: 9080, name: "duck" },
-    { start: 9080, end: 9260, name: "kung" },
-    
-    { start: 9260, end: 10170, name: "deong" },
-    { start: 10170, end: 10260, name: "duck" },
-    { start: 10260, end: 11200, name: "kung" },
-    { start: 11200, end: 12070, name: "kung" },
-    { start: 12070, end: 12200, name: "duck" },
-    { start: 12200, end: 13100, name: "kung" },
-    
-    { start: 13100, end: 14010, name: "deong" },
-    { start: 14010, end: 14090, name: "duck" },
-    { start: 14090, end: 15030, name: "kung" },
-    { start: 15030, end: 15200, name: "kung" },
-    { start: 15200, end: 16030, name: "duck" },
-    { start: 16030, end: 16230, name: "kung" },
-    
-    { start: 16230, end: 17110, name: "deong" },
-    { start: 17110, end: 17210, name: "duck" },
-    { start: 17210, end: 18090, name: "kung" },
-    { start: 18090, end: 18290, name: "kung" },
-    { start: 18290, end: 19100, name: "duck" },
-    { start: 19100, end: 19290, name: "kung" },
-    
-    { start: 19290, end: 20170, name: "deong" },
-    { start: 20170, end: 20260, name: "duck" },
-    { start: 20260, end: 21170, name: "kung" },
-    { start: 21170, end: 22040, name: "kung" },
-    { start: 22040, end: 22160, name: "duck" },
-    { start: 22160, end: 23080, name: "kung" },
-    
-    { start: 23080, end: 23250, name: "deong" },
-    { start: 23250, end: 24100, name: "duck" },
-    { start: 24100, end: 25000, name: "kung" },
-    { start: 25000, end: 25170, name: "kung" },
-    { start: 25170, end: 26010, name: "duck" },
-    { start: 26010, end: 26200, name: "kung" },
+    { "start": 6190, "end": 6856, "name": "deong" },
+    { "start": 6856, "end": 7189, "name": "deok" },
+    { "start": 7189, "end": 7855, "name": "kung" },
+    { "start": 7855, "end": 8521, "name": "kung" },
+    { "start": 8521, "end": 8854, "name": "deok" },
+    { "start": 8854, "end": 9520, "name": "kung" },
+  
+    { "start": 9520, "end": 10186, "name": "deong" },
+    { "start": 10186, "end": 10519, "name": "deok" },
+    { "start": 10519, "end": 11185, "name": "kung" },
+    { "start": 11185, "end": 11851, "name": "kung" },
+    { "start": 11851, "end": 12184, "name": "deok" },
+    { "start": 12184, "end": 12850, "name": "kung" },
+  
+    { "start": 12850, "end": 13516, "name": "deong" },
+    { "start": 13516, "end": 13849, "name": "deok" },
+    { "start": 13849, "end": 14515, "name": "kung" },
+    { "start": 14515, "end": 15181, "name": "kung" },
+    { "start": 15181, "end": 15514, "name": "deok" },
+    { "start": 15514, "end": 16180, "name": "kung" },
+  
+    { "start": 16180, "end": 16846, "name": "deong" },
+    { "start": 16846, "end": 17179, "name": "deok" },
+    { "start": 17179, "end": 17845, "name": "kung" },
+    { "start": 17845, "end": 18511, "name": "kung" },
+    { "start": 18511, "end": 18844, "name": "deok" },
+    { "start": 18844, "end": 19510, "name": "kung" },
+  
+    { "start": 19510, "end": 20176, "name": "deong" },
+    { "start": 20176, "end": 20509, "name": "deok" },
+    { "start": 20509, "end": 21175, "name": "kung" },
+    { "start": 21175, "end": 21841, "name": "kung" },
+    { "start": 21841, "end": 22174, "name": "deok" },
+    { "start": 22174, "end": 22840, "name": "kung" },
+  
+    { "start": 22840, "end": 23506, "name": "deong" },
+    { "start": 23506, "end": 23839, "name": "deok" },
+    { "start": 23839, "end": 24505, "name": "kung" },
+    { "start": 24505, "end": 25171, "name": "kung" },
+    { "start": 25171, "end": 25504, "name": "deok" },
+    { "start": 25504, "end": 26170, "name": "kung" },
   ];
 
   const audioFiles = {
