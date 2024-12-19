@@ -650,6 +650,10 @@
 }
 
 @media screen and (max-width: 1060px) {
+    .select-02 .plate > div.correct::before{
+        width: calc( 230px / 2);
+        height: calc( 247px / 2);
+    }
    
 }
 
@@ -657,6 +661,12 @@
     .select-01 .palette > button{
         border-width: 3px;
     }
+
+    .select-02 .plate > div.correct::before{
+        width: calc( 230px / 3);
+        height: calc( 247px / 3);
+    }
+    
 }
 
 @media screen and (max-width: 475px) {
