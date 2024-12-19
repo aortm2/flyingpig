@@ -7,19 +7,17 @@ $(function () {
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
 
   const winWidth = window.innerWidth
+  const bgm = $("#bgm")[0];
   if (winWidth > 1420) {
     // bgm
-    var bgm = $("#bgm")[0];
-    var bgm2 = $("#bgm02")[0];
+   
     if (bgm) {
-      var file = bgm.src;
       bgm.play();
-      if (!bgm.paused) {
-      }
     }
 
-    if (bgm2) {
-      bgm2.play();
+    // 인트로 재생
+    if (intro) {
+      intro.play();
     }
 
     var intro = $(".intro")[0];
@@ -38,33 +36,29 @@ $(function () {
       // BGM 재생 시작
       activeBgm.play();
     }
-
-    var effect = $("#effect")[0];
-    if (effect) {
-      effect.play();
-    }
   } else {
-    let count1 = true;
-    let count2 = true;
-    let effect3 = true;
-    $(".mobile-touch").click(function () {
-      $(this).fadeOut();
-      var bgm = $("#bgm")[0];
-      var bgm2 = $("#bgm02")[0];
-      if (bgm && count1 == true) {
-        bgm.play();
-        count1 = false
-      }
-      if(bgm2 && count2 === true){
-        bgm2.play();
-        count2 = false
-        console.log(count2)
-      }
+    let main = true;
+    let select = true;
+    let active1 = true;
+    $("body").click(function () {
       var intro = $(".intro")[0];
-      var intro2 = $(".intro2")[0];
-      if (intro) {
+      if (intro && main == true) {
         intro.play();
-        intro2.play();
+        main = false
+      }
+
+      if (main == true) {
+        if (bgm) {
+          bgm.play();
+        }
+        main = false;
+      }
+  
+      if (select == true) {
+        if (intro) {
+          intro.play();
+        }
+        select = false;
       }
 
       var activeBgm = $("#active")[0];
@@ -72,15 +66,14 @@ $(function () {
         // BGM 재생 시작
         activeBgm.play();
       }
-
-      var effect = $("#effect")[0];
-      if (effect && effect3 == true) {
-        effect.play();
-        effect3 = false
-      }
+      $(".mobile-touch").fadeOut();
     });
-
+    
   } 
+  var effect = $("#effect")[0];
+  if (effect) {
+    effect.play();
+  }
 
   document.querySelectorAll("img").forEach(function (img) {
     img.setAttribute("aria-hidden", "true");
@@ -623,8 +616,19 @@ $(".dialog").hide();
             isMissionAudioPlaying = true; // 미션 오디오가 재생 중임을 표시
             bgm02.hasPlayed = true; // 배경 음악이 재생되었음을 표시
         };
-
-        bgm02.play(); // 배경 음악을 재생
+        let active2 = true;
+        if(winWidth > 1420){
+          bgm02.play();
+        } else{
+          $("body").click(function(){
+             if(active2 == true){
+              bgm02.play();
+              bgm02.addEventListener("ended",function(){
+                $(".select-02").removeClass("pointer-none")
+              });
+             }
+          })
+        }
     } else {
         $(".cl_effect").each(function () {
             var name = $(this).data("name");
