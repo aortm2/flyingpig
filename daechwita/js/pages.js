@@ -624,8 +624,9 @@ $(".dialog").hide();
              if(active2 == true){
               bgm02.play();
               bgm02.addEventListener("ended",function(){
-                $(".select-02").removeClass("pointer-none")
+                active2 = false
               });
+              $(".select-02").removeClass("pointer-none")
              }
           })
         }
