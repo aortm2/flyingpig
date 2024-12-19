@@ -3,34 +3,59 @@ document.title = "민요알기"; // 제목
 $(function () {
   // 모바일 세로 팝업 삽입
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
-  const winWidth = window.innerWidth
+  const winWidth = window.innerWidth;
+const bgm = $("#bgm")[0];
+const intro = $(".intro")[0];
+const activeBgm = $("#active")[0]; //활동1
 
-  // bgm
-  var bgm = $("#bgm")[0];
+if (winWidth > 1420) {
+  // 배경음악 재생
   if (bgm) {
-    var file = bgm.src;
     bgm.play();
-    if (!bgm.paused) {
-      console.log(file); //재생되는 파일 확인
-    }
   }
 
-  var intro = $(".intro")[0];
+  // 인트로 재생
   if (intro) {
     intro.play();
   }
-
-  var activeBgm = $("#active")[0];
-  if (activeBgm) {
-    var file = activeBgm.src;
-    
-    activeBgm.onended = function() {
-      $(".slider-wrap").addClass("active")
-    };
-    
-    // BGM 재생 시작
+  if(activeBgm){
     activeBgm.play();
   }
+} else {
+  // 작은 화면에서 클릭 이벤트로 재생
+  let main = true;
+  let select = true;
+  let active1 = true;
+  
+  $("body").click(function () {
+    if (main == true) {
+      if (bgm) {
+        bgm.play();
+      }
+      main = false;
+    }
+
+    if (select == true) {
+      if (intro) {
+        intro.play();
+      }
+      select = false;
+    }
+
+    if(activeBgm){
+      if(active1 == true){
+
+        activeBgm.play();
+        active1 = false
+        $(".mobile-touch").fadeOut();
+        setTimeout(() => {
+          $(".select-01").removeClass("pointer-none")
+      }, 7000);
+      }
+    }
+  });
+}
+  
 
   var effect = $("#effect")[0];
   if (effect) {
@@ -285,19 +310,43 @@ $(".area").droppable({
   // 활동2
    // bgm
   const bgm2 = $("#bgm02")[0];
-  if (bgm2) {
-    bgm2.play();
-    const kkang = new Audio("./sound/contents_02/kkang.mp3");
-    bgm2.addEventListener("ended", function () {
-      kkang.volume = 1;
-      kkang.play()
-      $(".sigimsae").addClass("first")
-      setTimeout(second,5000)
+  if(winWidth > 1420){
+    if (bgm2) {
+      bgm2.play();
+      const kkang = new Audio("./sound/contents_02/kkang.mp3");
+      bgm2.addEventListener("ended", function () {
+        kkang.play()
+        $(".sigimsae").addClass("first")
+        setTimeout(second,5000)
+        $(".hidden-bg").addClass("hidden-ani")
+      });
+      kkang.addEventListener("ended", function () {
+        $(".drag-wrap").removeClass("pointer-none")
+      });
+      
+    }
+  } else{
+    let active2 = true
+    $("body").click(function () {
+      if (bgm2) {
+        if (active2 == true) {
+
+          bgm2.play();
+          const kkang = new Audio("./sound/contents_02/kkang.mp3");
+          bgm2.addEventListener("ended", function () {
+            kkang.play()
+            $(".sigimsae").addClass("first")
+            setTimeout(second, 5000)
+            $(".hidden-bg").addClass("hidden-ani")
+          });
+          kkang.addEventListener("ended", function () {
+            $(".drag-wrap").removeClass("pointer-none")
+          });
+          active2 = false
+          $(".mobile-touch").fadeOut();
+        }
+      }
     });
-    kkang.addEventListener("ended", function () {
-      $(".drag-wrap").removeClass("pointer-none")
-    });
-    
   }
   const second = () =>{
     $(".sigimsae").removeClass("first")

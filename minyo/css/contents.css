@@ -496,8 +496,10 @@
     height: 42%;
     background: rgb(255 243 215);
     /* background: rgba(0, 0 ,0, 0.5); */
+}
+
+.hidden-ani{
     animation: width 4.5s forwards;
-    animation-delay: 7s;
 }
 
 @keyframes width{

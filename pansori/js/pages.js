@@ -4,32 +4,56 @@ $(function () {
   // 모바일 세로 팝업 삽입
   $(".container").append("<div class='mobile-pop'><p>모바일 가로모드로 변경해 주세요.</p></div>")
   const winWidth = window.innerWidth
-  
+  const bgm = $("#bgm")[0];
+  const intro = $(".intro")[0];
+  const activeBgm = $("#active")[0]; //활동1
   // bgm
-  var bgm = $("#bgm")[0];
-  if (bgm) {
-    var file = bgm.src;
-    bgm.play();
-    if (!bgm.paused) {
-      console.log(file); //재생되는 파일 확인
+  if (winWidth > 1420) {
+    // 배경음악 재생
+    if (bgm) {
+      bgm.play();
     }
-  }
-
-  var intro = $(".intro")[0];
-  if (intro) {
-    intro.play();
-  }
-
-  var activeBgm = $("#active")[0];
-  if (activeBgm) {
-    var file = activeBgm.src;
-    
-    activeBgm.onended = function() {
-      $(".slider-wrap").addClass("active")
-    };
-    
-    // BGM 재생 시작
-    activeBgm.play();
+  
+    // 인트로 재생
+    if (intro) {
+      intro.play();
+    }
+    if(activeBgm){
+      activeBgm.play();
+      activeBgm.addEventListener("ended", function () {
+        $(".select-01").removeClass("pointer-none")
+      });
+    }
+  } else {
+    // 작은 화면에서 클릭 이벤트로 재생
+    let main = true;
+    let select = true;
+    let active1 = true;
+    $("body").click(function () {
+      if (main == true) {
+        if (bgm) {
+          bgm.play();
+        }
+        main = false;
+      }
+  
+      if (select == true) {
+        if (intro) {
+          intro.play();
+        }
+        select = false;
+      }
+      if(activeBgm){
+        if(active1 == true){
+          activeBgm.play();
+          active1 = false
+          $(".mobile-touch").fadeOut();
+        }
+        activeBgm.addEventListener("ended", function () {
+          $(".select-01").removeClass("pointer-none")
+        });
+      }
+    });
   }
 
   var effect = $("#effect")[0];
@@ -184,10 +208,26 @@ $(function () {
   // 활동2
    // bgm
   const bgm2 = $("#bgm02")[0];
-  if (bgm2) {
-    bgm2.play();
-    bgm2.addEventListener("ended", function () {
-      
+  let active2 = true;
+  if(winWidth > 1420){
+    if (bgm2) {
+      bgm2.play();
+      bgm2.addEventListener("ended", function () {
+        $(".select-02").removeClass("pointer-none")
+      });
+    }
+  } else{
+    $("body").click(function(){
+      if (bgm2) {
+        if(active2 == true){
+          bgm2.play();
+          bgm2.addEventListener("ended", function () {
+            $(".select-02").removeClass("pointer-none")
+          });
+          $(".mobile-touch").fadeOut();
+          active2 = false
+        }
+      }
     });
   }
   const second = () =>{

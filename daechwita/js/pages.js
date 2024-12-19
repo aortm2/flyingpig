@@ -47,7 +47,8 @@ $(function () {
     let count1 = true;
     let count2 = true;
     let effect3 = true;
-    $("body").click(function () {
+    $(".mobile-touch").click(function () {
+      $(this).fadeOut();
       var bgm = $("#bgm")[0];
       var bgm2 = $("#bgm02")[0];
       if (bgm && count1 == true) {
@@ -386,7 +387,6 @@ if (sliderWrap) {
   ]; // 미션 항목 배열
   var currentIndex = 0; // 현재 미션 항목 인덱스
   var faliAudio2 = new Audio("sound/narration/fali_02.mp3"); // 실패 시 재생할 오디오 파일
-  // var bgm02 = document.getElementById("bgm02"); // 배경 음악 요소
   var missionAudio = new Audio(); // 미션 오디오 객체
   var boyCompleteAudio = new Audio("sound/narration/boy_complete.mp3"); // boy 드래그 완료 시 재생할 오디오
   var girlCompleteAudio = new Audio("sound/narration/girl_complete.mp3"); // girl 드래그 완료 시 재생할 오디오

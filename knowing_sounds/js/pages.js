@@ -7,33 +7,68 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
-  if (bgm) {
-    bgm.play();
-  }
-  
-  if (bgm2) {
-    bgm2.play();
-  }
-  // 처음 진입 나레이션
-  var intro = $(".intro")[0];
-  if (intro) {
-    intro.play();
-    $(".container").addClass("pointer-none")
-    intro.addEventListener('ended', function() {
-    $(".container").removeClass("pointer-none")
-    });
-  }
+  var intro = $(".intro")[0]; // 활동2
+  if (winWidth > 1420) {
+    if (bgm) {
+      bgm.play();
+    }
 
-  var activeBgm = $("#active")[0];
-  if (activeBgm) {
-    var file = activeBgm.src;
+    if (bgm2) {
+      bgm2.play();
+      $(".container").addClass("pointer-none")
+      bgm2.addEventListener('ended', function () {
+        $(".container").removeClass("pointer-none")
+      });
+    }
+
+    var activeBgm = $("#active")[0];
+    if (activeBgm) {
+      // BGM 재생 시작
+      activeBgm.play();
+    }
+
+    if (intro) {
+      intro.play();
+    }
+
+  } else{
+    let main = true;
+    let select = true;
+    let active2 = true;
+    $("body").click(function () {
+      if (main) {
+        if (bgm) {
+          bgm.play();
+        }
+        main = false;
+      }
+  
+      if (select) {
+        if (bgm2) {
+          bgm2.play();
+          $(".container").addClass("pointer-none")
+          bgm2.addEventListener('ended', function () {
+            $(".container").removeClass("pointer-none")
+          });
+        }
+        select = false;
+      }
+
+      var activeBgm = $("#active")[0];
+      if (activeBgm) {
+        // BGM 재생 시작
+        activeBgm.play();
+      }
+
+      if (intro) {
+        if(active2 == true){
+          intro.play();
+          active2 = false;
+        }
+      }
+      $(".mobile-touch").fadeOut();
+    });
     
-    activeBgm.onended = function() {
-      $(".slider-wrap").addClass("active")
-    };
-    
-    // BGM 재생 시작
-    activeBgm.play();
   }
 
   var effect = $("#effect")[0];
@@ -341,10 +376,11 @@ $(function () {
             if (nextAudio) {
                 nextAudio.pause();
                 nextAudio.currentTime = 0;
-            }
-            nextAudio.play();
-            nextAudio.addEventListener('ended', function(){
-              secondAudio.play();
+              }
+              nextAudio.play();
+              nextAudio.addEventListener('ended', function(){
+                secondAudio.play();
+                $(".btn-en").removeClass("btn-en");
             });
         }, 3000); 
         
@@ -353,6 +389,7 @@ $(function () {
     // "확인" 버튼 클릭 시 이벤트
     $(".btn-ok").click(function () {
         $(".save-popup").css("display", "none");
+        $(".btn-save, .btn-sound").addClass("btn-en");
         if (nextAudio) {
           nextAudio.pause();
           nextAudio.currentTime = 0;
@@ -383,6 +420,7 @@ $(function () {
                 // 현재 미션 오디오 종료 후 두 번째 오디오 재생
                 currentMissionAudio.onended = function () {
                     secondAudio.play();
+                    $(".btn-en").removeClass("btn-en");
                 };
             }, 2000);
 
@@ -784,7 +822,6 @@ $(".btn-more2").on("mouseover",function () {
 $(".btn-out").on("mouseover",function () {
   const audio = new Audio("./sound/narration/yu2_na_12.mp3");
   if(!$(this).hasClass("btn-out2")){
-
     audio.play()
   }
 });

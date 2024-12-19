@@ -323,7 +323,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .select-02 .drag .item{
     width: 50%;
