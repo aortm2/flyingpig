@@ -33,6 +33,8 @@ img{
     flex-direction: column;
     aspect-ratio: 1634 / 919;
     background-size: 100%;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 
 .container.sel-01{

@@ -44,6 +44,8 @@ img {
     margin: 0 auto;
     flex-direction: column;
     aspect-ratio: 1634 / 919;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 
 .btn-top {

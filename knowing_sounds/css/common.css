@@ -33,6 +33,8 @@ img{
     flex-direction: column;
     aspect-ratio: 16 / 9;
     background-size: 100%;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 
 .container.sel-01{
@@ -610,6 +612,6 @@ img{
 
     /* 가로 방향일 때 적용할 스타일 */
     .container {
-        height: 100%;
+        height: 100dvh;
     }
 }
