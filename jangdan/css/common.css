@@ -180,6 +180,8 @@ img{
     /* background-color: rgba(0,0,0,0.68); */
     z-index: 10;
     aspect-ratio: 1634 / 919;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 
 .finish-animation{

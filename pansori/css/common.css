@@ -168,6 +168,8 @@ img{
     aspect-ratio: 1634 / 919;
     animation: finish-bg 1s forwards;
     animation-delay: 4s;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 @keyframes finish-bg{
     0%{
