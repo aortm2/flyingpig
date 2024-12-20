@@ -295,47 +295,47 @@ $(function () {
   const intro = $(".intro")[0];
   
   const verses = [
-    { "start": 6210, "end": 6876, "name": "deong" },
-    { "start": 6876, "end": 7209, "name": "duck" },
-    { "start": 7209, "end": 7875, "name": "kung" },
-    { "start": 7875, "end": 8541, "name": "kung" },
-    { "start": 8541, "end": 8874, "name": "duck" },
-    { "start": 8874, "end": 9540, "name": "kung" },
-
-    { "start": 9540, "end": 10106, "name": "deong" },
-    { "start": 10106, "end": 10439, "name": "duck" },
-    { "start": 10439, "end": 11105, "name": "kung" },
-    { "start": 11105, "end": 11771, "name": "kung" },
-    { "start": 11771, "end": 12104, "name": "duck" },
-    { "start": 12104, "end": 12770, "name": "kung" },
-
-    { "start": 12770, "end": 13436, "name": "deong" },
-    { "start": 13436, "end": 13769, "name": "duck" },
-    { "start": 13769, "end": 14435, "name": "kung" },
-    { "start": 14435, "end": 15101, "name": "kung" },
-    { "start": 15101, "end": 15434, "name": "duck" },
-    { "start": 15434, "end": 16100, "name": "kung" },
-
-    { "start": 16100, "end": 16766, "name": "deong" },
-    { "start": 16766, "end": 17099, "name": "duck" },
-    { "start": 17099, "end": 17765, "name": "kung" },
-    { "start": 17765, "end": 18431, "name": "kung" },
-    { "start": 18431, "end": 18764, "name": "duck" },
-    { "start": 18764, "end": 19430, "name": "kung" },
-
-    { "start": 19430, "end": 20096, "name": "deong" },
-    { "start": 20096, "end": 20429, "name": "duck" },
-    { "start": 20429, "end": 21095, "name": "kung" },
-    { "start": 21095, "end": 21761, "name": "kung" },
-    { "start": 21761, "end": 22094, "name": "duck" },
-    { "start": 22094, "end": 22760, "name": "kung" },
-
-    { "start": 22760, "end": 23426, "name": "deong" },
-    { "start": 23426, "end": 23759, "name": "duck" },
-    { "start": 23759, "end": 24425, "name": "kung" },
-    { "start": 24425, "end": 25091, "name": "kung" },
-    { "start": 25091, "end": 25424, "name": "duck" },
-    { "start": 25424, "end": 26090, "name": "kung" },
+    { "start": 6712, "end": 7412, "name": "deong" }, 
+    { "start": 7412, "end": 7726, "name": "duck" },	
+    { "start": 7726, "end": 8385, "name": "kung" },	
+    { "start": 8385, "end": 8936, "name": "kung" },	
+    { "start": 8936, "end": 9388, "name": "duck" },	
+    { "start": 9388, "end": 10063, "name": "kung" },	
+  
+    { "start": 10063, "end": 10717, "name": "deong" },
+    { "start": 10717, "end": 11087, "name": "duck" },
+    { "start": 11087, "end": 11769, "name": "kung" },
+    { "start": 11769, "end": 12350, "name": "kung" },
+    { "start": 12350, "end": 12701, "name": "duck" },
+    { "start": 12701, "end": 13352, "name": "kung" },
+  
+    { "start": 13352, "end": 14168, "name": "deong" },
+    { "start": 14168, "end": 14419, "name": "duck" },
+    { "start": 14419, "end": 15081, "name": "kung" },
+    { "start": 15081, "end": 15719, "name": "kung" },
+    { "start": 15719, "end": 16065, "name": "duck" },
+    { "start": 16065, "end": 16180, "name": "kung" },
+  
+    { "start": 16690, "end": 17386, "name": "deong" },
+    { "start": 17386, "end": 17741, "name": "duck" },
+    { "start": 17741, "end": 18385, "name": "kung" },
+    { "start": 18385, "end": 19037, "name": "kung" },
+    { "start": 19037, "end": 19400, "name": "duck" },
+    { "start": 19400, "end": 20007, "name": "kung" },
+  
+    { "start": 20007, "end": 20176, "name": "deong" },
+    { "start": 20682, "end": 20509, "name": "duck" },
+    { "start": 21053, "end": 21739, "name": "kung" },
+    { "start": 21739, "end": 22395, "name": "kung" },
+    { "start": 22395, "end": 22174, "name": "duck" },
+    { "start": 22536, "end": 23392, "name": "kung" },
+  
+    { "start": 23392, "end": 24025, "name": "deong" },
+    { "start": 24025, "end": 24694, "name": "duck" },
+    { "start": 24694, "end": 24688, "name": "kung" },
+     { "start": 24688, "end": 25039, "name": "kung" },
+    { "start": 25039, "end": 25714, "name": "duck" },
+    { "start": 25714, "end": 26739, "name": "kung" },
   ];
 
   const audioFiles = {
