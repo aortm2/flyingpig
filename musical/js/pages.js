@@ -153,16 +153,30 @@ $(function () {
   }
 
   // next 버튼 클릭 시 이벤트 처리
-  $(".dialog .next").on('click', function() {
+  $(".dialog .next-01").on('click', function() {
     if (currentImg < totalImages - 1) {
       showImage(currentImg + 1); // 다음 이미지 보여주기
     }
   });
   
   // prev 버튼 클릭 시 이벤트 처리
-  $(".dialog .prev").on('click', function() {
+  $(".dialog .prev-01").on('click', function() {
     if (currentImg > 0) {
       showImage(currentImg - 1); // 이전 이미지 보여주기
+    }
+  });
+
+  // next 버튼 클릭 시 이벤트 처리
+  $(".dialog .next-02").on('click', function() {
+    if (currentImg < totalImages - 1) {
+      showImage2(currentImg + 1); // 다음 이미지 보여주기
+    }
+  });
+  
+  // prev 버튼 클릭 시 이벤트 처리
+  $(".dialog .prev-02").on('click', function() {
+    if (currentImg > 0) {
+      showImage2(currentImg - 1); // 이전 이미지 보여주기
     }
   });
       // '더 알아보기' 버튼 클릭 시 첫 번째 이미지와 1번 오디오 재생
@@ -171,6 +185,14 @@ $(function () {
     
     infoEffectAudio.play();
     showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
+    moreAudio.pause()
+  });
+
+  $(".btn-more2").click(function () {
+    $(".dialog").show(); // 다이얼로그를 표시
+    
+    infoEffectAudio.play();
+    showImage2(0, true); // 첫 번째 이미지 표시 및 오디오 재생
     moreAudio.pause()
   });
 
@@ -279,6 +301,7 @@ $(function () {
     // 현재 재생 중인 오디오를 추적하는 변수
     
     let currentMoreAudio = null; // 전역 변수로 이동하여 모든 함수에서 접근 가능
+    let currentMoreAudio2 = null; // 전역 변수로 이동하여 모든 함수에서 접근 가능
   
     function showImage(index, playAudio = true) {
       const url = $(".dialog").data("url");
@@ -305,6 +328,47 @@ $(function () {
         currentMoreAudio = new Audio(audioFiles[index]);
         if (playAudio) currentMoreAudio.play();
       }
+    
+      // 첫 번째 페이지에서 prev 버튼 숨기기
+      if (index === 0) {
+        $(".dialog .prev").hide();
+      } else {
+        $(".dialog .prev").show();
+      }
+    
+      // 마지막 페이지에서 next 버튼 숨기기
+      if (index === totalImages - 1) {
+        $(".dialog .next").hide();
+      } else {
+        $(".dialog .next").show();
+      }
+    }
+
+    function showImage2(index, playAudio = true) {
+      const url = $(".dialog").data("url");
+      const audioFiles = [
+        `./sound/narration/yua1_n_29.mp3`, 
+        `./sound/narration/yua1_n_30.mp3`, 
+        `./sound/narration/yua1_n_31.mp3`,
+      ];
+    
+      // 이미지 활성화 업데이트
+      images.removeClass("active").eq(index).addClass("active");
+      currentImg = index;
+    
+      // 기존 오디오 중지
+      if (currentMoreAudio2) {
+        currentMoreAudio2.pause();
+        currentMoreAudio2.currentTime = 0;
+        currentMoreAudio2 = null; // 이전 오디오 객체 초기화
+      }
+    
+      // 새로운 오디오 재생
+      if (audioFiles[index]) {
+        currentMoreAudio2 = new Audio(audioFiles[index]);
+        if (playAudio) currentMoreAudio2.play();
+      }
+      console.log(currentMoreAudio2)
     
       // 첫 번째 페이지에서 prev 버튼 숨기기
       if (index === 0) {
