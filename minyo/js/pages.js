@@ -194,8 +194,8 @@ $(".area").droppable({
   }
 });
 
+const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);
   function activeFinish01() {
-    const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);
 
     congratsAudio.addEventListener("ended", function () {
       finishAudio.play();
@@ -214,12 +214,13 @@ $(".area").droppable({
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");
   const infoNarrationAudio = new Audio("./sound/narration/cho1_n_18.mp3");
   $(".btn-more").click(function () {
-    // infoEffectAudio.addEventListener("ended", function () {
-    //   infoNarrationAudio.play();
-    // });
-    // infoEffectAudio.play();
+    infoEffectAudio.addEventListener("ended", function () {
+      infoNarrationAudio.play();
+    });
+    infoEffectAudio.play();
     showImage(0, true);
     $(".dialog").fadeIn();
+    finishpause()
   });
 
   $(".dialog .next").on('click', function() {
@@ -240,21 +241,8 @@ $(".area").droppable({
     
     infoEffectAudio.play();
     showImage(0, true); // 첫 번째 이미지 표시 및 오디오 재생
-    moreAudio.pause()
+    
   });
-
-  // 더알아보기 버튼
-  $(".btn-more, .btn-more2").on("mouseover",function () {
-    moreAudio.play()
-    Exitaudio.pause();
-  });
-
-  // 나가기 버튼
-  $(".btn-out").on("mouseover", function () {
-    moreAudio.pause();
-    Exitaudio.play();
-  });
-
 
   let currentImg = 0;
   const images = $(".dialog .sd > div");
@@ -348,6 +336,17 @@ $(".area").droppable({
       }
     });
   }
+
+  const areas = $(".drag02 .area"); // `area` 요소 선택
+        const parent = areas.parent(); // 부모 요소 저장
+
+        // 요소를 배열로 랜덤 섞기
+        const shuffled = areas.toArray().sort(() => Math.random() - 0.5);
+
+        // 섞인 순서대로 DOM에 다시 추가
+  parent.append(shuffled);
+
+
   const second = () =>{
     $(".sigimsae").removeClass("first")
     $(".sigimsae").addClass("second")
@@ -414,16 +413,22 @@ $(".area").droppable({
     }
   });
 
+  function finishpause(){
+    finishAudio.pause()
+    finishAudio2.pause()
+    congratsAudio.pause()
+  }
+
+  const finishAudio2 = new Audio(`./sound/narration/cho1_n_16.mp3`);
   function activeFinish02() {
-    const finishAudio = new Audio(`./sound/narration/cho1_n_16.mp3`);
     const kkangFull = new Audio(`./sound/contents_02/kkang_full.m4a`);
 
     congratsAudio.play();
     congratsAudio.addEventListener("ended", function () {
-      finishAudio.play();
+      finishAudio2.play();
     });
 
-    finishAudio.addEventListener("ended", function () {
+    finishAudio2.addEventListener("ended", function () {
       $(".btn-wrap").css("display","flex")
     });
 
@@ -449,6 +454,7 @@ $(".area").droppable({
     });
     infoEffectAudio.play();
     $(".dialog").fadeIn();
+    finishpause()
   });
 
   $(".dialog-close").click(function () {

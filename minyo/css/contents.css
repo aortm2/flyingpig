@@ -349,36 +349,36 @@
     background-position: top center;
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(1){
+.select-02 .drag .drag-wrap .area.area-01{
     background-image: url(../img/content_02/bg_sheep.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(1) .item{
+.select-02 .drag .drag-wrap .area.area-01 .item{
     background-image: url(../img/content_02/sheep.png);
 }
 
 
-.select-02 .drag .drag-wrap .area:nth-child(2){
+.select-02 .drag .drag-wrap .area.area-02{
     background-image: url(../img/content_02/bg_cat.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(2) .item{
+.select-02 .drag .drag-wrap .area.area-02 .item{
     background-image: url(../img/content_02/cat.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(3){
+.select-02 .drag .drag-wrap .area.area-03{
     background-image: url(../img/content_02/bg_duck.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(3) .item{
+.select-02 .drag .drag-wrap .area.area-03 .item{
     background-image: url(../img/content_02/duck.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(4){
+.select-02 .drag .drag-wrap .area.area-04{
     background-image: url(../img/content_02/bg_cow.png);
 }
 
-.select-02 .drag .drag-wrap .area:nth-child(4) .item{
+.select-02 .drag .drag-wrap .area.area-04 .item{
     background-image: url(../img/content_02/cow.png);
 }
 

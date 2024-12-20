@@ -7,6 +7,7 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
+  var activeBgm = $("#active")[0]; //활동 1
   var intro = $(".intro")[0]; // 활동2
   if (winWidth > 1420) {
     if (bgm) {
@@ -29,11 +30,15 @@ $(function () {
 
     if (intro) {
       intro.play();
+      intro.addEventListener('ended', function(){
+        $(".container").removeClass("pointer-none")
+      })
     }
 
   } else{
     let main = true;
     let select = true;
+    let active1 = true;
     let active2 = true;
     $("body").click(function () {
       if (main) {
@@ -54,16 +59,22 @@ $(function () {
         select = false;
       }
 
-      var activeBgm = $("#active")[0];
       if (activeBgm) {
         // BGM 재생 시작
-        activeBgm.play();
+        if(active1 == true){
+          activeBgm.play();
+          active1 = false;
+        }
+        console.log(active1)
       }
 
       if (intro) {
         if(active2 == true){
           intro.play();
           active2 = false;
+          intro.addEventListener('ended', function(){
+            $(".container").removeClass("pointer-none")
+          })
         }
       }
       $(".mobile-touch").fadeOut();
@@ -591,6 +602,11 @@ $(function () {
     audio.onended = function() {
       secondAudio.play();
     };
+    $(".btn-save, .btn-sound").addClass("btn-en");
+    audio.addEventListener('ended', function(){
+     $(".btn-save, .btn-sound").removeClass("btn-en");
+
+    });
   });
 
   // contents02
