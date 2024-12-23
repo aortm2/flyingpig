@@ -290,6 +290,8 @@ $(function () {
     $(".dialog-close").click(function () {
       $(".dialog").fadeOut();
       showImage(0, false)
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
     });
   
     // 팝업 슬라이드
