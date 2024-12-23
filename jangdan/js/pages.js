@@ -8,76 +8,33 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
-  var activeBgm = $("#active")[0]; //활동1
-  if (winWidth > 1420) {
-    if (bgm) {
-      bgm.play();
-    }
-
-    if (bgm2) {
-      bgm2.play();
-      $(".container").addClass("pointer-none")
-      bgm2.addEventListener('ended', function () {
-        $(".container").removeClass("pointer-none")
-      });
-    }
-
-    if (activeBgm) {
-      // BGM 재생 시작
-      activeBgm.play();
-      activeBgm.addEventListener('ended', function () {
-        $(".select-01").removeClass("pointer-none")
-      });
-    }
-
-  } else {
-    let main = true;
-    let select = true;
-    let active1 = true;
-    let active2 = true;
-    $("body").click(function () {
-      if (main) {
-        if (bgm) {
-          bgm.play();
-        }
-        main = false;
-      }
+  if (bgm) {
+    bgm.play();
+  }
   
-      if (select) {
-        if (bgm2) {
-          bgm2.play();
-          $(".container").addClass("pointer-none")
-          bgm2.addEventListener('ended', function () {
-            $(".container").removeClass("pointer-none")
-          });
-        }
-        select = false;
-      }
+  if (bgm2) {
+    bgm2.play();
+  }
+  // 처음 진입 나레이션
+  // var intro = $(".intro")[0];
+  // if (intro) {
+  //   intro.play();
+  //   $(".container").addClass("pointer-none")
+  //   intro.addEventListener('ended', function() {
+  //   $(".container").removeClass("pointer-none")
+  //   });
+  // }
 
-      if (activeBgm) {
-        // BGM 재생 시작
-        if(active1 == true){
-          activeBgm.play();
-          active1 = false;
-          activeBgm.addEventListener('ended', function () {
-            $(".select-01").removeClass("pointer-none")
-          },{once:true});
-        }
-      }
-
-      if (intro) {
-        if(active2 == true){
-          active2 = false;
-          intro.play();
-          intro.addEventListener('ended', function () {
-            $(".select-02").removeClass("pointer-none")
-          });
-          console.log(active2 == true)
-        } 
-      }
-      $(".mobile-touch").fadeOut();
-    });
+  var activeBgm = $("#active")[0];
+  if (activeBgm) {
+    var file = activeBgm.src;
     
+    activeBgm.onended = function() {
+      $(".slider-wrap").addClass("active")
+    };
+    
+    // BGM 재생 시작
+    activeBgm.play();
   }
 
   var effect = $("#effect")[0];
@@ -295,47 +252,47 @@ $(function () {
   const intro = $(".intro")[0];
   
   const verses = [
-    { "start": 6712, "end": 7412, "name": "deong" }, 
-    { "start": 7412, "end": 7726, "name": "duck" },	
-    { "start": 7726, "end": 8385, "name": "kung" },	
-    { "start": 8385, "end": 8936, "name": "kung" },	
-    { "start": 8936, "end": 9388, "name": "duck" },	
-    { "start": 9388, "end": 10063, "name": "kung" },	
-  
-    { "start": 10063, "end": 10717, "name": "deong" },
-    { "start": 10717, "end": 11087, "name": "duck" },
-    { "start": 11087, "end": 11769, "name": "kung" },
-    { "start": 11769, "end": 12350, "name": "kung" },
-    { "start": 12350, "end": 12701, "name": "duck" },
-    { "start": 12701, "end": 13352, "name": "kung" },
-  
-    { "start": 13352, "end": 14168, "name": "deong" },
-    { "start": 14168, "end": 14419, "name": "duck" },
-    { "start": 14419, "end": 15081, "name": "kung" },
-    { "start": 15081, "end": 15719, "name": "kung" },
-    { "start": 15719, "end": 16065, "name": "duck" },
-    { "start": 16065, "end": 16180, "name": "kung" },
-  
-    { "start": 16690, "end": 17386, "name": "deong" },
-    { "start": 17386, "end": 17741, "name": "duck" },
-    { "start": 17741, "end": 18385, "name": "kung" },
-    { "start": 18385, "end": 19037, "name": "kung" },
-    { "start": 19037, "end": 19400, "name": "duck" },
-    { "start": 19400, "end": 20007, "name": "kung" },
-  
-    { "start": 20007, "end": 20176, "name": "deong" },
-    { "start": 20682, "end": 20509, "name": "duck" },
-    { "start": 21053, "end": 21739, "name": "kung" },
-    { "start": 21739, "end": 22395, "name": "kung" },
-    { "start": 22395, "end": 22174, "name": "duck" },
-    { "start": 22536, "end": 23392, "name": "kung" },
-  
-    { "start": 23392, "end": 24025, "name": "deong" },
-    { "start": 24025, "end": 24694, "name": "duck" },
-    { "start": 24694, "end": 24688, "name": "kung" },
-     { "start": 24688, "end": 25039, "name": "kung" },
-    { "start": 25039, "end": 25714, "name": "duck" },
-    { "start": 25714, "end": 26739, "name": "kung" },
+    { start: 6190, end: 7100, name: "deong" },
+    { start: 7100, end: 7190, name: "duck" },
+    { start: 7190, end: 8080, name: "kung" },
+    { start: 8080, end: 8250, name: "kung" },
+    { start: 8250, end: 9080, name: "duck" },
+    { start: 9080, end: 9260, name: "kung" },
+    
+    { start: 9260, end: 10170, name: "deong" },
+    { start: 10170, end: 10260, name: "duck" },
+    { start: 10260, end: 11200, name: "kung" },
+    { start: 11200, end: 12070, name: "kung" },
+    { start: 12070, end: 12200, name: "duck" },
+    { start: 12200, end: 13100, name: "kung" },
+    
+    { start: 13100, end: 14010, name: "deong" },
+    { start: 14010, end: 14090, name: "duck" },
+    { start: 14090, end: 15030, name: "kung" },
+    { start: 15030, end: 15200, name: "kung" },
+    { start: 15200, end: 16030, name: "duck" },
+    { start: 16030, end: 16230, name: "kung" },
+    
+    { start: 16230, end: 17110, name: "deong" },
+    { start: 17110, end: 17210, name: "duck" },
+    { start: 17210, end: 18090, name: "kung" },
+    { start: 18090, end: 18290, name: "kung" },
+    { start: 18290, end: 19100, name: "duck" },
+    { start: 19100, end: 19290, name: "kung" },
+    
+    { start: 19290, end: 20170, name: "deong" },
+    { start: 20170, end: 20260, name: "duck" },
+    { start: 20260, end: 21170, name: "kung" },
+    { start: 21170, end: 22040, name: "kung" },
+    { start: 22040, end: 22160, name: "duck" },
+    { start: 22160, end: 23080, name: "kung" },
+    
+    { start: 23080, end: 23250, name: "deong" },
+    { start: 23250, end: 24100, name: "duck" },
+    { start: 24100, end: 25000, name: "kung" },
+    { start: 25000, end: 25170, name: "kung" },
+    { start: 25170, end: 26010, name: "duck" },
+    { start: 26010, end: 26200, name: "kung" },
   ];
 
   const audioFiles = {
@@ -378,18 +335,8 @@ $(function () {
     }
   });
   
-  let active2 = true
   if (intro) {
-    if(winWidth > 1420){
-      intro.play();
-    } else{
-      $("body").click(function(){
-        if( active2 == true){
-          intro.play();
-          active2 = false
-        }
-      });
-    }
+    intro.play();
     $(".container").addClass("pointer-none");
   
     intro.addEventListener('ended', function () {
@@ -458,7 +405,6 @@ $(function () {
         }
       }, 50); // 50ms마다 실행
     });
-    
   }
 
   function finish2() {
