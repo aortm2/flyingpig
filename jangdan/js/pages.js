@@ -8,33 +8,76 @@ $(function () {
   // bgm
   var bgm = $(".bgm")[0];
   var bgm2 = $(".bgm2")[0];
-  if (bgm) {
-    bgm.play();
-  }
-  
-  if (bgm2) {
-    bgm2.play();
-  }
-  // 처음 진입 나레이션
-  // var intro = $(".intro")[0];
-  // if (intro) {
-  //   intro.play();
-  //   $(".container").addClass("pointer-none")
-  //   intro.addEventListener('ended', function() {
-  //   $(".container").removeClass("pointer-none")
-  //   });
-  // }
+  var activeBgm = $("#active")[0]; //활동1
+  if (winWidth > 1420) {
+    if (bgm) {
+      bgm.play();
+    }
 
-  var activeBgm = $("#active")[0];
-  if (activeBgm) {
-    var file = activeBgm.src;
+    if (bgm2) {
+      bgm2.play();
+      $(".container").addClass("pointer-none")
+      bgm2.addEventListener('ended', function () {
+        $(".container").removeClass("pointer-none")
+      });
+    }
+
+    if (activeBgm) {
+      // BGM 재생 시작
+      activeBgm.play();
+      activeBgm.addEventListener('ended', function () {
+        $(".select-01").removeClass("pointer-none")
+      });
+    }
+
+  } else {
+    let main = true;
+    let select = true;
+    let active1 = true;
+    let active2 = true;
+    $("body").click(function () {
+      if (main) {
+        if (bgm) {
+          bgm.play();
+        }
+        main = false;
+      }
+  
+      if (select) {
+        if (bgm2) {
+          bgm2.play();
+          $(".container").addClass("pointer-none")
+          bgm2.addEventListener('ended', function () {
+            $(".container").removeClass("pointer-none")
+          });
+        }
+        select = false;
+      }
+
+      if (activeBgm) {
+        // BGM 재생 시작
+        if(active1 == true){
+          activeBgm.play();
+          active1 = false;
+          activeBgm.addEventListener('ended', function () {
+            $(".select-01").removeClass("pointer-none")
+          },{once:true});
+        }
+      }
+
+      if (intro) {
+        if(active2 == true){
+          active2 = false;
+          intro.play();
+          intro.addEventListener('ended', function () {
+            $(".select-02").removeClass("pointer-none")
+          });
+          console.log(active2 == true)
+        } 
+      }
+      $(".mobile-touch").fadeOut();
+    });
     
-    activeBgm.onended = function() {
-      $(".slider-wrap").addClass("active")
-    };
-    
-    // BGM 재생 시작
-    activeBgm.play();
   }
 
   var effect = $("#effect")[0];
@@ -293,6 +336,9 @@ $(function () {
     { start: 25000, end: 25170, name: "kung" },
     { start: 25170, end: 26010, name: "duck" },
     { start: 26010, end: 26200, name: "kung" },
+    
+    //마지막 구간 삭제 x
+    { start: 26200, end: 33000, name: "" }, 
   ];
 
   const audioFiles = {
@@ -334,9 +380,18 @@ $(function () {
       console.log("현재 시간에 맞는 verse를 찾을 수 없습니다.");
     }
   });
-  
+  let active2 = true
   if (intro) {
-    intro.play();
+    if(winWidth > 1420){
+      intro.play();
+    } else{
+      $("body").click(function(){
+        if( active2 == true){
+          intro.play();
+          active2 = false
+        }
+      });
+    }
     $(".container").addClass("pointer-none");
   
     intro.addEventListener('ended', function () {
