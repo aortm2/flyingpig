@@ -214,9 +214,7 @@ const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);
   const infoEffectAudio = new Audio("./sound/effect/info.mp3");
   const infoNarrationAudio = new Audio("./sound/narration/cho1_n_18.mp3");
   $(".btn-more").click(function () {
-    infoEffectAudio.addEventListener("ended", function () {
-      infoNarrationAudio.play();
-    });
+
     infoEffectAudio.play();
     showImage(0, true);
     $(".dialog").fadeIn();
@@ -463,5 +461,8 @@ const finishAudio = new Audio(`./sound/narration/cho1_n_11.mp3`);
     infoNarrationAudio.currentTime = 0;
     infoNarrationAudio2.pause();
     infoNarrationAudio2.currentTime = 0;
+    currentMoreAudio.pause();
+    currentMoreAudio.currentTime = 0;
+
   });
 });
