@@ -342,7 +342,7 @@
   }
 
 .select-02 .btn .chat.active{
-    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(2px 2px 48px rgba(253, 81, 81, 1));
 }
 
 .select-02 .btn .chat.chat-01{
