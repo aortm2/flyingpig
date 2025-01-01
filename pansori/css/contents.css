@@ -134,6 +134,10 @@
     background-image: url(../img/content_01/cho2_n_6.png);
 }
 
+.select-01 .board-wrap .drop .area.cho2_n_6{
+    background-image: none;
+}
+
 .select-01 .board-wrap .drop .area.cho2_n_6::after{
     content: '';
     display: block;
