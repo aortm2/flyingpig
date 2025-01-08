@@ -189,9 +189,9 @@ img{
 .finish{
     display: none;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     max-width: 100%;
     width: 100%;
     /* background-color: rgba(0,0,0,0.68); */
