@@ -8,7 +8,8 @@ body {
 .mobile-touch{
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
@@ -18,6 +19,8 @@ body {
     color: #fff;
     font-size: 20px;
     z-index: 999;
+    max-width: calc(100dvh / 9 * 16);
+    max-height: calc(100dvw / 16 * 9);
 }
 
 main {
@@ -192,7 +195,7 @@ img {
 
 /* finish */
 .finish {
-    display: none;
+    display: block;
     position: absolute;
     top: 0;
     left: 50%;
