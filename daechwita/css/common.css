@@ -195,7 +195,7 @@ img {
 
 /* finish */
 .finish {
-    display: block;
+    display: none;
     position: absolute;
     top: 0;
     left: 50%;
@@ -643,9 +643,10 @@ img {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media (orientation: portrait) and (max-width: 1280px) {
     .mobile-pop{
         display: flex;
+        z-index: 9999;
     }
  
 }

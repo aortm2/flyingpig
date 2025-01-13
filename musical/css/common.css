@@ -638,11 +638,13 @@ img{
     }
 }
 
-@media screen and (max-width: 500px) {
+@media (orientation: portrait) and (max-width: 1280px) {
     .mobile-pop{
         display: flex;
+        z-index: 9999;
     }
 }
+
 
 @media (orientation: portrait) and (max-width: 1024px) {
 
